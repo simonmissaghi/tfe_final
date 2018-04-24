@@ -1,0 +1,1 @@
+{"version":3,"sources":["header.css"],"names":[],"mappings":"AAAA,OAAO,YAAY,iBAAiB,CAAC,aAAa,kBAAkB,YAAY,WAAW,CAAC","file":"../../../project/layout/header.css","sourcesContent":["header{height:5rem;text-align:center}header .logo{margin-top:1.5rem;width:200px;height:23px}\n"]}

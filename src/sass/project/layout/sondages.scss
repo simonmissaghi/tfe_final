@@ -1,0 +1,317 @@
+//Swiper Slide
+
+.swiper-container {
+  width: 100%;
+  height: 100%;
+}
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+
+// Surveys
+
+.page-surveys {
+
+  h1 {
+    font-size: 1.8rem;
+    text-transform: none;
+    text-align: center;
+    font-weight: 100;
+    margin: 3rem 0;
+    color: #000;
+  }
+
+  .surveys li {
+    padding: 5rem 2rem 5rem 9.5rem;
+    background: #fff;
+    margin-top: 2rem;
+    border-radius: 5px;
+    @include box_shadow(6);
+    color: $color-orange;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 1.5rem;
+      transform: translateY(-50%);
+      background: red;
+      width: 39px;
+      height: 74px;
+    }
+
+    &:first-child::before {
+      background: url('/images/icon_smartphone.svg');
+    }
+    &:nth-child(2)::before {
+      background: url('/images/icon_apps.svg');
+    }
+    &:nth-child(3)::before {
+      background: url('/images/icon_network.svg');
+    }
+
+  }
+
+}
+
+
+//Smartphones survey
+.html-surveys {
+  @include calc (height, "100%");
+}
+.page-single-survey {
+
+  header {
+    height: 7rem;
+    h1 {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: $color-orange;
+      margin: .5rem 0;
+
+    }
+
+  }
+
+  @include calc (height, "100% - 7rem");
+
+  main {
+    height: 100%;
+    background: $color-blue;
+
+    form {
+      height: 100%;
+    }
+
+    .question-wrapper {
+      height: 100%;
+      width: 100%;
+      display: grid;
+      grid-template-rows: 20.28813559322034% 69.54237288135593% 10.16949152542373%;
+      grid-template-areas: "a"
+      "b"
+      "c";
+
+      .question {
+        font-size: 1.4rem;
+        line-height: 2rem;
+        color: #fff;
+        grid-area: a;
+        align-self: center;
+        text-align: left;
+
+      }
+
+      .answers {
+        grid-area: b;
+      }
+
+      .question, .answers {
+        padding: 0 2rem;
+      }
+
+
+      .btn-next {
+        border: none;
+        background: $color-orange;
+        width: 100%;
+        height: 6rem;
+        font-size: 1.2rem;
+        font-family: $ff;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #fff;
+        grid-area: c;
+        align-self: end;
+        transition: .3s ease-in-out;
+      }
+
+      .answers li:not(.question-preambule) {
+        background: #fff;
+        border-radius: 5px;
+        @include box_shadow(6);
+        color: #000;
+        font-size: 1.3rem;
+        font-weight: 400;
+        position: relative;
+        cursor: pointer;
+        outline: none;
+        margin-bottom: .5rem;
+
+        label {
+          position: relative;
+          width: 100%;
+          text-align: left;
+          padding: 1.7rem 0 1.7rem 8.3rem;
+          display: inline-block;
+          border-radius: 5px;
+          background: #fff;
+          z-index: 2;
+
+          &::before {
+            content: '';
+            position: absolute;
+            top: -0.8rem;
+            left: 2rem;
+            border: 1px solid $color-orange;
+            background: transparent;
+            @include circle(24px);
+          }
+
+          .other__field {
+            background: none;
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            color: #fff;
+            outline: none;
+            max-width: 70%;
+
+          }
+
+        }
+
+        input[type="radio"] {
+          position: relative;
+          display: none;
+
+          &:checked + label {
+            background: $color-orange;
+            color: #fff;
+
+            &:before {
+              border: 1px solid #fff;
+            }
+            &:after {
+              content: '';
+              position: absolute;
+              top: -0.8rem;
+              left: 2.7rem;
+              background: #fff;
+              @include circle(10px);
+            }
+
+          }
+
+        }
+
+      }
+
+      .answers .question-preambule {
+        display: grid;
+        grid-gap: 5px;
+        grid-template-areas: "a b"
+        "c c";
+        grid-template-columns: 50%;
+
+
+        input {
+          display: none;
+
+          &:checked + label {
+            background: $color-orange;
+            color: #fff;
+
+          }
+
+          &:checked + .male:before {
+            content: url('/images/picto_male--white.svg');
+          }
+
+          &:checked + .female:before {
+            content: url('/images/picto_female--white.svg');
+          }
+
+        }
+
+        .genre {
+          padding: 6rem 0;
+          background: #fff;
+          border-radius: 5px;
+          padding: 10rem 0 1.5rem 0;
+          font-size: 1.2rem;
+          grid-row: 1;
+          position: relative;
+        }
+
+        .male {
+          grid-area: b;
+        }
+
+        .male, .female {
+
+          color: $color-orange;
+          &:before {
+            content: url('/images/picto_male.svg');
+            width: 25px;
+            height: 31px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateY(-50%) translateX(-50%);
+          }
+
+        }
+
+        .female {
+
+          &:before {
+            content: url('/images/picto_female.svg');
+          }
+
+        }
+
+        .age {
+          grid-area: c;
+          text-align: center;
+
+          select {
+            width: 100%;
+            border: none;
+            background: #fff;
+            border-radius: 5px;
+            padding: 1.7rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: $color-orange;
+            margin-top: 2rem;
+            outline: none;
+            position: relative;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -o-appearance: none;
+            appearance: none;
+            background: #fff url('/images/arrow_down.png');
+            background-repeat: no-repeat;
+            @include calc (background-position, '100% - 2rem');
+
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+}
