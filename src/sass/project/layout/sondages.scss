@@ -178,14 +178,14 @@
             @include circle(24px);
           }
 
-          .other__field {
+          .other__choice--text {
             background: none;
             border: none;
             border-bottom: 1px solid rgba(255, 255, 255, 0.4);
             color: #fff;
             outline: none;
             max-width: 70%;
-
+            pointer-events: none;
           }
 
         }
@@ -234,11 +234,11 @@
           }
 
           &:checked + .male:before {
-            content: url('/images/picto_male--white.svg');
+            content: url('../images/picto_male--white.svg');
           }
 
           &:checked + .female:before {
-            content: url('/images/picto_female--white.svg');
+            content: url('../images/picto_female--white.svg');
           }
 
         }
@@ -261,7 +261,7 @@
 
           color: $color-orange;
           &:before {
-            content: url('/images/picto_male.svg');
+            content: url('../images/picto_male.svg');
             width: 25px;
             height: 31px;
             position: absolute;
@@ -275,7 +275,7 @@
         .female {
 
           &:before {
-            content: url('/images/picto_female.svg');
+            content: url('../images/picto_female.svg');
           }
 
         }

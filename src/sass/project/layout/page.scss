@@ -2,3 +2,14 @@
   padding: 0 2rem;
 }
 
+
+.alert {
+  position: absolute;
+  top: 8rem;
+  left: 0;
+  right: 0;
+  background: rgba(222, 60, 60, .8);
+  border: 1px solid #DE3C3C;
+  padding: 2rem;
+  z-index: 3;
+}

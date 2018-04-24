@@ -6,10 +6,14 @@ $prepareip = $connection->prepare("SELECT COUNT(*) AS ip_adress FROM smartphones
 $prepareip->execute();
 $roww = $prepareip->fetch();
 $ip_final = $roww['ip_adress'];
-if (!empty($_POST)) {
+if (!empty($_POST['submit__survey--sm'])) {
   if($ip_final != 0) {
-    echo "Vous avez deja rempli le formulaire";
+    print("<div class=\"alert alert-error\">Vous avez deja rempli ce sondage. Pourquoi ne pas répondre à un autre ?</div>");
   }
+  elseif(empty($_POST['gender']) || empty($_POST['age']) || empty($_POST['q1']) || empty($_POST['q2']) || empty($_POST['q4']) || empty($_POST['q5']) || empty($_POST['q6']) || empty($_POST['q7'])) {
+    print("<div class=\"alert alert-error\">Vous Vous n'avez pas répondu à toutes les questions !</div>");
+  }
+
   else {
     $preparedstatement = $connection->prepare('INSERT INTO smartphones_survey
       (
@@ -18,6 +22,7 @@ if (!empty($_POST)) {
       q1,
       q2,
       q3,
+      q3b,
       q4,
       q5,
       q6,
@@ -30,16 +35,19 @@ if (!empty($_POST)) {
       :q1,
       :q2,
       :q3,
+      :q3b,
       :q4,
       :q5,
       :q6,
-      :q7
+      :q7,
+      :ip_adress
     )');
     $gender = strip_tags($_POST['gender']);
     $age = strip_tags($_POST['age']);
     $q1 = strip_tags($_POST['q1']);
     $q2 = strip_tags($_POST['q2']);
     $q3 = strip_tags($_POST['q3']);
+    $q3b = strip_tags($_POST['q3b']);
     $q4 = strip_tags($_POST['q4']);
     $q5 = strip_tags($_POST['q5']);
     $q6 = strip_tags($_POST['q6']);
@@ -51,12 +59,16 @@ if (!empty($_POST)) {
       'q1' => $q1,
       'q2' => $q2,
       'q3' => $q3,
+      'q3b' => $q3b,
       'q4' => $q4,
       'q5' => $q5,
       'q6' => $q6,
       'q7' => $q7,
       'ip_adress' => $ip_adress
     ));
+
+    header("Location: index.html");
+    exit();
   }
 }
 
@@ -75,6 +87,7 @@ if (!empty($_POST)) {
     <h1 class="title_survey">Les smartphones</h1>
   </header>
   <main>
+
     <form action="" method="POST">
       <div class="swiper-container">
         <div class="swiper-wrapper">
@@ -206,9 +219,8 @@ if (!empty($_POST)) {
                   <label for="sm_q3-5">parce que vous en avez besoin</label>
                 </li>
                 <li>
-                  <input type="radio" id="sm_q3-6" name="q3" value="6">
-
-                  <label for="sm_q3-6">autre : <input type="text" class="other__field" id="sm_q3-6" name="q3" value=""></label>
+                  <input type="radio" class="other__choice" id="sm_q3-6" name="q3" value="">
+                  <label class="other__choice--label" for="sm_q3-6">autre : <input type="text" class="other__choice--text" id="sm_q3-6" name="q3b" value="" onchange="changeradioother()"></label>
                 </li>
               </ul>
               <button class="btn-next swiper-button-next">Suivant</button>
@@ -261,7 +273,7 @@ if (!empty($_POST)) {
                   <label for="sm_q5-2">Très important</label>
                 </li>
                 <li>
-                  <input type="radio" id="sm_q4-3" name="q5" value="3">
+                  <input type="radio" id="sm_q5-3" name="q5" value="3">
                   <label for="sm_q5-3">Relativement important</label>
                 </li>
                 <li>
@@ -336,7 +348,7 @@ if (!empty($_POST)) {
                 </li>
               </ul>
               <input type="hidden" name="ip_adress" id="ip_adress" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" />
-              <input type="submit" name="submit" class="btn-next submit-survey">Terminer</button>
+              <input type="submit" name="submit__survey--sm" class="btn-next submit-survey">Terminer</button>
             </div>
           </div>
         </div>

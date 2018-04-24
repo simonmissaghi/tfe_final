@@ -1,56 +1,17 @@
-// function showBtnNext() {
+// input text remplit la value du input radio
 
-//   var labelSurvey = document.getElementsByTagName('label');
+function changeradioother(){
+ var other = document.querySelectorAll(".other__choice");
+    other.value = document.querySelectorAll(".other__choice--text").value;
+}
 
-//   for ( var i = 0; i < labelSurvey.length; i++ ) (function(i){
-//     labelSurvey[i].onclick = function() {
+function focusOnTextInput() {
+  var labelZone = document.querySelector(".other__choice--label");
+  var textFocus = document.querySelector(".other__choice--text");
 
-//       btnNext = document.querySelectorAll('.btn-next');
+  labelZone.addEventListener('click', function() {
+    textFocus.focus();
+  })
+}
 
-//       btnNext.style.transform = "translateY(0)";
-//       }
-//     })(i);
-// }
-
-// showBtnNext();
-
-  // function hideBtnNext() {
-
-//   var btnNext = document.querySelectorAll('.btn-next');
-
-//   console.log(btnNext);
-
-//   for (var i = 0; i < btnNext.length; i++)(function(i) {
-//     btnNext[i].onclick = function() {
-//       btnNext[i].style.transform = "translateY(100%)";
-//     }
-//   })(i);
-// }
-
-// hideBtnNext();
-
-
-
-
-
-
-
-
-
-
-
-  // for (var i = 0; i < labelSurvey.length; i++)(function(i) {
-
-  // }) {
-
-  // //   var selectedLabel = labelSurvey[i];
-
-  //   selectedLabel.addEventListener("click", function() {
-
-  //     console.log(selectedLabel[i]);
-  //       // var btnNext = labelSurvey[n].closest(".btn-next");
-
-  //     // btnNext.style.transform = "translateY(0)";
-
-  //   })
-  // }
+focusOnTextInput();
