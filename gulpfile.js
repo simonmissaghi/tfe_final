@@ -9,6 +9,7 @@ const gulp                = require('gulp'),
       babel               = require('gulp-babel'),
       uncss               = require('gulp-uncss'),
       browserSync         = require('browser-sync').create();
+      connect             = require('gulp-connect-php');
 
 gulp.task('css', function(){
   return gulp.src('src/sass/**/*.scss')
@@ -66,6 +67,7 @@ gulp.task('php', function(){
       // .pipe(browserSync.stream())
 });
 
+
 gulp.task('browserSync', function(){
   browserSync.init({
     server: {
@@ -78,4 +80,5 @@ gulp.task('watch', ['browserSync', 'js', 'php', 'images', 'css'], function(){
   gulp.watch('src/sass/**/*.scss', ['css']);
   gulp.watch('src/**/*.+(html|js)', ['copy']);
   gulp.watch('src/**/*.js', ['js']);
+  gulp.watch('src/**/*.php', ['php']);
 })

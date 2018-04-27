@@ -1,80 +1,3 @@
-<?php session_start(); ?>
-<?php include ("php/connection.php");
-include ("php/function.php");
-$adressip = $_SERVER["REMOTE_ADDR"];
-$prepareip = $connection->prepare("SELECT COUNT(*) AS ip_adress FROM smartphones_survey WHERE ip_adress = '$adressip'");
-$prepareip->execute();
-$roww = $prepareip->fetch();
-$ip_final = $roww['ip_adress'];
-$ipErr = "";
-$questionErr = "";
-if (!empty($_POST['submit__survey--sm'])) {
-  if($ip_final != 0) {
-    $ipErr = "Vous avez déjà rempli ce formulaire ! Pourquoi ne pas répondre à un autre ?";
-  }
-  elseif(empty($_POST['gender']) || empty($_POST['age']) || empty($_POST['q1']) || empty($_POST['q2']) || empty($_POST['q4']) || empty($_POST['q5']) || empty($_POST['q6']) || empty($_POST['q7'])) {
-    $questionErr = "Vous avez oublié une ou plusieurs questions...";
-  }
-
-  else {
-    $preparedstatement = $connection->prepare('INSERT INTO smartphones_survey
-      (
-      gender,
-      age,
-      q1,
-      q2,
-      q3,
-      q3b,
-      q4,
-      q5,
-      q6,
-      q7,
-      ip_adress
-      )
-      VALUES (
-      :gender,
-      :age,
-      :q1,
-      :q2,
-      :q3,
-      :q3b,
-      :q4,
-      :q5,
-      :q6,
-      :q7,
-      :ip_adress
-    )');
-    $gender = strip_tags($_POST['gender']);
-    $age = strip_tags($_POST['age']);
-    $q1 = strip_tags($_POST['q1']);
-    $q2 = strip_tags($_POST['q2']);
-    $q3 = strip_tags($_POST['q3']);
-    $q3b = strip_tags($_POST['q3b']);
-    $q4 = strip_tags($_POST['q4']);
-    $q5 = strip_tags($_POST['q5']);
-    $q6 = strip_tags($_POST['q6']);
-    $q7 = strip_tags($_POST['q7']);
-    $ip_adress = strip_tags($_POST['ip_adress']);
-    $preparedstatement ->execute(array(
-      'gender' => $gender,
-      'age' => $age,
-      'q1' => $q1,
-      'q2' => $q2,
-      'q3' => $q3,
-      'q3b' => $q3b,
-      'q4' => $q4,
-      'q5' => $q5,
-      'q6' => $q6,
-      'q7' => $q7,
-      'ip_adress' => $ip_adress
-    ));
-
-    header("Location: redirection.php");
-    exit();
-  }
-}
-
-?>
 <!DOCTYPE html>
 <html class="page-surveys page-surveys-single" lang="fr">
 
@@ -93,8 +16,6 @@ if (!empty($_POST['submit__survey--sm'])) {
     </header>
     <main class="smartphone-survey">
         <div class="swiper-pagination"></div>
-            <div class="alert alert-danger"><?php echo $ipErr; ?></div>
-    <div class="alert alert-danger"><?php echo $questionErr; ?></div>
         <!-- Grid beginning -->
         <div class="wrapper-survey">
             <div class="header-main">
@@ -339,7 +260,7 @@ if (!empty($_POST['submit__survey--sm'])) {
                             <div class="swiper-slide">
                                 <div class="wrapper-question">
                                     <div class="question">
-                                        <h2 class="subtitle-question">Quelle est pour toi la probabilité que les smartphones soient sources de manque de contacts en temps réel entre humains ?</h2></div>
+                                        <h2 class="subtitle-question">Quelle est pour vous la probabilité que les smartphones soient sources de manque de contacts en temps réel entre humains ?</h2></div>
                                     <ul class="answers">
                                         <li>
                                             <input type="radio" id="sm_q7-1" name="q7" value="1">
@@ -363,7 +284,7 @@ if (!empty($_POST['submit__survey--sm'])) {
                                         </li>
                                     </ul>
                                     <input type="hidden" name="ip_adress" id="ip_adress" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" />
-                                    <input type="submit" name="submit__survey--sm" class="btn-next submit-survey" />
+                                    <button type="submit" name="submit__survey--sm" class="btn-next submit-survey">Terminer</button>
                                 </div>
                             </div>
                         </div>

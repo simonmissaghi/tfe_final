@@ -339,7 +339,7 @@ if (!empty($_POST['submit__survey--sm'])) {
                             <div class="swiper-slide">
                                 <div class="wrapper-question">
                                     <div class="question">
-                                        <h2 class="subtitle-question">Quelle est pour toi la probabilité que les smartphones soient sources de manque de contacts en temps réel entre humains ?</h2></div>
+                                        <h2 class="subtitle-question">Quelle est pour vous la probabilité que les smartphones soient sources de manque de contacts en temps réel entre humains ?</h2></div>
                                     <ul class="answers">
                                         <li>
                                             <input type="radio" id="sm_q7-1" name="q7" value="1">
@@ -363,7 +363,7 @@ if (!empty($_POST['submit__survey--sm'])) {
                                         </li>
                                     </ul>
                                     <input type="hidden" name="ip_adress" id="ip_adress" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" />
-                                    <input type="submit" name="submit__survey--sm" class="btn-next submit-survey" />
+                                    <button type="submit" name="submit__survey--sm" class="btn-next submit-survey">Terminer</button>
                                 </div>
                             </div>
                         </div>
