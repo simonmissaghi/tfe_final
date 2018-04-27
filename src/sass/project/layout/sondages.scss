@@ -27,6 +27,10 @@
             grid-template-rows: 10.41666666666667% 89.58333333333333%;
             grid-template-columns: 100%;
 
+            &.wrapper-survey-redirection {
+                height: 100%;
+            }
+
             .header-main {
                 grid-area: a;
                 grid-row: 1;
@@ -290,9 +294,90 @@
                     }
                 }
             }
+
+            &.wrapper-survey-redirection {
+
+
+                .body-main {
+                    .wrapper-question {
+                        grid-template-rows: 40% 1fr 6rem;
+
+
+                        h2 {
+                            font-size: 1.8rem;
+                            font-style: italic;
+                            font-weight: 900;
+                            text-transform: uppercase;
+                            position: relative;
+                            color: #fff;
+                            margin: 0 0 1rem;
+                        }
+
+                        p {
+                            margin: 0 0 1rem;
+                            position: relative;
+
+                            &:after {
+                                content: '';
+                                position: absolute;
+                                bottom: -1.5rem;
+                                left: 0;
+                                width: 30px;
+                                height: 4px;
+                                background: $color-orange;
+                            }
+                        }
+                        .answers {
+                            align-self: start;
+
+
+                            .redirect-skip {
+                                margin-top: 2rem;
+                                text-align: center;
+                            }
+
+
+                            input[type="email"] {
+                                padding: 2rem 0 .5rem;
+                                background: none;
+                                border: none;
+                                border-bottom: 1px solid #de7a22;
+                                outline: none;
+                                color: #fff;
+                                width: 100%;
+
+                                &::placeholder {
+                                    color: rgba(255, 255, 255, .5);
+                                    font-style: italic;
+                                    font-size: 1.4rem;
+                                }
+                            }
+
+                            a {
+                                text-align: center;
+                                display: inline-block;
+                                font-size: 1.2rem;
+                                text-decoration: underline;
+                                color: #fff;
+                                margin-top: 6rem;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

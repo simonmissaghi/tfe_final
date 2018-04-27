@@ -37,43 +37,50 @@ if (!empty($_POST['submit_email'])) {
 
 ?>
 
+<!DOCTYPE html>
 <html class="page-surveys page-surveys-single" lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test sondage</title>
   <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <link rel="stylesheet" href="css/swiper.min.css">
-  <title>Smartphones - Sondage</title>
 </head>
+
 <body>
   <header>
     <img class="logo" src="images/logo_trustinme.svg" alt="logo" />
+    <nav></nav>
   </header>
   <main class="smartphone-survey">
-    <div class="swiper-pagination"></div>
     <div class="alert alert-danger"><?php echo $ipErr; ?></div>
     <div class="alert alert-danger"><?php echo $questionErr; ?></div>
+    <div class="alert alert-danger"><?php echo $emailErr; ?></div>
+    <div class="alert alert-danger"><?php echo $emailValid; ?></div>
     <!-- Grid beginning -->
-    <div class="wrapper-survey">
+    <div class="wrapper-survey wrapper-survey-redirection">
       <div class="header-main">
         <h1 class="title-intro">Les smartphones</h1>
       </div>
       <div class="body-main">
         <form action="" method="POST">
+          <!-- Question préambule -->
           <div class="wrapper-question">
             <div class="question">
               <h2>Merci pour ta participation !</h2>
-              <p>Tu peux être tenu au courant de la suite des évènements en rentrant ton adresse email. C'est Sans obligation.</p></div>
-              <div class="answers">
-                <input type="email" name="email" value="" placeholder="email">
-                <div class="redirect-skip"><a href="index.html">Passer cette étape</a></div>
-              </div>
-              <input type="submit" name="submit_email" class="btn-next" />
+              <p>Tu peux être tenu au courant de la suite des évènements en rentrant ton adresse email. C'est Sans obligation.</p>
             </div>
-          </form>
-        </div>
+            <div class="answers">
+              <input type="email" name="email" value="" placeholder="email">
+              <div class="redirect-skip"><a href="index.html">Passer cette étape</a></div>
+            </div>
+            <input type="submit" name="submit_email" class="btn-next" />
+          </div>
+        </form>
       </div>
-    </main>
-    <script src="javascript/main.js"></script>
-  </body>
-  </html>
+    </div>
+  </main>
+  <footer></footer>
+  <script src="javascript/main.js"></script>
+</body>
+</html>
