@@ -9,15 +9,15 @@
         @include calc(height, '100% - 6rem');
 
         &.smartphone-survey {
-            background: $color-blue;
+            background: $color-smartphones;
         }
 
         &.app-survey {
-            background: $color-blue;
+            background: $color-smartphones;
         }
 
         &.networks-survey {
-            background: $color-blue;
+            background: $color-smartphones;
         }
 
         .wrapper-survey {

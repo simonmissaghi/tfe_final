@@ -43,7 +43,7 @@ if (!empty($_POST['submit_email'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>test sondage</title>
+  <title>Sondage - Les smartphones | #trustinme</title>
   <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 
@@ -56,7 +56,7 @@ if (!empty($_POST['submit_email'])) {
     <div class="alert alert-danger"><?php echo $ipErr; ?></div>
     <div class="alert alert-danger"><?php echo $questionErr; ?></div>
     <div class="alert alert-danger"><?php echo $emailErr; ?></div>
-    <div class="alert alert-danger"><?php echo $emailValid; ?></div>
+    <div class="alert alert-safe"><?php echo $emailValid; ?></div>
     <!-- Grid beginning -->
     <div class="wrapper-survey wrapper-survey-redirection">
       <div class="header-main">
