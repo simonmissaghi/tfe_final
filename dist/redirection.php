@@ -58,7 +58,7 @@ if (!empty($_POST['submit_email'])) {
     <div class="alert alert-danger"><?php echo $emailErr; ?></div>
     <div class="alert alert-safe"><?php echo $emailValid; ?></div>
     <!-- Grid beginning -->
-    <div class="wrapper-survey wrapper-survey-redirection">
+    <div class="wrapper-survey wrapper-survey-redirection smartphone-survey">
       <div class="header-main">
         <h1 class="title-intro">Les smartphones</h1>
       </div>
@@ -68,7 +68,7 @@ if (!empty($_POST['submit_email'])) {
           <div class="wrapper-question">
             <div class="question">
               <h2>Merci pour ta participation !</h2>
-              <p>Tu peux être tenu au courant de la suite des évènements en rentrant ton adresse email. C'est Sans obligation.</p>
+              <p>Tu peux être tenu au courant de la suite des évènements en rentrant ton adresse email. C'est sans obligation.</p>
             </div>
             <div class="answers">
               <input type="email" name="email" value="" placeholder="email">

@@ -5,56 +5,11 @@
         height: 100%;
     }
     main {
-        background: linear-gradient( rgba(222, 122, 34, .25),
-        rgba(222, 122, 34, .25)),
-        url('../images/bg-smartphones-survey.jpg');
-        background-size: cover;
-        @include calc(height, "100% - 6rem");
 
         @media (max-height: 460px) {
             @include calc(height, "100% - 4rem");
         }
-
-        @include media-breakpoint-up(md) {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-
-        .container-surveys {
-            height: 100%;
-            @include media-breakpoint-up(md) {
-                width: 100%;
-                height: 100%;
-                max-width: 700px;
-                max-height: 600px;
-                position: relative;
-            }
-            .wrapper-link {
-                position: absolute;
-                top: -30px;
-                font-size: 1.2rem;
-                text-transform: uppercase;
-                font-weight: 700;
-
-                a.back-to-list {
-                    color: #fff;
-                    position: relative;
-                    padding-left: 2.7rem;
-
-                    &::before {
-                        content: '';
-                        position: absolute;
-                        width: 18px;
-                        height: 17px;
-                        top: 0;
-                        left: 0;
-                        background: url('../images/arrow-left.svg');
-                    }
-                }
-            }
-        }
+        @include calc(height, "100% - 6rem");
     }
     .wrapper-surveys {
         height: 100%;
@@ -226,23 +181,28 @@
 .page-surveys-single {
 
     height: 100%;
+
     body {
         height: 100%;
     }
 
     main {
-        @include calc(height, '100% - 6rem');
-
-        @media (max-height: 460px) {
-            @include calc(height, '100% - 4rem');
+        // @include calc(height, '100% - 6rem');
+        &.smartphone-survey {
+            background: $color-smartphones;
         }
 
+        &.app-survey {
+            background: $color-smartphones;
+        }
+
+        &.networks-survey {
+            background: $color-smartphones;
+        }
 
         .wrapper-survey {
             display: grid;
             @include calc (height, "100% - 4px");
-            grid-template-areas: "a" "b";
-            grid-template-rows: 10.41666666666667% 89.58333333333333%;
             grid-template-columns: 100%;
 
             &.wrapper-survey-redirection {
@@ -262,10 +222,6 @@
                     margin: 0;
                     display: inline-block;
                     padding: 0 2rem;
-
-                    @include media-breakpoint-up(md) {
-                        padding: 0 4rem;
-                    }
                 }
             }
             .body-main {
@@ -284,18 +240,9 @@
                     grid-template-columns: 100%;
                     grid-template-rows: 20% 1fr 6rem;
 
-                    @include media-breakpoint-up(md) {
-                        grid-template-columns: repeat(6, 1fr);
-                    }
-
                     .question {
                         grid-area: c;
                         padding: 0 2rem;
-
-                        @include media-breakpoint-up(md) {
-                            grid-column: 2/7;
-                        }
-
 
                         h2 {
                             font-size: 1.8rem;
@@ -305,10 +252,6 @@
                             position: relative;
                             color: #fff;
                             margin: 0 0 1rem;
-
-                            @include media-breakpoint-up(md) {
-                                font-size: 2.4rem;
-                            }
                         }
 
                         p {
@@ -337,10 +280,6 @@
                         grid-gap: 5px;
                         grid-template-areas: "a b" "c c";
                         grid-template-columns: 50%;
-
-                        @include media-breakpoint-up(md) {
-                            grid-column: 2/6;
-                        }
 
                         li {
                             @include box_shadow(6);
@@ -372,6 +311,10 @@
                                 display: block;
                                 padding: 11rem 0 1rem;
                                 text-align: center;
+
+                                @media (max-height: 460px) {
+                                    padding: 7rem 0 1rem;
+                                }
                             }
 
                             .male,
@@ -416,10 +359,6 @@
                         grid-area: e;
                         align-self: end;
                         grid-row: 3;
-
-                        @include media-breakpoint-up(md) {
-                            grid-column: 1/9;
-                        }
                     }
                 }
 
@@ -427,22 +366,17 @@
                     display: grid;
                     height: 100%;
                     grid-template-areas: "c" "d" "e";
-                    grid-template-columns: 100%; // grid-template-rows: 20% 1fr 6rem; // @include media-breakpoint-up(md) {
-                    //     grid-template-columns: repeat(6,1fr);
-                    //     justify-content: center;
-                    // }
+                    grid-template-columns: 100%;
+                    grid-template-rows: 20% 1fr 6rem;
+
                     @include media-breakpoint-up(md) {
-                        grid-template-columns: repeat(8, 1fr);
+                        grid-template-columns: repeat(6, 1fr);
+                        justify-content: center;
                     }
+
                     .question {
                         grid-area: c;
                         padding: 0 2rem;
-
-                        @include media-breakpoint-up(md) {
-                            padding: 0 2rem 0 4rem;
-                            grid-row: 2;
-                            grid-column: 1/5;
-                        }
 
                         .subtitle-question {
                             font-size: 1.4rem;
@@ -460,10 +394,6 @@
                                 height: 4px;
                                 background: $color-orange;
                             }
-
-                            @include media-breakpoint-up(md) {
-                                font-size: 1.8rem;
-                            }
                         }
                     }
 
@@ -472,17 +402,6 @@
                         grid-row: 2;
                         padding: 0 2rem;
                         align-self: start;
-
-
-                        @media (max-height: 460px) {
-                            max-height: 100%;
-                            overflow: scroll;
-                        }
-
-                        @include media-breakpoint-up(md) {
-                            padding: 0 4rem 0 2rem;
-                            grid-column: 5/9;
-                        }
 
                         li:not(.answers--intro) {
                             background: #fff;
@@ -523,7 +442,7 @@
                             }
 
                             label {
-                                @media (max-height: 460px) {
+                                @media (max-height: 570px) {
                                     padding: 1.2rem 0 1.2rem 8.3rem;
                                 }
 
@@ -560,48 +479,20 @@
                         }
                     }
 
-                    button, input[type=submit], .btn-swiper {
+                    button, input[type=submit] {
                         grid-area: e;
                         align-self: end;
                         grid-row: 3;
-
-                        @include media-breakpoint-up(md) {
-                            grid-column: 1/9;
-                        }
-                    }
-
-                    .btn-swiper {
-                        display: flex;
-                        flex-flow: row-wrap;
-                        justify-content: space-around;
-
-                        .wrapper-btn-swiper {
-                            width: 50%;
-                            text-align: center;
-                            align-self: center;
-                            padding: 1.5rem 0;
-                        }
                     }
                 }
             }
 
             &.wrapper-survey-redirection {
 
-                @include media-breakpoint-up(md) {
-                    max-width: 700px;
-                    width: 100%;
-                    max-height: 600px;
-                }
-
 
                 .body-main {
                     .wrapper-question {
                         grid-template-rows: 40% 1fr 6rem;
-
-                        @include media-breakpoint-up(md) {
-                            display: flex;
-                            flex-flow: column;
-                        }
 
 
                         h2 {
@@ -628,28 +519,9 @@
                                 background: $color-orange;
                             }
                         }
-                        .question {
-                            @include media-breakpoint-up(md) {
-                                padding: 0 2rem;
-                                grid-row: 2;
-                                grid-column: 2/5;
-                                flex-grow: 1;
-                                justify-items: center;
-                                max-width: 350px;
-                                margin: 0 auto;
-                            }
-                        }
                         .answers {
                             align-self: start;
 
-                            @include media-breakpoint-up(md) {
-                                align-self: start;
-                                flex-grow: 1;
-                                grid-column: 2/6;
-                                text-align: center;
-                                margin: 0 auto;
-                                width: 350px;
-                            }
 
                             .redirect-skip {
                                 margin-top: 2rem;
@@ -688,21 +560,6 @@
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

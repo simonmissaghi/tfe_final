@@ -81,7 +81,7 @@ if (!empty($_POST['submit__survey--sm'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sondage - Les smartphones | #trustinme</title>
+    <title>test sondage</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link rel="stylesheet" href="css/swiper.css">
 </head>
@@ -93,8 +93,6 @@ if (!empty($_POST['submit__survey--sm'])) {
     </header>
     <main class="smartphone-survey">
         <div class="swiper-pagination"></div>
-            <div class="alert alert-danger"><?php echo $ipErr; ?></div>
-    <div class="alert alert-danger"><?php echo $questionErr; ?></div>
         <!-- Grid beginning -->
         <div class="wrapper-survey">
             <div class="header-main">
@@ -221,7 +219,7 @@ if (!empty($_POST['submit__survey--sm'])) {
                                         </li>
                                         <li>
                                             <input type="radio" id="sm_q3-2" name="q3" value="2">
-                                            <label for="sm_q3-2">ses performances</label>
+                                            <label for="sm_q3-2">ses performances (processeur, …)</label>
                                         </li>
                                         <li>
                                             <input type="radio" id="sm_q3-3" name="q3" value="3">
@@ -339,7 +337,7 @@ if (!empty($_POST['submit__survey--sm'])) {
                             <div class="swiper-slide">
                                 <div class="wrapper-question">
                                     <div class="question">
-                                        <h2 class="subtitle-question">Quelle est pour toi la probabilité que les smartphones soient sources de manque de contacts en temps réel entre humains ?</h2></div>
+                                        <h2 class="subtitle-question">Quelle est pour vous la probabilité que les smartphones soient sources de manque de contacts en temps réel entre humains ?</h2></div>
                                     <ul class="answers">
                                         <li>
                                             <input type="radio" id="sm_q7-1" name="q7" value="1">
@@ -363,7 +361,7 @@ if (!empty($_POST['submit__survey--sm'])) {
                                         </li>
                                     </ul>
                                     <input type="hidden" name="ip_adress" id="ip_adress" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" />
-                                    <input type="submit" name="submit__survey--sm" class="btn-next submit-survey" />
+                                    <button type="submit" name="submit__survey--sm" class="btn-next submit-survey">Terminer</button>
                                 </div>
                             </div>
                         </div>

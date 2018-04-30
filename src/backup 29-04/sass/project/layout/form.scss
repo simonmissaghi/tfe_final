@@ -23,7 +23,7 @@
 
 
 
-      .btn-next, .btn-orange {
+      .btn-next {
           border: none;
           background: $color-orange;
           width: 100%;
@@ -36,8 +36,4 @@
           grid-area: c;
           align-self: end;
           transition: .3s ease-in-out;
-
-          @media (max-height: 460px) {
-              height: 5rem;
-          }
       }

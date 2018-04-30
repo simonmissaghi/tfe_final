@@ -362,6 +362,11 @@ button.swiper-pagination-bullet {
   -ms-transform-origin: left top;
   transform-origin: left top;
 }
+
+.swiper-pagination-progressbar .swiper-pagination-progressbar-fill .apps-survey {
+                                                                                 background: #;}
+
+
 .swiper-container-rtl .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
   -webkit-transform-origin: right top;
   -ms-transform-origin: right top;
