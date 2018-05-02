@@ -6,7 +6,7 @@ $ipErr = "";
 $questionErr = "";
 $emailValid = "";
 $emailErr = "";
-if (!empty($_POST['submit_email--apps'])) {
+if (!empty($_POST['submit_email--networks'])) {
 $email = strip_tags($_POST['email']);
  $prepareEmail = $connection->prepare("SELECT COUNT(*) AS email_adress FROM email_table WHERE email = '$email'");
  $prepareEmail->execute();
@@ -52,7 +52,7 @@ else{
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sondage - Les apps | #trustinme</title>
+  <title>Sondage - Les réseaux sociaux | #trustinme</title>
   <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 
@@ -67,9 +67,9 @@ else{
     <div class="alert alert-danger"><?php echo $emailErr; ?></div>
     <div class="alert alert-safe"><?php echo $emailValid; ?></div>
     <!-- Grid beginning -->
-    <div class="wrapper-survey wrapper-survey-redirection apps-survey">
+    <div class="wrapper-survey wrapper-survey-redirection networks-survey">
       <div class="header-main">
-        <h1 class="title-intro">Les apps</h1>
+        <h1 class="title-intro">Les réseaux sociaux</h1>
       </div>
       <div class="body-main">
         <form action="" method="POST">
@@ -77,13 +77,13 @@ else{
           <div class="wrapper-question">
             <div class="question">
               <h2>Merci pour ta participation !</h2>
-              <p class="apps-survey">Tu peux être tenu au courant de la suite des évènements en rentrant ton adresse email. C'est sans obligation.</p>
+              <p class="networks-survey">Tu peux être tenu au courant de la suite des évènements en rentrant ton adresse email. C'est sans obligation.</p>
             </div>
             <div class="answers">
-              <input type="email" class="apps-survey" name="email" value="" placeholder="email">
-              <div class="redirect-skip"><a href="index.html">Passer cette étape</a></div>
+              <input type="email" class="networks-survey" name="email" value="" placeholder="email">
+              <div class="redirect-skip"><a href="index.php">Passer cette étape</a></div>
             </div>
-            <input type="submit" name="submit_email--apps" class="btn-full-bottom apps-survey" />
+            <input type="submit" name="submit_email--networks" class="btn-full-bottom networks-survey" />
           </div>
         </form>
       </div>

@@ -8,15 +8,15 @@ $roww = $prepareip->fetch();
 $ip_final = $roww['ip_adress'];
 $ipErr = "";
 $questionErr = "";
+$q1 = "";
 if (!empty($_POST['submit__survey--apps'])) {
   if($ip_final != 0) {
     $ipErr = "Tu as déjà rempli ce formulaire ! Pourquoi ne pas répondre à un autre ?";
-}
-else if(empty($_POST['gender']) || empty($_POST['age']) || empty($_POST['q1']) || empty($_POST['q2']) || empty($_POST['q4'])) {
-    $questionErr = "Tu as oublié une ou plusieurs questions...";
+    header( "refresh:2;url=index.php" );
 }
 
-else {
+
+elseif($_POST['q1'] == '2' && !empty($_POST['gender']) && !empty($_POST['age'])) {
     $preparedstatement = $connection->prepare('INSERT INTO networks_survey
       (
       gender,
@@ -49,14 +49,14 @@ else {
     $gender = strip_tags($_POST['gender']);
     $age = strip_tags($_POST['age']);
     $q1 = strip_tags($_POST['q1']);
-    $q2 = strip_tags($_POST['q2']);
+    $q2 = "";
     $q3 = strip_tags(implode(',', $_POST['q3']));
-    $q4 = strip_tags($_POST['q4']);
+    $q4 = "";
     $q5 = strip_tags(implode(',', $_POST['q5']));
     $q6 = strip_tags(implode(',', $_POST['q6']));
-    $q7 = strip_tags($_POST['q7']);
-    $q8 = strip_tags($_POST['q8']);
-    $q9 = strip_tags($_POST['q9']);
+    $q7 = "";
+    $q8 = "";
+    $q9 = "";
     $ip_adress = strip_tags($_POST['ip_adress']);
     $preparedstatement ->execute(array(
       'gender' => $gender,
@@ -75,6 +75,71 @@ else {
 
     header("Location: redirection_networks-survey.php");
     exit();
+}
+
+elseif(empty($_POST['gender']) || empty($_POST['age']) || empty($_POST['q1']) || empty($_POST['q2']) || empty($_POST['q3']) || empty($_POST['q4'])) {
+    $questionErr = "Tu as oublié une ou plusieurs questions...";
+}
+
+else {
+  $preparedstatement = $connection->prepare('INSERT INTO networks_survey
+      (
+      gender,
+      age,
+      q1,
+      q2,
+      q3,
+      q4,
+      q5,
+      q6,
+      q7,
+      q8,
+      q9,
+      ip_adress
+      )
+      VALUES (
+      :gender,
+      :age,
+      :q1,
+      :q2,
+      :q3,
+      :q4,
+      :q5,
+      :q6,
+      :q7,
+      :q8,
+      :q9,
+      :ip_adress
+  )');
+  $gender = strip_tags($_POST['gender']);
+  $age = strip_tags($_POST['age']);
+  $q1 = strip_tags($_POST['q1']);
+  $q2 = strip_tags($_POST['q2']);
+  $q3 = strip_tags(implode(',', $_POST['q3']));
+  $q4 = strip_tags($_POST['q4']);
+  $q5 = strip_tags(implode(',', $_POST['q5']));
+  $q6 = strip_tags(implode(',', $_POST['q6']));
+  $q7 = strip_tags($_POST['q7']);
+  $q8 = strip_tags($_POST['q8']);
+  $q9 = strip_tags($_POST['q9']);
+  $ip_adress = strip_tags($_POST['ip_adress']);
+  $preparedstatement ->execute(array(
+      'gender' => $gender,
+      'age' => $age,
+      'q1' => $q1,
+      'q2' => $q2,
+      'q3' => $q3,
+      'q4' => $q4,
+      'q5' => $q5,
+      'q6' => $q6,
+      'q7' => $q7,
+      'q8' => $q8,
+      'q9' => $q9,
+      'ip_adress' => $ip_adress
+  ));
+
+  header("Location: redirection_networks-survey.php");
+  exit();
 }
 }
 
@@ -171,7 +236,7 @@ else {
                                             </li>
                                             <li>
                                                 <input type="radio" class="networks-survey" id="networks_q1-2" onclick="OnSocialNetworks();" name="q1" value="2">
-                                                <label class="networks-survey" for="networks_q1-2" id="no-social-media">non</label>
+                                                <label class="networks-survey" for="networks_q1-2" id="no-social-media">non <span class="done-survey">(ceci finit le sondage)</span></label>
                                             </li>
                                         </ul>
                                         <div class="btn-swiper btn-full-bottom networks-survey question-on-social-media">
@@ -321,166 +386,166 @@ else {
                                                     </div>
                                                 </div>
                                                 <div class="swiper-slide">
-                                                <div class="wrapper-question">
-                                                    <div class="question">
-                                                        <h2 class="subtitle-question networks-survey">De manière générale, pourquoi postes-tu sur tes réseaux sociaux ?</h2></div>
-                                                        <ul class="answers">
-                                                            <li>
-                                                                <input type="checkbox" class="networks-survey" id="networks_q6-1" name="q6[]" value="[1]">
-                                                                <label class="checkbox networks-survey" for="networks_q6-1">Pour montrer ce que je fais</label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox" class="networks-survey" id="networks_q6-2" name="q6[]" value="[2]">
-                                                                <label class="checkbox networks-survey" for="networks_q6-2">Pour attirer plus de monde sur mes pages</label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox" class="networks-survey" id="networks_q6-3" name="q6[]" value="[3]">
-                                                                <label class="checkbox networks-survey" for="networks_q6-3">Pour gagner de l’argent</label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox" class="networks-survey" id="networks_q6-4" name="q6[]" value="[4]">
-                                                                <label class="checkbox networks-survey" for="networks_q6-4">Pour faire de la propagande sur un sujet</label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="checkbox" class="other__choice networks-survey" id="networks_q6-5" name="q6[]" value="">
-                                                                <label class="checkbox networks-survey other__choice--label" for="networks_q6-5">autre :
-                                                                    <input type="text" class="other__choice--text" id="networks_q6-5" name="q6[]" value="" onchange="changeradioother()">
-                                                                </label>
-                                                            </li>
-                                                        </ul>
-                                                        <div class="btn-swiper btn-full-bottom networks-survey">
-                                                            <div class="wrapper-btn-swiper wrapper-btn-prev swiper-button-prev"><img src="./images/arrow-left-survey.svg" alt="<" /></div>
-                                                            <div class="wrapper-btn-swiper wrapper-btn-next swiper-button-next"><img src="./images/arrow-right-survey.svg" alt=">" /></div>
+                                                    <div class="wrapper-question">
+                                                        <div class="question">
+                                                            <h2 class="subtitle-question networks-survey">De manière générale, pourquoi postes-tu sur tes réseaux sociaux ?</h2></div>
+                                                            <ul class="answers">
+                                                                <li>
+                                                                    <input type="checkbox" class="networks-survey" id="networks_q6-1" name="q6[]" value="[1]">
+                                                                    <label class="checkbox networks-survey" for="networks_q6-1">Pour montrer ce que je fais</label>
+                                                                </li>
+                                                                <li>
+                                                                    <input type="checkbox" class="networks-survey" id="networks_q6-2" name="q6[]" value="[2]">
+                                                                    <label class="checkbox networks-survey" for="networks_q6-2">Pour attirer plus de monde sur mes pages</label>
+                                                                </li>
+                                                                <li>
+                                                                    <input type="checkbox" class="networks-survey" id="networks_q6-3" name="q6[]" value="[3]">
+                                                                    <label class="checkbox networks-survey" for="networks_q6-3">Pour gagner de l’argent</label>
+                                                                </li>
+                                                                <li>
+                                                                    <input type="checkbox" class="networks-survey" id="networks_q6-4" name="q6[]" value="[4]">
+                                                                    <label class="checkbox networks-survey" for="networks_q6-4">Pour faire de la propagande sur un sujet</label>
+                                                                </li>
+                                                                <li>
+                                                                    <input type="checkbox" class="other__choice networks-survey" id="networks_q6-5" name="q6[]" value="">
+                                                                    <label class="checkbox networks-survey other__choice--label" for="networks_q6-5">autre :
+                                                                        <input type="text" class="other__choice--text" id="networks_q6-5" name="q6[]" value="" onchange="changeradioother()">
+                                                                    </label>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="btn-swiper btn-full-bottom networks-survey">
+                                                                <div class="wrapper-btn-swiper wrapper-btn-prev swiper-button-prev"><img src="./images/arrow-left-survey.svg" alt="<" /></div>
+                                                                <div class="wrapper-btn-swiper wrapper-btn-next swiper-button-next"><img src="./images/arrow-right-survey.svg" alt=">" /></div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="swiper-slide">
-                                                <div class="wrapper-question">
-                                                    <div class="question">
-                                                        <h2 class="subtitle-question networks-survey">Quelle est l’importance pour toi de socialiser via les réseaux sociaux ?</h2></div>
-                                                        <ul class="answers">
-                                                            <li>
-                                                                <input type="radio" class="networks-survey" id="networks_q7-1" name="q7" value="1">
-                                                                <label class="networks-survey" for="networks_q7-1">Extrêmement important</label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="radio" class="networks-survey" id="networks_q7-2" name="q7" value="2">
-                                                                <label class="networks-survey" for="networks_q7-2">Très important</label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="radio" class="networks-survey" id="networks_q7-3" name="q7" value="3">
-                                                                <label class="networks-survey" for="networks_q7-3">Relativement important</label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="radio" class="networks-survey" id="networks_q7-4" name="q7" value="4">
-                                                                <label class="networks-survey" for="networks_q7-4">Pas très important</label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="radio" class="networks-survey" id="networks_q7-5" name="q7" value="5">
-                                                                <label class="networks-survey" for="networks_q7-5">Pas du tout important</label>
-                                                            </li>
-                                                        </ul>
-                                                        <div class="btn-swiper btn-full-bottom networks-survey">
-                                                            <div class="wrapper-btn-swiper wrapper-btn-prev swiper-button-prev"><img src="./images/arrow-left-survey.svg" alt="<" /></div>
-                                                            <div class="wrapper-btn-swiper wrapper-btn-next swiper-button-next"><img src="./images/arrow-right-survey.svg" alt=">" /></div>
+                                                    <div class="swiper-slide">
+                                                        <div class="wrapper-question">
+                                                            <div class="question">
+                                                                <h2 class="subtitle-question networks-survey">Quelle est l’importance pour toi de socialiser via les réseaux sociaux ?</h2></div>
+                                                                <ul class="answers">
+                                                                    <li>
+                                                                        <input type="radio" class="networks-survey" id="networks_q7-1" name="q7" value="1">
+                                                                        <label class="networks-survey" for="networks_q7-1">Extrêmement important</label>
+                                                                    </li>
+                                                                    <li>
+                                                                        <input type="radio" class="networks-survey" id="networks_q7-2" name="q7" value="2">
+                                                                        <label class="networks-survey" for="networks_q7-2">Très important</label>
+                                                                    </li>
+                                                                    <li>
+                                                                        <input type="radio" class="networks-survey" id="networks_q7-3" name="q7" value="3">
+                                                                        <label class="networks-survey" for="networks_q7-3">Relativement important</label>
+                                                                    </li>
+                                                                    <li>
+                                                                        <input type="radio" class="networks-survey" id="networks_q7-4" name="q7" value="4">
+                                                                        <label class="networks-survey" for="networks_q7-4">Pas très important</label>
+                                                                    </li>
+                                                                    <li>
+                                                                        <input type="radio" class="networks-survey" id="networks_q7-5" name="q7" value="5">
+                                                                        <label class="networks-survey" for="networks_q7-5">Pas du tout important</label>
+                                                                    </li>
+                                                                </ul>
+                                                                <div class="btn-swiper btn-full-bottom networks-survey">
+                                                                    <div class="wrapper-btn-swiper wrapper-btn-prev swiper-button-prev"><img src="./images/arrow-left-survey.svg" alt="<" /></div>
+                                                                    <div class="wrapper-btn-swiper wrapper-btn-next swiper-button-next"><img src="./images/arrow-right-survey.svg" alt=">" /></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="swiper-slide">
+                                                            <div class="wrapper-question">
+                                                                <div class="question">
+                                                                    <h2 class="subtitle-question networks-survey">Approximativement, combien de tes “amis” sur les réseaux sociaux as-tu rencontrés en personne ?</h2>
+                                                                </div>
+                                                                <ul class="answers">
+                                                                    <li>
+                                                                        <input type="radio" class="networks-survey" id="networks_q8-1" name="q8" value="1">
+                                                                        <label class="networks-survey" for="networks_q8-1">La totalité</label>
+                                                                    </li>
+                                                                    <li>
+                                                                        <input type="radio" class="networks-survey" id="networks_q8-2" name="q8" value="2">
+                                                                        <label class="networks-survey" for="networks_q8-2">La majorité</label>
+                                                                    </li>
+                                                                    <li>
+                                                                        <input type="radio" class="networks-survey" id="networks_q8-3" name="q8" value="3">
+                                                                        <label class="networks-survey" for="networks_q8-3">Approximativement la moitié</label>
+                                                                    </li>
+                                                                    <li>
+                                                                        <input type="radio" class="networks-survey" id="networks_q8-4" name="q8" value="4">
+                                                                        <label class="networks-survey" for="networks_q8-4">Quelque-uns</label>
+                                                                    </li>
+                                                                    <li>
+                                                                        <input type="radio" class="networks-survey" id="networks_q8-5" name="q8" value="5">
+                                                                        <label class="networks-survey" for="networks_q8-5">Aucun</label>
+                                                                    </li>
+                                                                </ul>
+                                                                <div class="btn-swiper btn-full-bottom networks-survey">
+                                                                    <div class="wrapper-btn-swiper wrapper-btn-prev swiper-button-prev"><img src="./images/arrow-left-survey.svg" alt="<" /></div>
+                                                                    <div class="wrapper-btn-swiper wrapper-btn-next swiper-button-next"><img src="./images/arrow-right-survey.svg" alt=">" /></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="swiper-slide">
+                                                            <div class="wrapper-question">
+                                                                <div class="question">
+                                                                    <h2 class="subtitle-question networks-survey">Lorsque vous êtes sur les réseaux sociaux, combien de temps passez-vous à regarder ce que vos relations ont posté ?</h2>
+                                                                </div>
+                                                                <ul class="answers">
+                                                                    <li>
+                                                                        <input type="radio" class="networks-survey" id="networks_q9-1" name="q9" value="1">
+                                                                        <label class="networks-survey" for="networks_q9-1">La totalité du temps</label>
+                                                                    </li>
+                                                                    <li>
+                                                                        <input type="radio" class="networks-survey" id="networks_q9-2" name="q9" value="2">
+                                                                        <label class="networks-survey" for="networks_q9-2">La plus grande partie du temps</label>
+                                                                    </li>
+                                                                    <li>
+                                                                        <input type="radio" class="networks-survey" id="networks_q9-3" name="q9" value="3">
+                                                                        <label class="networks-survey" for="networks_q9-3">A peu près la moitié du temps</label>
+                                                                    </li>
+                                                                    <li>
+                                                                        <input type="radio" class="networks-survey" id="networks_q9-4" name="q9" value="4">
+                                                                        <label class="networks-survey" for="networks_q9-4">Une petite partie du temps</label>
+                                                                    </li>
+                                                                    <li>
+                                                                        <input type="radio" class="networks-survey" id="networks_q9-5" name="q9" value="5">
+                                                                        <label class="networks-survey" for="networks_q9-5">Aucun temps</label>
+                                                                    </li>
+                                                                </ul>
+                                                                <div class="btn-swiper btn-full-bottom networks-survey">
+                                                                    <input type="hidden" name="ip_adress" id="ip_adress" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" />
+                                                                    <input type="submit" name="submit__survey--apps" class="btn-full-bottom networks-survey submit-survey" />
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="swiper-slide">
-                                                <div class="wrapper-question">
-                                                    <div class="question">
-                                                        <h2 class="subtitle-question networks-survey">Approximativement, combien de tes “amis” sur les réseaux sociaux as-tu rencontrés en personne ?</h2>
-                                                    </div>
-                                                        <ul class="answers">
-                                                            <li>
-                                                                <input type="radio" class="networks-survey" id="networks_q8-1" name="q8" value="1">
-                                                                <label class="networks-survey" for="networks_q8-1">La totalité</label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="radio" class="networks-survey" id="networks_q8-2" name="q8" value="2">
-                                                                <label class="networks-survey" for="networks_q8-2">La majorité</label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="radio" class="networks-survey" id="networks_q8-3" name="q8" value="3">
-                                                                <label class="networks-survey" for="networks_q8-3">Approximativement la moitié</label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="radio" class="networks-survey" id="networks_q8-4" name="q8" value="4">
-                                                                <label class="networks-survey" for="networks_q8-4">Quelque-uns</label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="radio" class="networks-survey" id="networks_q8-5" name="q8" value="5">
-                                                                <label class="networks-survey" for="networks_q8-5">Aucun</label>
-                                                            </li>
-                                                        </ul>
-                                                        <div class="btn-swiper btn-full-bottom networks-survey">
-                                                            <div class="wrapper-btn-swiper wrapper-btn-prev swiper-button-prev"><img src="./images/arrow-left-survey.svg" alt="<" /></div>
-                                                            <div class="wrapper-btn-swiper wrapper-btn-next swiper-button-next"><img src="./images/arrow-right-survey.svg" alt=">" /></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="swiper-slide">
-                                                <div class="wrapper-question">
-                                                    <div class="question">
-                                                        <h2 class="subtitle-question networks-survey">Lorsque vous êtes sur les réseaux sociaux, combien de temps passez-vous à regarder ce que vos relations ont posté ?</h2>
-                                                    </div>
-                                                        <ul class="answers">
-                                                            <li>
-                                                                <input type="radio" class="networks-survey" id="networks_q9-1" name="q9" value="1">
-                                                                <label class="networks-survey" for="networks_q9-1">La totalité du temps</label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="radio" class="networks-survey" id="networks_q9-2" name="q9" value="2">
-                                                                <label class="networks-survey" for="networks_q9-2">La plus grande partie du temps</label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="radio" class="networks-survey" id="networks_q9-3" name="q9" value="3">
-                                                                <label class="networks-survey" for="networks_q9-3">A peu près la moitié du temps</label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="radio" class="networks-survey" id="networks_q9-4" name="q9" value="4">
-                                                                <label class="networks-survey" for="networks_q9-4">Une petite partie du temps</label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="radio" class="networks-survey" id="networks_q9-5" name="q9" value="5">
-                                                                <label class="networks-survey" for="networks_q9-5">Aucun temps</label>
-                                                            </li>
-                                                        </ul>
-                                                        <div class="btn-swiper btn-full-bottom networks-survey">
-                                                            <input type="hidden" name="ip_adress" id="ip_adress" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" />
-                                                            <input type="submit" name="submit__survey--apps" class="btn-full-bottom networks-survey submit-survey" />
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                </form>
                                             </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </section>
-                        </main>
-                        <footer></footer>
-                        <script src="javascript/main.js"></script>
-                        <script src="javascript/swiper.min.js"></script>
-                        <script>
-                            var swiper = new Swiper('.swiper-container', {
-                                pagination: {
-                                    el: '.swiper-pagination',
-                                    type: 'progressbar',
-                                },
-                                navigation: {
-                                    nextEl: '.swiper-button-next',
-                                    prevEl: '.swiper-button-prev',
-                                },
-                                noSwiping: 'false'
+                                        </div>
+                                    </section>
+                                </main>
+                                <footer></footer>
+                                <script src="javascript/main.js"></script>
+                                <script src="javascript/swiper.min.js"></script>
+                                <script>
+                                    var swiper = new Swiper('.swiper-container', {
+                                        pagination: {
+                                            el: '.swiper-pagination',
+                                            type: 'progressbar',
+                                        },
+                                        navigation: {
+                                            nextEl: '.swiper-button-next',
+                                            prevEl: '.swiper-button-prev',
+                                        },
+                                        allowTouchMove: true
 
-                            });
+                                    });
 
 
 
-                        </script>
-                    </body>
+                                </script>
+                            </body>
 
-                    </html>
+                            </html>
 
 
 

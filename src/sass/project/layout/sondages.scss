@@ -734,6 +734,10 @@
                                     &::before {
                                         border: 1px solid $color-networks-second;
                                     }
+
+                                    span {
+                                        display: none;
+                                    }
                                 }
 
                                 .other__choice--text {
@@ -813,14 +817,14 @@
 
             &.wrapper-survey-redirection {
 
-                &.apps-survey {
-                    background: $color-smartphones-second;
+                &.smartphones-survey {
+                    background: $color-smartphones;
                 }
                 &.apps-survey {
                     background: $color-apps;
                 }
                 &.networks-survey {
-                    background: $color-networks-second;
+                    background: $color-networks;
                 }
 
                 @include media-breakpoint-up(md) {
@@ -868,6 +872,13 @@
 
                                 &::after {
                                     background: $color-apps-second;
+                                }
+                            }
+
+                            &.networks-survey {
+
+                                &::after {
+                                    background: $color-networks-second;
                                 }
                             }
                         }
@@ -918,6 +929,10 @@
                                 &.apps-survey {
                                     border-bottom: 1px solid $color-apps-second;
                                 }
+
+                                &.networks-survey {
+                                    border-bottom: 1px solid $color-networks-second;
+                                }
                             }
 
                             a {
@@ -957,6 +972,7 @@
         overflow: hidden;
     }
 }
+
 
 
 

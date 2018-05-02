@@ -23,16 +23,22 @@ function focusOnTextInput() {
 }
 focusOnTextInput();
 
-function OnSocialNetworks(mySwiper) {
+function OnSocialNetworks() {
+  var mySwiper = document.querySelector('.swiper-container').swiper;
   var wrapperSurvey = document.querySelector('.wrapper-survey');
   var wrapperBtn = document.querySelector('.question-on-social-media');
   var inputNo = document.getElementById("networks_q1-2");
-  var mySwiper = document.querySelector('.swiper-container').swiper
+  var labelNo = document.getElementById("no-social-media");
+
   if (inputNo.checked == true) {
     wrapperBtn.classList.add('answer-no');
+    mySwiper.allowTouchMove = false;
+    labelNo.querySelector('span').style.display = "inline-block";
 
 
-} else {
-  wrapperBtn.classList.remove('answer-no');
-}
+  } else {
+    wrapperBtn.classList.remove('answer-no');
+    mySwiper.allowTouchMove = true;
+    labelNo.querySelector('span').style.display = "none";
+  }
 }

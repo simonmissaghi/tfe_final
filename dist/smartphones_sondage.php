@@ -11,6 +11,7 @@ $questionErr = "";
 if (!empty($_POST['submit__survey--sm'])) {
   if($ip_final != 0) {
     $ipErr = "Tu as déjà rempli ce formulaire ! Pourquoi ne pas répondre à un autre ?";
+    header( "refresh:2;url=index.php" );
 }
 elseif(empty($_POST['gender']) || empty($_POST['age']) || empty($_POST['q1']) || empty($_POST['q2']) || empty($_POST['q4']) || empty($_POST['q5']) || empty($_POST['q6']) || empty($_POST['q7'])) {
     $questionErr = "Tu as oublié une ou plusieurs questions...";
