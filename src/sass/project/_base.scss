@@ -63,14 +63,14 @@
     *:before {
         @include box-sizing(border-box);
     }
-            .smartphone-survey {
+            .smartphones-bg-color {
                 background: $color-smartphones;
             }
 
-            .apps-survey {
+            .apps-bg-color {
                 background: $color-apps;
             }
 
-            .networks-survey {
+            .networks-bg-color {
                 background: $color-networks;
             }

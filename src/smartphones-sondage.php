@@ -111,7 +111,7 @@ if (!empty($_POST['submit__survey--sm'])) {
                                         <h2 class="subtitle-intro">Qui es-tu ?</h2>
                                         <p>Les sondages sont destinés à la génération Z (1995-2012). Ils sont anonymes.</p>
                                     </div>
-                                    <ul class="answers">
+                                    <ul class="answers answers-intro">
                                         <li class="answers--intro">
                                             <input type="radio" id="1" name="gender" value="1">
                                             <label class="genre male" for="1">garçon</label>

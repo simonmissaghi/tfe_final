@@ -1,3 +1,4 @@
+
 <?php
 
 function make_summary($x, $length)

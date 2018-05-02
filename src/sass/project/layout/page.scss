@@ -17,6 +17,7 @@
     max-width: 400px;
     margin: 0 auto;
     padding: 4rem;
+    animation: fadeout 2s ease-out forwards;
 
 
     &.alert-danger {
@@ -32,4 +33,14 @@
 
 .alert-danger:empty, .alert-safe:empty {
     display: none;
+}
+
+@keyframes fadeout {
+    95% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        pointer-events: none;
+    }
 }

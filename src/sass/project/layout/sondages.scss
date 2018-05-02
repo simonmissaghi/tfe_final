@@ -245,6 +245,10 @@
             grid-template-rows: 10.41666666666667% 89.58333333333333%;
             grid-template-columns: 100%;
 
+            @include media-breakpoint-up(md) {
+                grid-template-rows: 10.41666666666667% 89.68333333333333%;
+            }
+
             &.wrapper-survey-redirection {
                 height: 100%;
             }
@@ -322,7 +326,21 @@
                                 left: 0;
                                 width: 30px;
                                 height: 4px;
-                                background: $color-orange;
+                                background: $color-smartphones-second;
+                            }
+
+                            &.apps-survey {
+
+                                &:after {
+                                    background: $color-apps-second;
+                                }
+                            }
+
+                            &.networks-survey {
+
+                                &:after {
+                                    background: $color-networks-second;
+                                }
                             }
                         }
                     }
@@ -345,22 +363,7 @@
                         li {
                             @include box_shadow(6);
 
-                            input[type="radio"] {
-                                display: none;
 
-                                &:checked+label {
-                                    background: $color-orange;
-                                    color: #fff;
-                                }
-
-                                &:checked+.male:before {
-                                    content: url('../images/picto_male--white.svg');
-                                }
-
-                                &:checked+.female:before {
-                                    content: url('../images/picto_female--white.svg');
-                                }
-                            }
 
                             .genre {
                                 background: #fff;
@@ -372,27 +375,93 @@
                                 display: block;
                                 padding: 11rem 0 1rem;
                                 text-align: center;
-                            }
+                                color: $color-smartphones-second;
 
-                            .male,
-                            .female {
+                                &.male,
+                                &.female {
 
-                                color: $color-orange;
-                                &:before {
-                                    content: url('../images/picto_male.svg');
-                                    width: 25px;
-                                    height: 31px;
-                                    position: absolute;
-                                    top: 50%;
-                                    left: 50%;
-                                    transform: translateY(-50%) translateX(-50%);
+                                    &:before {
+                                        content: url('../images/picto_male.svg');
+                                        width: 25px;
+                                        height: 31px;
+                                        position: absolute;
+                                        top: 50%;
+                                        left: 50%;
+                                        transform: translateY(-50%) translateX(-50%);
+                                    }
+
+                                    &.apps-survey {
+                                        &::before {
+                                            content: url('../images/picto_male--apps.svg');
+                                        }
+                                    }
+
+                                    &.networks-survey {
+                                        &::before {
+                                            content: url('../images/picto_male--networks.svg');
+                                        }
+                                    }
                                 }
-                            }
 
-                            .female {
+                                &.female {
 
-                                &:before {
-                                    content: url('../images/picto_female.svg');
+                                    &:before {
+                                        content: url('../images/picto_female.svg');
+                                    }
+
+                                    &.apps-survey {
+                                        &::before {
+                                            content: url('../images/picto_female--apps.svg');
+                                        }
+                                    }
+
+                                    &.networks-survey {
+                                        &::before {
+                                            content: url('../images/picto_female--networks.svg');
+                                        }
+                                    }
+                                }
+
+                                &.apps-survey {
+                                    color: $color-apps-second;
+                                    &.male {
+                                        &::before {
+                                            content: url('../images/picto_male--apps.svg');
+                                            width: 25px;
+                                            height: 31px;
+                                            position: absolute;
+                                            top: 50%;
+                                            left: 50%;
+                                            transform: translateY(-50%) translateX(-50%);
+                                        }
+                                    }
+
+                                    &.female {
+                                        &::before {
+                                            content: url('../images/picto_female--apps.svg');
+                                            width: 25px;
+                                            height: 31px;
+                                            position: absolute;
+                                            top: 50%;
+                                            left: 50%;
+                                            transform: translateY(-50%) translateX(-50%);
+                                        }
+                                    }
+                                }
+
+                                &.networks-survey {
+                                    color: $color-networks-second;
+                                    .male {
+                                        &::before {
+                                            content: url('../images/picto_male--networks.svg');
+                                        }
+                                    }
+
+                                    .female {
+                                        &::before {
+                                            content: url('../images/picto_female--networks.svg');
+                                        }
+                                    }
                                 }
                             }
 
@@ -409,6 +478,35 @@
                             &:nth-child(3) {
                                 grid-area: c;
                             }
+
+                            input[type="radio"] {
+                                display: none;
+
+                                &:checked+label {
+                                    background: $color-smartphones-second;
+                                    color: #fff;
+                                }
+
+                                &:checked+.male:before {
+                                    content: url('../images/picto_male--white.svg');
+                                }
+
+                                &:checked+.female:before {
+                                    content: url('../images/picto_female--white.svg');
+                                }
+
+                                &.apps-survey {
+                                    &:checked+label {
+                                        background: $color-apps-second;
+                                    }
+                                }
+
+                                &.networks-survey {
+                                    &:checked+label {
+                                        background: $color-networks-second;
+                                    }
+                                }
+                            }
                         }
                     }
 
@@ -416,6 +514,7 @@
                         grid-area: e;
                         align-self: end;
                         grid-row: 3;
+                        outline: none;
 
                         @include media-breakpoint-up(md) {
                             grid-column: 1/9;
@@ -458,20 +557,36 @@
                                 left: 0;
                                 width: 30px;
                                 height: 4px;
-                                background: $color-orange;
+                                background: $color-smartphones-second;
                             }
 
                             @include media-breakpoint-up(md) {
                                 font-size: 1.8rem;
                             }
+
+                            &.apps-survey {
+
+                                &::after {
+                                    background: $color-apps-second;
+                                }
+                            }
+
+                            &.networks-survey {
+
+                                &::after {
+                                    background: $color-networks-second;
+                                }
+                            }
                         }
                     }
 
-                    .answers {
+                    .answers:not(.answers-intro) {
                         grid-area: d;
                         grid-row: 2;
                         padding: 0 2rem;
                         align-self: start;
+                        max-height: 100%;
+                        overflow-y: auto;
 
 
                         @media (max-height: 460px) {
@@ -497,27 +612,89 @@
                             margin-bottom: .5rem;
 
                             input[type="radio"] {
+                                position: relative;
                                 display: none;
 
-                                &[type="radio"] {
-                                    position: relative;
-                                    display: none;
+                                &:checked+label {
+                                    background: $color-smartphones-second;
+                                    color: #fff;
 
+                                    &:before {
+                                        border: 1px solid #fff;
+                                    }
+                                    &:after {
+                                        content: '';
+                                        position: absolute;
+                                        top: -0.8rem;
+                                        left: 2.7rem;
+                                        background: #fff;
+                                        @include circle(10px);
+                                    }
+                                }
+
+                                &.apps-survey {
                                     &:checked+label {
-                                        background: $color-orange;
-                                        color: #fff;
+                                        background: $color-apps-second;
+                                    }
+                                }
 
-                                        &:before {
-                                            border: 1px solid #fff;
-                                        }
-                                        &:after {
-                                            content: '';
-                                            position: absolute;
-                                            top: -0.8rem;
-                                            left: 2.7rem;
-                                            background: #fff;
-                                            @include circle(10px);
-                                        }
+                                &.networks-survey {
+                                    &:checked+label {
+                                        background: $color-networks-second;
+                                    }
+                                }
+                            }
+
+                            input[type="checkbox"] {
+                                position: relative;
+                                display: none;
+
+                                &:checked+label {
+                                    background: $color-smartphones-second;
+                                    color: #fff;
+
+                                    &:before {
+                                        border: 1px solid #fff;
+                                    }
+                                    &:after {
+                                        content: '';
+                                        position: absolute;
+                                        left: 2.7rem;
+                                        top: 19px;
+                                        width: 9px;
+                                        height: 17px;
+                                        border: solid #fff;
+                                        border-width: 0 4px 4px 0;
+                                        transform: rotate(45deg);
+                                    }
+                                }
+
+                                &:checked+label {
+
+                                    &:after {
+                                        content: '';
+                                        position: absolute;
+                                        left: 2.2rem;
+                                        top: 35%;
+                                        width: 12px;
+                                        height: 26px;
+                                        ;
+                                        border: solid #fff;
+                                        border-width: 0 4px 4px 0;
+                                        -webkit-transform: rotate(45deg);
+                                        transform: rotate(45deg) translateY(-50%);
+                                    }
+                                }
+
+                                &.apps-survey {
+                                    &:checked+label {
+                                        background: $color-apps-second;
+                                    }
+                                }
+
+                                &.networks-survey {
+                                    &:checked+label {
+                                        background: $color-networks-second;
                                     }
                                 }
                             }
@@ -542,9 +719,21 @@
                                     position: absolute;
                                     top: -0.8rem;
                                     left: 2rem;
-                                    border: 1px solid $color-orange;
+                                    border: 1px solid $color-smartphones-second;
                                     background: transparent;
                                     @include circle(24px);
+                                }
+
+                                &.apps-survey {
+                                    &::before {
+                                        border: 1px solid $color-apps-second;
+                                    }
+                                }
+
+                                &.networks-survey {
+                                    &::before {
+                                        border: 1px solid $color-networks-second;
+                                    }
                                 }
 
                                 .other__choice--text {
@@ -556,6 +745,41 @@
                                     max-width: 70%;
                                     pointer-events: none;
                                 }
+
+                                &.checkbox {
+                                    position: relative;
+                                    width: 100%;
+                                    text-align: left;
+                                    padding: 1.5rem 0 1.5rem 8.3rem;
+                                    display: inline-block;
+                                    border-radius: 5px;
+                                    background: #fff;
+                                    z-index: 2;
+                                    line-height: 10px;
+
+                                    &::before {
+                                        content: '';
+                                        position: absolute;
+                                        top: -0.8rem;
+                                        left: 2rem;
+                                        border: 1px solid $color-smartphones-second;
+                                        background: transparent;
+                                        @include square(24px);
+                                        border-radius: 0;
+                                    }
+
+                                    &.apps-survey {
+                                        &::before {
+                                            border: 1px solid $color-apps-second;
+                                        }
+                                    }
+
+                                    &.networks-survey {
+                                        &::before {
+                                            border: 1px solid $color-networks-second;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -564,6 +788,7 @@
                         grid-area: e;
                         align-self: end;
                         grid-row: 3;
+                        outline: none;
 
                         @include media-breakpoint-up(md) {
                             grid-column: 1/9;
@@ -580,12 +805,23 @@
                             text-align: center;
                             align-self: center;
                             padding: 1.5rem 0;
+                            outline: none;
                         }
                     }
                 }
             }
 
             &.wrapper-survey-redirection {
+
+                &.apps-survey {
+                    background: $color-smartphones-second;
+                }
+                &.apps-survey {
+                    background: $color-apps;
+                }
+                &.networks-survey {
+                    background: $color-networks-second;
+                }
 
                 @include media-breakpoint-up(md) {
                     max-width: 700px;
@@ -625,7 +861,14 @@
                                 left: 0;
                                 width: 30px;
                                 height: 4px;
-                                background: $color-orange;
+                                background: $color-smartphones-second;
+                            }
+
+                            &.apps-survey {
+
+                                &::after {
+                                    background: $color-apps-second;
+                                }
                             }
                         }
                         .question {
@@ -661,7 +904,7 @@
                                 padding: 2rem 0 .5rem;
                                 background: none;
                                 border: none;
-                                border-bottom: 1px solid #de7a22;
+                                border-bottom: 1px solid $color-smartphones-second;
                                 outline: none;
                                 color: #fff;
                                 width: 100%;
@@ -670,6 +913,10 @@
                                     color: rgba(255, 255, 255, .5);
                                     font-style: italic;
                                     font-size: 1.4rem;
+                                }
+
+                                &.apps-survey {
+                                    border-bottom: 1px solid $color-apps-second;
                                 }
                             }
 
@@ -687,7 +934,66 @@
             }
         }
     }
+
+
+
+    .question-on-social-media {
+
+        .no-on-social-media {
+            display: none;
+        }
+
+        &.answer-no {
+            div {
+                display: none;
+            }
+            .no-on-social-media {
+                display: block;
+            }
+        }
+    }
+
+    .overflow-hidden {
+        overflow: hidden;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

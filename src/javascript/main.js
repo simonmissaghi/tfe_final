@@ -6,8 +6,8 @@ function changeradioother(){
 }
 
 function focusOnTextInput() {
-  var labelZone = document.querySelector(".other__choice--label");
-  var textFocus = document.querySelector(".other__choice--text");
+  var labelZone = document.querySelectorAll(".other__choice--label");
+  var textFocus = document.querySelectorAll(".other__choice--text");
 
   labelZone.addEventListener('click', function() {
     textFocus.focus();

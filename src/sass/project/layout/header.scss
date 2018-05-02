@@ -2,10 +2,42 @@ header {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     height: 6rem;
     text-align: center;
     background: #fff;
+
+    @include media-breakpoint-up(md) {
+        justify-content: center;
+    }
+
+    a.back-to-list {
+        color: #000;
+        position: relative;
+        padding-left: 4rem;
+        text-transform: uppercase;
+        font-size: 1.2rem;
+        font-weight: 700;
+
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 7px;
+            height: 12px;
+            top: 0;
+            left: 2rem;
+            background: url('../images/arrow-left--black.svg');
+            background-size: 7px 12px;
+            background-repeat: no-repeat;
+            background-position: left;
+        }
+
+        @include media-breakpoint-up(md) {
+            display: none;
+        }
+    }
+
 
     .logo {
         width: 200px;

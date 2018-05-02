@@ -13,7 +13,7 @@ if (!empty($_POST['submit__survey--sm'])) {
     $ipErr = "Tu as déjà rempli ce formulaire ! Pourquoi ne pas répondre à un autre ?";
 }
 elseif(empty($_POST['gender']) || empty($_POST['age']) || empty($_POST['q1']) || empty($_POST['q2']) || empty($_POST['q4']) || empty($_POST['q5']) || empty($_POST['q6']) || empty($_POST['q7'])) {
-    $questionErr = "Vous avez oublié une ou plusieurs questions...";
+    $questionErr = "Tu as oublié une ou plusieurs questions...";
 }
 
 else {
@@ -24,7 +24,6 @@ else {
       q1,
       q2,
       q3,
-      q3b,
       q4,
       q5,
       q6,
@@ -37,7 +36,6 @@ else {
       :q1,
       :q2,
       :q3,
-      :q3b,
       :q4,
       :q5,
       :q6,
@@ -48,8 +46,7 @@ else {
     $age = strip_tags($_POST['age']);
     $q1 = strip_tags($_POST['q1']);
     $q2 = strip_tags($_POST['q2']);
-    $q3 = strip_tags($_POST['q3']);
-    $q3b = strip_tags($_POST['q3b']);
+    $q3 = strip_tags(implode(',', $_POST['q3']));
     $q4 = strip_tags($_POST['q4']);
     $q5 = strip_tags($_POST['q5']);
     $q6 = strip_tags($_POST['q6']);
@@ -61,7 +58,6 @@ else {
       'q1' => $q1,
       'q2' => $q2,
       'q3' => $q3,
-      'q3b' => $q3b,
       'q4' => $q4,
       'q5' => $q5,
       'q6' => $q6,
@@ -69,7 +65,7 @@ else {
       'ip_adress' => $ip_adress
   ));
 
-    header("Location: redirection.php");
+    header("Location: redirection_smartphones-survey.php");
     exit();
 }
 }
@@ -88,16 +84,16 @@ else {
 
 <body>
     <header>
-        <img class="logo" src="images/logo_trustinme.svg" alt="logo" />
+        <a class="back-to-list" href="./index.php">Liste</a><img class="logo" src="images/logo_trustinme.svg" alt="logo" />
         <nav></nav>
     </header>
     <main>
 
-        <section class="container-surveys smartphone-survey">
+        <section class="container-surveys smartphones-bg-color">
             <div class="wrapper-link">
-                <a class="back-to-list" href="./index.html">Retour à la liste</a>
+                <a class="back-to-list" href="./index.php">Retour à la liste</a>
             </div>
-            <div class="swiper-pagination"></div>
+            <div class="swiper-pagination smartphones-survey"></div>
             <div class="alert alert-danger"><?php echo $ipErr; ?></div>
             <div class="alert alert-danger"><?php echo $questionErr; ?></div>
             <!-- Grid beginning -->
@@ -116,7 +112,7 @@ else {
                                             <h2 class="subtitle-intro">Qui es-tu ?</h2>
                                             <p>Les sondages sont destinés à la génération Z (1995-2012). Ils sont anonymes.</p>
                                         </div>
-                                        <ul class="answers">
+                                        <ul class="answers answers-intro">
                                             <li class="answers--intro">
                                                 <input type="radio" id="1" name="gender" value="1">
                                                 <label class="genre male" for="1">garçon</label>
@@ -151,7 +147,7 @@ else {
                                                 </label>
                                             </li>
                                         </ul>
-                                        <button class="btn-next swiper-button-next">Commencer le sondage</button>
+                                        <button class="btn-full-bottom swiper-button-next">Commencer le sondage</button>
                                     </div>
                                 </div>
                                 <!-- Question 1 -->
@@ -182,7 +178,7 @@ else {
                                                 <label for="sm_q1-5">Pas du tout probable</label>
                                             </li>
                                         </ul>
-                                        <div class="btn-swiper btn-orange">
+                                        <div class="btn-swiper btn-full-bottom">
                                             <div class="wrapper-btn-swiper wrapper-btn-prev swiper-button-prev"><img src="./images/arrow-left-survey.svg" alt="<" /></div>
                                             <div class="wrapper-btn-swiper wrapper-btn-next swiper-button-next"><img src="./images/arrow-right-survey.svg" alt=">" /></div>
                                         </div>
@@ -215,7 +211,7 @@ else {
                                                     <label for="sm_q2-5">Pas du tout intéressé</label>
                                                 </li>
                                             </ul>
-                                            <div class="btn-swiper btn-orange">
+                                            <div class="btn-swiper btn-full-bottom">
                                                 <div class="wrapper-btn-swiper wrapper-btn-prev swiper-button-prev"><img src="./images/arrow-left-survey.svg" alt="<" /></div>
                                                 <div class="wrapper-btn-swiper wrapper-btn-next swiper-button-next"><img src="./images/arrow-right-survey.svg" alt=">" /></div>
                                             </div>
@@ -228,33 +224,33 @@ else {
                                                 <h2 class="subtitle-question">Si tu achètes un nouveau smartphone, c’est pour : </h2></div>
                                                 <ul class="answers">
                                                     <li>
-                                                        <input type="radio" id="sm_q3-1" name="q3" value="1">
-                                                        <label for="sm_q3-1">ses nouvelles technologies</label>
+                                                        <input type="checkbox" id="sm_q3-1" name="q3[]" value="[1]">
+                                                        <label class="checkbox" for="sm_q3-1">ses nouvelles technologies</label>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" id="sm_q3-2" name="q3" value="2">
-                                                        <label for="sm_q3-2">ses performances</label>
+                                                        <input type="checkbox" id="sm_q3-2" name="q3[]" value="[2]">
+                                                        <label class="checkbox" for="sm_q3-2">ses performances</label>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" id="sm_q3-3" name="q3" value="3">
-                                                        <label for="sm_q3-3">son côté esthétique</label>
+                                                        <input type="checkbox" id="sm_q3-3" name="q3[]" value="[3]">
+                                                        <label class="checkbox" for="sm_q3-3">son côté esthétique</label>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" id="sm_q3-4" name="q3" value="4">
-                                                        <label for="sm_q3-4">son côté pratique</label>
+                                                        <input type="checkbox" id="sm_q3-4" name="q3[]" value="[4]">
+                                                        <label class="checkbox" for="sm_q3-4">son côté pratique</label>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" id="sm_q3-5" name="q3" value="5">
-                                                        <label for="sm_q3-5">parce que tu en as besoin</label>
+                                                        <input type="checkbox" id="sm_q3-5" name="q3[]" value="[5]">
+                                                        <label class="checkbox" for="sm_q3-5">parce que tu en as besoin</label>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" class="other__choice" id="sm_q3-6" name="q3" value="">
-                                                        <label class="other__choice--label" for="sm_q3-6">autre :
-                                                            <input type="text" class="other__choice--text" id="sm_q3-6" name="q3b" value="" onchange="changeradioother()">
+                                                        <input type="checkbox" class="other__choice" id="sm_q3-6" name="q3[]" value="">
+                                                        <label class="checkbox other__choice--label" for="sm_q3-6">autre :
+                                                            <input type="text" class="other__choice--text" id="sm_q3-6" name="q3[]" value="" onchange="changeradioother()">
                                                         </label>
                                                     </li>
                                                 </ul>
-                                                <div class="btn-swiper btn-orange">
+                                                <div class="btn-swiper btn-full-bottom">
                                                     <div class="wrapper-btn-swiper wrapper-btn-prev swiper-button-prev"><img src="./images/arrow-left-survey.svg" alt="<" /></div>
                                                     <div class="wrapper-btn-swiper wrapper-btn-next swiper-button-next"><img src="./images/arrow-right-survey.svg" alt=">" /></div>
                                                 </div>
@@ -287,7 +283,7 @@ else {
                                                             <label for="sm_q4-5">Pas du tout probable</label>
                                                         </li>
                                                     </ul>
-                                                    <div class="btn-swiper btn-orange">
+                                                    <div class="btn-swiper btn-full-bottom">
                                                         <div class="wrapper-btn-swiper wrapper-btn-prev swiper-button-prev"><img src="./images/arrow-left-survey.svg" alt="<" /></div>
                                                         <div class="wrapper-btn-swiper wrapper-btn-next swiper-button-next"><img src="./images/arrow-right-survey.svg" alt=">" /></div>
                                                     </div>
@@ -320,7 +316,7 @@ else {
                                                                 <label for="sm_q5-5">Pas du tout important</label>
                                                             </li>
                                                         </ul>
-                                                        <div class="btn-swiper btn-orange">
+                                                        <div class="btn-swiper btn-full-bottom">
                                                             <div class="wrapper-btn-swiper wrapper-btn-prev swiper-button-prev"><img src="./images/arrow-left-survey.svg" alt="<" /></div>
                                                             <div class="wrapper-btn-swiper wrapper-btn-next swiper-button-next"><img src="./images/arrow-right-survey.svg" alt=">" /></div>
                                                         </div>
@@ -353,7 +349,7 @@ else {
                                                                     <label for="sm_q6-5">Pas du tout important</label>
                                                                 </li>
                                                             </ul>
-                                                            <div class="btn-swiper btn-orange">
+                                                            <div class="btn-swiper btn-full-bottom">
                                                                 <div class="wrapper-btn-swiper wrapper-btn-prev swiper-button-prev"><img src="./images/arrow-left-survey.svg" alt="<" /></div>
                                                                 <div class="wrapper-btn-swiper wrapper-btn-next swiper-button-next"><img src="./images/arrow-right-survey.svg" alt=">" /></div>
                                                             </div>
@@ -387,7 +383,7 @@ else {
                                                                     </li>
                                                                 </ul>
                                                                 <input type="hidden" name="ip_adress" id="ip_adress" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" />
-                                                                <input type="submit" name="submit__survey--sm" class="btn-next submit-survey" />
+                                                                <input type="submit" name="submit__survey--sm" class="btn-full-bottom submit-survey" />
                                                             </div>
                                                         </div>
                                                     </div>

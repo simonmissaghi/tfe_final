@@ -1,3 +1,24 @@
+<?php session_start(); ?>
+<?php include ("php/connection.php");
+include ("php/function.php");
+
+$prepareTotalAnswersNetworks = $connection->prepare("SELECT COUNT(id) AS total_answers FROM networks_survey");
+$prepareTotalAnswersNetworks->execute();
+$roww = $prepareTotalAnswersNetworks->fetch();
+$totalAnswersNetworks = $roww['total_answers'];
+
+$prepareTotalAnswersApps = $connection->prepare("SELECT COUNT(id) AS total_answers FROM apps_survey");
+$prepareTotalAnswersApps->execute();
+$roww = $prepareTotalAnswersApps->fetch();
+$totalAnswersApps = $roww['total_answers'];
+
+$prepareTotalAnswersSmartphones = $connection->prepare("SELECT COUNT(id) AS total_answers FROM smartphones_survey");
+$prepareTotalAnswersSmartphones->execute();
+$roww = $prepareTotalAnswersSmartphones->fetch();
+$totalAnswersSmartphones = $roww['total_answers'];
+
+?>
+
 <!DOCTYPE html>
 <html class="page-surveys" lang="fr">
 
@@ -24,16 +45,16 @@
           <ul class="surveys">
             <li><a class="smartphones-link" href="./smartphones_sondage.php">Les smartphones
               <span>Questions sur l'utilisation d'un smartphone</span>
-              <span> 88 Réponses</span>
+              <span> <?php echo $totalAnswersSmartphones; ?> Réponses</span>
             </a>
           </li>
           <li><a class="apps-link" href="./apps_sondage.php">Les apps
             <span>Questions sur l'utilisation d'un smartphone</span>
-            <span> 88 Réponses</span>
+            <span> <?php echo $totalAnswersApps; ?> Réponses</span>
           </a></li>
           <li><a class="socialn-link" href="./networks_sondage.php">Les réseaux sociaux
             <span>Questions sur l'utilisation d'un smartphone</span>
-            <span> 88 Réponses</span>
+            <span> <?php echo $totalAnswersNetworks; ?> Réponses</span>
           </a></li>
         </ul>
       </div>
