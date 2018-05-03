@@ -327,23 +327,23 @@ else {
                                                             <h2 class="subtitle-question">Quelle est l’importance pour toi d’avoir accès aux outils de développeur sur ton smartphone ?</h2></div>
                                                             <ul class="answers">
                                                                 <li>
-                                                                    <input type="radio" id="sm_q6-1" name="q6" value="1" <?php if (!empty($_SESSION['post-data']['q6']){ if ($_SESSION['post-data']['q6'] == "1") {echo 'checked="checked"';}}?>>
+                                                                    <input type="radio" id="sm_q6-1" name="q6" value="1" <?php if (!empty($_SESSION['post-data']['q6'])){ if ($_SESSION['post-data']['q6'] == "1") {echo 'checked="checked"';}}?>>
                                                                     <label for="sm_q6-1">Extrêmement important</label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="radio" id="sm_q6-2" name="q6" value="2" <?php if (!empty($_SESSION['post-data']['q6']){ if ($_SESSION['post-data']['q6'] == "2") {echo 'checked="checked"';}}?>>
+                                                                    <input type="radio" id="sm_q6-2" name="q6" value="2" <?php if (!empty($_SESSION['post-data']['q6'])){ if ($_SESSION['post-data']['q6'] == "2") {echo 'checked="checked"';}}?>>
                                                                     <label for="sm_q6-2">Très important</label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="radio" id="sm_q6-3" name="q6" value="3" <?php if (!empty($_SESSION['post-data']['q6']){ if ($_SESSION['post-data']['q6'] == "3") {echo 'checked="checked"';}}?>>
+                                                                    <input type="radio" id="sm_q6-3" name="q6" value="3" <?php if (!empty($_SESSION['post-data']['q6'])){ if ($_SESSION['post-data']['q6'] == "3") {echo 'checked="checked"';}}?>>
                                                                     <label for="sm_q6-3">Relativement important</label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="radio" id="sm_q6-4" name="q6" value="4" <?php if (!empty($_SESSION['post-data']['q6']){ if ($_SESSION['post-data']['q6'] == "4") {echo 'checked="checked"';}}?>>
+                                                                    <input type="radio" id="sm_q6-4" name="q6" value="4" <?php if (!empty($_SESSION['post-data']['q6'])){ if ($_SESSION['post-data']['q6'] == "4") {echo 'checked="checked"';}}?>>
                                                                     <label for="sm_q6-4">Pas très important</label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="radio" id="sm_q6-5" name="q6" value="5" <?php if (!empty($_SESSION['post-data']['q6']){ if ($_SESSION['post-data']['q6'] == "5") {echo 'checked="checked"';}}?>>
+                                                                    <input type="radio" id="sm_q6-5" name="q6" value="5" <?php if (!empty($_SESSION['post-data']['q6'])){ if ($_SESSION['post-data']['q6'] == "5") {echo 'checked="checked"';}}?>>
                                                                     <label for="sm_q6-5">Pas du tout important</label>
                                                                 </li>
                                                             </ul>
