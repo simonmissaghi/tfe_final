@@ -15,67 +15,67 @@ if($ip_final != 0) {
 }
 if (!empty($_POST['submit__survey--sm'])) {
 
-$_SESSION['post-data'] = $_POST;
-$os = $_SESSION['post-data']['q3'];
+    $_SESSION['post-data'] = $_POST;
+    $os = $_SESSION['post-data']['q3'];
 
 
-if(empty($_POST['gender']) || empty($_POST['age']) || empty($_POST['q1']) || empty($_POST['q2']) || empty($_POST['q4']) || empty($_POST['q5']) || empty($_POST['q6']) || empty($_POST['q7'])) {
-    $questionErr = "Tu as oublié une ou plusieurs questions...";
-}
+    if(empty($_POST['gender']) || empty($_POST['age']) || empty($_POST['q1']) || empty($_POST['q2']) || empty($_POST['q4']) || empty($_POST['q5']) || empty($_POST['q6']) || empty($_POST['q7'])) {
+        $questionErr = "Tu as oublié une ou plusieurs questions...";
+    }
 
-else {
-    $preparedstatement = $connection->prepare('INSERT INTO smartphones_survey
-      (
-      gender,
-      age,
-      q1,
-      q2,
-      q3,
-      q4,
-      q5,
-      q6,
-      q7,
-      ip_adress
-      )
-      VALUES (
-      :gender,
-      :age,
-      :q1,
-      :q2,
-      :q3,
-      :q4,
-      :q5,
-      :q6,
-      :q7,
-      :ip_adress
-  )');
-    $gender = strip_tags($_POST['gender']);
-    $age = strip_tags($_POST['age']);
-    $q1 = strip_tags($_POST['q1']);
-    $q2 = strip_tags($_POST['q2']);
-    $q3 = strip_tags(implode(',', $_POST['q3']));
-    $q4 = strip_tags($_POST['q4']);
-    $q5 = strip_tags($_POST['q5']);
-    $q6 = strip_tags($_POST['q6']);
-    $q7 = strip_tags($_POST['q7']);
-    $ip_adress = strip_tags($_POST['ip_adress']);
-    $preparedstatement ->execute(array(
-      'gender' => $gender,
-      'age' => $age,
-      'q1' => $q1,
-      'q2' => $q2,
-      'q3' => $q3,
-      'q4' => $q4,
-      'q5' => $q5,
-      'q6' => $q6,
-      'q7' => $q7,
-      'ip_adress' => $ip_adress
-  ));
-    session_destroy();
-    unset($_SESSION['post-data']);
-    header("Location: redirection_smartphones-survey.php");
-    exit();
-}
+    else {
+        $preparedstatement = $connection->prepare('INSERT INTO smartphones_survey
+          (
+          gender,
+          age,
+          q1,
+          q2,
+          q3,
+          q4,
+          q5,
+          q6,
+          q7,
+          ip_adress
+          )
+          VALUES (
+          :gender,
+          :age,
+          :q1,
+          :q2,
+          :q3,
+          :q4,
+          :q5,
+          :q6,
+          :q7,
+          :ip_adress
+      )');
+        $gender = strip_tags($_POST['gender']);
+        $age = strip_tags($_POST['age']);
+        $q1 = strip_tags($_POST['q1']);
+        $q2 = strip_tags($_POST['q2']);
+        $q3 = strip_tags(implode(',', $_POST['q3']));
+        $q4 = strip_tags($_POST['q4']);
+        $q5 = strip_tags($_POST['q5']);
+        $q6 = strip_tags($_POST['q6']);
+        $q7 = strip_tags($_POST['q7']);
+        $ip_adress = strip_tags($_POST['ip_adress']);
+        $preparedstatement ->execute(array(
+          'gender' => $gender,
+          'age' => $age,
+          'q1' => $q1,
+          'q2' => $q2,
+          'q3' => $q3,
+          'q4' => $q4,
+          'q5' => $q5,
+          'q6' => $q6,
+          'q7' => $q7,
+          'ip_adress' => $ip_adress
+      ));
+        session_destroy();
+        unset($_SESSION['post-data']);
+        header("Location: redirection_smartphones-survey.php");
+        exit();
+    }
 }
 
 
@@ -146,12 +146,12 @@ else {
                                                         <option value="10" <?php if (!empty($_SESSION['post-data']['age'])){ if ($_SESSION['post-data']['age'] == "10") {echo 'selected';}}?>>2004</option>
                                                         <option value="11" <?php if (!empty($_SESSION['post-data']['age'])){ if ($_SESSION['post-data']['age'] == "11") {echo 'selected';}}?>>2005</option>
                                                         <option value="12" <?php if (!empty($_SESSION['post-data']['age'])){ if ($_SESSION['post-data']['age'] == "12") {echo 'selected';}}?>>2006</option>
-                                                        <option value="13">2007</option>
-                                                        <option value="14">2008</option>
-                                                        <option value="15">2009</option>
-                                                        <option value="16">2010</option>
-                                                        <option value="17">2011</option>
-                                                        <option value="18">2012</option>
+                                                        <option value="13" <?php if (!empty($_SESSION['post-data']['age'])){ if ($_SESSION['post-data']['age'] == "13") {echo 'selected';}}?>>2007</option>
+                                                        <option value="14" <?php if (!empty($_SESSION['post-data']['age'])){ if ($_SESSION['post-data']['age'] == "14") {echo 'selected';}}?>>2008</option>
+                                                        <option value="15" <?php if (!empty($_SESSION['post-data']['age'])){ if ($_SESSION['post-data']['age'] == "15") {echo 'selected';}}?>>2009</option>
+                                                        <option value="16" <?php if (!empty($_SESSION['post-data']['age'])){ if ($_SESSION['post-data']['age'] == "16") {echo 'selected';}}?>>2010</option>
+                                                        <option value="17" <?php if (!empty($_SESSION['post-data']['age'])){ if ($_SESSION['post-data']['age'] == "17") {echo 'selected';}}?>>2011</option>
+                                                        <option value="18" <?php if (!empty($_SESSION['post-data']['age'])){ if ($_SESSION['post-data']['age'] == "18") {echo 'selected';}}?>>2012</option>
                                                     </select>
                                                 </label>
                                             </li>

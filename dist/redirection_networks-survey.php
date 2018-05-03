@@ -7,12 +7,12 @@ $questionErr = "";
 $emailValid = "";
 $emailErr = "";
 if (!empty($_POST['submit_email--networks'])) {
+
   $email = strip_tags($_POST['email']);
   $prepareEmail = $connection->prepare("SELECT COUNT(*) AS email_adress FROM email_table WHERE email = '$email'");
   $prepareEmail->execute();
   $roww = $prepareEmail->fetch();
   $existingEmail = $roww['email_adress'];
-
   if($existingEmail != 0) {
 
     session_destroy();
@@ -20,9 +20,13 @@ if (!empty($_POST['submit_email--networks'])) {
 
     exit();
   }
-  else{
 
-    session_destroy();
+
+
+  if(!empty($_POST['email'])) {
+
+   if(!empty($_POST['privacy'])) {
+
     $preparedstatement = $connection->prepare('INSERT INTO email_table
       (
       email
@@ -43,10 +47,13 @@ if (!empty($_POST['submit_email--networks'])) {
       header( "refresh:2;url=index.php" );
     }
 
-    else {
-      $emailErr = "Il faut rentrer une adresse email correcte !";
-    }
 
+  }
+  else {
+    $emailErr = "Tu dosi accepter les conditions d'utilisation !";}
+  }
+  else {
+    $emailErr = "Il faut rentrer une adresse email correcte !";
   }
 }
 
@@ -57,7 +64,7 @@ if (!empty($_POST['submit_email--networks'])) {
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
   <title>Sondage - Les réseaux sociaux | #trustinme</title>
   <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
@@ -87,6 +94,10 @@ if (!empty($_POST['submit_email--networks'])) {
             </div>
             <div class="answers">
               <input type="email" class="networks-survey" name="email" value="" placeholder="email">
+              <div class="checkbox">
+                <input type="checkbox"  id="check-rules" name="privacy" value="1">
+                <label class="checkbox apps-survey" for="check-rules">Accepter les <a href="/">règles de confidentialité</a></label>
+              </div>
               <div class="redirect-skip"><a href="index.php">Passer cette étape</a></div>
             </div>
             <input type="submit" name="submit_email--networks" class="btn-full-bottom networks-survey" />

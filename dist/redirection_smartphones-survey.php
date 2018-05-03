@@ -7,41 +7,54 @@ $questionErr = "";
 $emailValid = "";
 $emailErr = "";
 if (!empty($_POST['submit_email--smartphones'])) {
-$email = strip_tags($_POST['email']);
- $prepareEmail = $connection->prepare("SELECT COUNT(*) AS email_adress FROM email_table WHERE email = '$email'");
- $prepareEmail->execute();
- $roww = $prepareEmail->fetch();
- $existingEmail = $roww['email_adress'];
-
- if($existingEmail != 0) {
-
-  header("Location: index.php");
-    exit();
-}
-else{
-  $preparedstatement = $connection->prepare('INSERT INTO email_table
-    (
-    email
-    )
-    VALUES (
-    :email
-  )');
 
   $email = strip_tags($_POST['email']);
+  $prepareEmail = $connection->prepare("SELECT COUNT(*) AS email_adress FROM email_table WHERE email = '$email'");
+  $prepareEmail->execute();
+  $roww = $prepareEmail->fetch();
+  $existingEmail = $roww['email_adress'];
+  if($existingEmail != 0) {
 
-  if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $preparedstatement ->execute(array(
-      'email' => $email
-    ));
-    $emailValid = "C'est parfait ! Tu seras tenu au courant très prochainement !";
-    header( "refresh:2;url=index.php" );
+    session_destroy();
+    header("Location: index.php");
+
+    exit();
   }
 
+
+
+  if(!empty($_POST['email'])) {
+
+   if(!empty($_POST['privacy'])) {
+
+    $preparedstatement = $connection->prepare('INSERT INTO email_table
+      (
+      email
+      )
+      VALUES (
+      :email
+    )');
+
+    $email = strip_tags($_POST['email']);
+
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      $preparedstatement ->execute(array(
+        'email' => $email
+      ));
+
+      $_SESSION = [];
+      $emailValid = "C'est parfait ! Tu seras tenu au courant très prochainement !";
+      header( "refresh:2;url=index.php" );
+    }
+
+
+  }
+  else {
+    $emailErr = "Tu dois accepter les règles de confidentialité !";}
+  }
   else {
     $emailErr = "Il faut rentrer une adresse email correcte !";
   }
-
-}
 }
 
 ?>
@@ -81,6 +94,10 @@ else{
             </div>
             <div class="answers">
               <input type="email" class="smartphones-survey" name="email" value="" placeholder="email">
+              <div class="checkbox">
+                <input type="checkbox"  id="check-rules" name="privacy" value="1">
+                <label class="checkbox apps-survey" for="check-rules">Accepter les <a href="/">règles de confidentialité</a></label>
+              </div>
               <div class="redirect-skip"><a href="index.php">Passer cette étape</a></div>
             </div>
             <input type="submit" name="submit_email--smartphones" class="btn-full-bottom smartphones-survey" />

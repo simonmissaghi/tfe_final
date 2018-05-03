@@ -24,7 +24,7 @@ $totalAnswersSmartphones = $roww['total_answers'];
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
   <title>Sondages | #trustinme</title>
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link rel="stylesheet" href="css/swiper.css">
@@ -60,6 +60,7 @@ $totalAnswersSmartphones = $roww['total_answers'];
       </div>
     </div>
   </section>
+  <div class="credits">Photos - <a href="http://www.unsplash.com">Unsplash</a></div>
 </main>
 </body>
 </html>
