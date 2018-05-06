@@ -1,0 +1,117 @@
+.page-surveys {
+    height: 100%;
+    body {
+        @include calc(height, "100% - 6rem");
+    }
+    main, .wrapper-surveys {
+        height: 100%;
+    }
+
+    .wrapper-surveys {
+        // @include calc(height, "100vh - 6rem");
+        display: grid;
+        grid-template-rows: repeat(7, 1fr);
+        grid-template-columns: repeat(3, 1fr); // background: #f7f7f7;
+        .header-main {
+            grid-column: 1/4;
+            grid-row: 1/2;
+            align-self: center;
+
+            h1 {
+                font-size: 1.8rem;
+                margin: 5rem 0;
+                padding: 0 2rem;
+                text-transform: none; // text-align: center;
+                font-weight: 300;
+                color: $color-orange;
+                position: relative;
+                &:before {
+                    content: 'Sondages';
+                    position: absolute;
+                    top: -3rem;
+                    left: 2rem;
+                    right: 2rem;
+                    border-bottom: 2px solid $color-orange;
+                    color: #000;
+                    @include calc(width, "100% - 4rem") text-transform: uppercase;
+                    font-size: 1.2rem;
+                    font-weight: 900;
+                    font-style: italic;
+                }
+            }
+        }
+
+        .body-main {
+            grid-column: 1/4;
+            grid-row: 2/8;
+            align-self: end;
+
+            .surveys {
+
+
+                li {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    @include box-shadow(6);
+
+                    &:first-child {
+                        background: $color-smartphones;
+                    }
+                    &:nth-child(2) {
+                        background: $color-apps;
+                    }
+                    &:last-child {
+                        background: $color-networks;
+                    }
+
+                    a {
+                        display: block;
+                        padding: 5.5rem 0 5.5rem 10rem;
+                        position: relative;
+                        color: #fff;
+                        text-transform: uppercase;
+                        font-size: 1.4rem;
+                        width: 100%;
+                        font-weight: 700;
+
+
+
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            top: 50%;
+                            left: 5rem;
+                            transform: translateY(-50%) translateX(-50%);
+                            width: 39px;
+                            height: 74px;
+                        }
+                        @media (max-height: 461px) {
+                            padding: 3.2rem 0 3.2rem 10rem;
+
+                            &::before {
+                                content: '';
+                                position: absolute;
+                                top: 50%;
+                                left: 5rem;
+                                transform: translateY(-50%) translateX(-50%);
+                                width: 14px;
+                                height: 27px;
+                            }
+                        }
+
+                        &.smartphones-link::before {
+                            background: url('../images/icon_smartphone.svg');
+                        }
+                        &.apps-link::before {
+                            background: url('../images/icon_apps.svg');
+                        }
+                        &.socialn-link::before {
+                            background: url('../images/icon_network.svg');
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

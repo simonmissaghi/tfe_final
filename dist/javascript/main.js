@@ -42,3 +42,21 @@ function OnSocialNetworks() {
     labelNo.querySelector('span').style.display = "none";
   }
 }
+
+function privacyRules() {
+    var btnPrivacy = document.querySelector('.privacy-btn');
+    var wrapperPrivacy = document.querySelector('.privacy-rules');
+    var crossBtn = document.querySelector('.cross-exit');
+
+    btnPrivacy.addEventListener('click', function(e) {
+        e.preventDefault();
+        wrapperPrivacy.style.transform = "translateX(-100%)";
+
+    });
+
+    crossBtn.addEventListener('click', function() {
+        wrapperPrivacy.style.transform = "translateX(100%)";
+    })
+}
+
+privacyRules();

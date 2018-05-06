@@ -1,0 +1,14 @@
+header {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    height: 6rem;
+    text-align: center;
+    background: #fff;
+
+    .logo {
+        width: 200px;
+        height: 23px;
+    }
+}

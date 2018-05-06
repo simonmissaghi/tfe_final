@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 43">
+  <title>cross</title>
+  <g>
+    <line x1="1.5" y1="1.5" x2="41.5" y2="41.5" fill="#fff" stroke="#000" stroke-linecap="round" stroke-linejoin="bevel" stroke-width="3"/>
+    <line x1="41.5" y1="1.5" x2="1.5" y2="41.5" fill="#fff" stroke="#000" stroke-linecap="round" stroke-linejoin="bevel" stroke-width="3"/>
+  </g>
+</svg>

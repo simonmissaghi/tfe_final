@@ -9,17 +9,18 @@ $ip_final = $roww['ip_adress'];
 $ipErr = "";
 $questionErr = "";
 
-if($ip_final != 0) {
-    $ipErr = "Tu as déjà rempli ce formulaire ! Pourquoi ne pas répondre à un autre ?";
-    header( "refresh:2;url=index.php" );
-}
+
+// if($ip_final != 0) {
+//     $ipErr = "Tu as déjà rempli ce formulaire ! Pourquoi ne pas répondre à un autre ?";
+//     header( "refresh:2;url=index.php" );
+// }
 if (!empty($_POST['submit__survey--sm'])) {
 
     $_SESSION['post-data'] = $_POST;
     $os = $_SESSION['post-data']['q3'];
 
 
-    if(empty($_POST['gender']) || empty($_POST['age']) || empty($_POST['q1']) || empty($_POST['q2']) || empty($_POST['q4']) || empty($_POST['q5']) || empty($_POST['q6']) || empty($_POST['q7'])) {
+    if(empty($_POST['gender']) || empty($_POST['age']) || empty($_POST['q1']) || empty($_POST['q2']) || empty($_POST['q4']) || empty($_POST['q5']) || empty($_POST['q6']) || empty($_POST['q7']) || empty($_POST['q8'])) {
         $questionErr = "Tu as oublié une ou plusieurs questions...";
     }
 
@@ -35,6 +36,7 @@ if (!empty($_POST['submit__survey--sm'])) {
           q5,
           q6,
           q7,
+          q8,
           ip_adress
           )
           VALUES (
@@ -47,6 +49,7 @@ if (!empty($_POST['submit__survey--sm'])) {
           :q5,
           :q6,
           :q7,
+          :q8,
           :ip_adress
       )');
         $gender = strip_tags($_POST['gender']);
@@ -58,6 +61,7 @@ if (!empty($_POST['submit__survey--sm'])) {
         $q5 = strip_tags($_POST['q5']);
         $q6 = strip_tags($_POST['q6']);
         $q7 = strip_tags($_POST['q7']);
+        $q8 = strip_tags($_POST['q8']);
         $ip_adress = strip_tags($_POST['ip_adress']);
         $preparedstatement ->execute(array(
           'gender' => $gender,
@@ -69,6 +73,7 @@ if (!empty($_POST['submit__survey--sm'])) {
           'q5' => $q5,
           'q6' => $q6,
           'q7' => $q7,
+          'q8' => $q8,
           'ip_adress' => $ip_adress
       ));
         session_destroy();
@@ -89,6 +94,30 @@ if (!empty($_POST['submit__survey--sm'])) {
     <title>Sondage - Les smartphones | #trustinme</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link rel="stylesheet" href="css/swiper.css">
+    <meta name="Author" lang="fr" content="#trustinme - La génération Z peut s'exprimer !">
+    <meta name="Publisher" content="Simon MISSAGHI">
+    <meta name="Reply-to" content="simon@simonmissaghi.be">
+    <meta name="Description" content="Tu es né(e) entre 1995 et 2012 ? Tu es l'acteur principal de ce projet ! Donne ta voix à trois sondages sur les smartphones !">
+    <meta name="Indentifier-URL" content="http://www.simonmissaghi.be">
+    <meta name="Keywords" content="trustinme, young, people, genz, generation, generationZ, Z, adolescents, jeunes">
+    <!-- Méta Google -->
+    <meta name="title" content="#trustinme - La génération Z peut s'exprimer !" />
+    <meta name="description" content="Tu es né(e) entre 1995 et 2012 ? Tu es l'acteur principal de ce projet ! Donne ta voix à trois sondages sur les smartphones !" />
+
+    <!-- Métas Facebook Opengraph -->
+    <meta property="og:title" content="#trustinme - La génération Z peut s'exprimer !" />
+    <meta property="og:description" content="Tu es né(e) entre 1995 et 2012 ? Tu es l'acteur principal de ce projet ! Donne ta voix à trois sondages sur les smartphones !" />
+    <meta property="og:url" content="http://www.simonmissaghi.be/projets/index.php" />
+    <meta property="og:image" content="http://www.simonmissaghi.be/projets/trustinme/images/img_metatag.jpg" />
+    <meta property="og:image:secure_url" content="images/img_metatag.jpg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:type" content="website" />
+
+    <!-- Métas Twitter Card -->
+    <meta name="twitter:title" content="#trustinme - La génération Z peut s'exprimer !" />
+    <meta name="twitter:description" content="Tu es né(e) entre 1995 et 2012 ? Tu es l'acteur principal de ce projet ! Donne ta voix à trois sondages sur les smartphones !" />
+    <meta name="twitter:url" content="http://www.simonmissaghi.be/projets/index.php" />
+    <meta name="twitter:image" content="images/img_metatag.jpg" />
 </head>
 
 <body>
@@ -197,7 +226,7 @@ if (!empty($_POST['submit__survey--sm'])) {
                                 <div class="swiper-slide">
                                     <div class="wrapper-question">
                                         <div class="question">
-                                            <h2 class="subtitle-question">Sur un nouveau smartphone, à quel point es-tu intéressé par l’aspect technologique du produit ?</h2></div>
+                                            <h2 class="subtitle-question">Sur un nouveau smartphone, à quel point es-tu intéressé(e) par l’aspect technologique du produit ?</h2></div>
                                             <ul class="answers">
                                                 <li>
                                                     <input type="radio" id="sm_q2-1" name="q2" value="1" <?php if (!empty($_SESSION['post-data']['q2'])){ if ($_SESSION['post-data']['q2'] == "1") {echo 'checked="checked"';}}?>>
@@ -233,27 +262,27 @@ if (!empty($_POST['submit__survey--sm'])) {
                                                 <h2 class="subtitle-question">Si tu achètes un nouveau smartphone, c’est pour : </h2></div>
                                                 <ul class="answers">
                                                     <li>
-                                                        <input type="checkbox" id="sm_q3-1" name="q3[]" value="[1]" <?php if (isset($_SESSION['post-data']['q3'])){ if (in_array("[1]", $os)) {echo 'checked';}}?>>
+                                                        <input type="checkbox" id="sm_q3-1" name="q3[]" value="[1]" <?php if (isset($os)){ if (in_array("[1]", $os)) {echo 'checked';}}?>>
                                                         <label class="checkbox" for="sm_q3-1">ses nouvelles technologies</label>
                                                     </li>
                                                     <li>
-                                                        <input type="checkbox" id="sm_q3-2" name="q3[]" value="[2]" <?php if (isset($_SESSION['post-data']['q3'])){ if (in_array("[2]", $os)) {echo 'checked';}}?>>
+                                                        <input type="checkbox" id="sm_q3-2" name="q3[]" value="[2]" <?php if (isset($os)){ if (in_array("[2]", $os)) {echo 'checked';}}?>>
                                                         <label class="checkbox" for="sm_q3-2">ses performances</label>
                                                     </li>
                                                     <li>
-                                                        <input type="checkbox" id="sm_q3-3" name="q3[]" value="[3]" <?php if (isset($_SESSION['post-data']['q3'])){ if (in_array("[3]", $os)) {echo 'checked';}}?>>
+                                                        <input type="checkbox" id="sm_q3-3" name="q3[]" value="[3]" <?php if (isset($os)){ if (in_array("[3]", $os)) {echo 'checked';}}?>>
                                                         <label class="checkbox" for="sm_q3-3">son côté esthétique</label>
                                                     </li>
                                                     <li>
-                                                        <input type="checkbox" id="sm_q3-4" name="q3[]" value="[4]" <?php if (isset($_SESSION['post-data']['q3'])){ if (in_array("[4]", $os)) {echo 'checked';}}?>>
+                                                        <input type="checkbox" id="sm_q3-4" name="q3[]" value="[4]" <?php if (isset($os)){ if (in_array("[4]", $os)) {echo 'checked';}}?>>
                                                         <label class="checkbox" for="sm_q3-4">son côté pratique</label>
                                                     </li>
                                                     <li>
-                                                        <input type="checkbox" id="sm_q3-5" name="q3[]" value="[5]" <?php if (isset($_SESSION['post-data']['q3'])){ if (in_array("[5]", $os)) {echo 'checked';}}?>>
+                                                        <input type="checkbox" id="sm_q3-5" name="q3[]" value="[5]" <?php if (isset($os)){ if (in_array("[5]", $os)) {echo 'checked';}}?>>
                                                         <label class="checkbox" for="sm_q3-5">parce que tu en as besoin</label>
                                                     </li>
                                                     <li>
-                                                        <input type="checkbox" class="other__choice" id="sm_q3-6" name="q3[]" value="" <?php if (!empty($_SESSION['post-data']['q3'])){ if (in_array(" ", $os)) {echo 'checked';}}?>>
+                                                        <input type="checkbox" class="other__choice" id="sm_q3-6" name="q3[]" value="" <?php if (isset($os)){ if (in_array(" ", $os)) {echo 'checked';}}?>>
                                                         <label class="checkbox other__choice--label" for="sm_q3-6">autre :
                                                             <input type="text" class="other__choice--text" id="sm_q3-6" name="q3[]" value="" onchange="changeradioother()">
                                                         </label>
@@ -368,7 +397,7 @@ if (!empty($_POST['submit__survey--sm'])) {
                                                     <div class="swiper-slide">
                                                         <div class="wrapper-question">
                                                             <div class="question">
-                                                                <h2 class="subtitle-question">Quelle est pour toi la probabilité que les smartphones soient sources de manque de contacts en temps réel entre humains ?</h2></div>
+                                                                <h2 class="subtitle-question">Quelle est pour toi la probabilité que les smartphones soient sources de manque de contacts humains ?</h2></div>
                                                                 <ul class="answers">
                                                                     <li>
                                                                         <input type="radio" id="sm_q7-1" name="q7" value="1" <?php if (!empty($_SESSION['post-data']['q7'])){ if ($_SESSION['post-data']['q7'] == "1") {echo 'checked="checked"';}}?>>
@@ -391,32 +420,57 @@ if (!empty($_POST['submit__survey--sm'])) {
                                                                         <label for="sm_q7-5">Pas du tout probable</label>
                                                                     </li>
                                                                 </ul>
-                                                                <input type="hidden" name="ip_adress" id="ip_adress" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" />
-                                                                <input type="submit" name="submit__survey--sm" class="btn-full-bottom submit-survey" />
+                                                                <div class="btn-swiper btn-full-bottom">
+                                                                    <div class="wrapper-btn-swiper wrapper-btn-prev swiper-button-prev"><img src="./images/arrow-left-survey.svg" alt="<" /></div>
+                                                                    <div class="wrapper-btn-swiper wrapper-btn-next swiper-button-next"><img src="./images/arrow-right-survey.svg" alt=">" /></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="swiper-slide">
+                                                            <div class="wrapper-question">
+                                                                <div class="question">
+                                                                    <h2 class="subtitle-question">Sur quel support as-tu répondu à ce sondage ?</h2></div>
+                                                                    <ul class="answers">
+                                                                        <li>
+                                                                            <input type="radio" id="sm_q8-1" name="q8" value="1" <?php if (!empty($_SESSION['post-data']['q8'])){ if ($_SESSION['post-data']['q8'] == "1") {echo 'checked="checked"';}}?>>
+                                                                            <label for="sm_q8-1">Sur mon smartphone</label>
+                                                                        </li>
+                                                                        <li>
+                                                                            <input type="radio" id="sm_q8-2" name="q8" value="2" <?php if (!empty($_SESSION['post-data']['q8'])){ if ($_SESSION['post-data']['q8'] == "2") {echo 'checked="checked"';}}?>>
+                                                                            <label for="sm_q8-2">Sur ma tablette</label>
+                                                                        </li>
+                                                                        <li>
+                                                                            <input type="radio" id="sm_q8-3" name="q8" value="3" <?php if (!empty($_SESSION['post-data']['q8'])){ if ($_SESSION['post-data']['q8'] == "3") {echo 'checked="checked"';}}?>>
+                                                                            <label for="sm_q8-3">Sur mon ordinateur</label>
+                                                                        </li>
+                                                                    </ul>
+                                                                    <input type="hidden" name="ip_adress" id="ip_adress" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" />
+                                                                    <input type="submit" name="submit__survey--sm" class="btn-full-bottom submit-survey" />
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </form>
+                                                </form>
+                                            </div>
                                         </div>
-                                    </div>
-                                </section>
-                            </main>
-                            <footer></footer>
-                            <script src="javascript/main.js"></script>
-                            <script src="javascript/swiper.min.js"></script>
-                            <script>
-                                var swiper = new Swiper('.swiper-container', {
-                                    pagination: {
-                                        el: '.swiper-pagination',
-                                        type: 'progressbar',
-                                    },
-                                    navigation: {
-                                        nextEl: '.swiper-button-next',
-                                        prevEl: '.swiper-button-prev',
-                                    },
-                                });
-                            </script>
-                        </body>
+                                    </section>
+                                    <div class="credits">Photos - <a href="http://www.unsplash.com">Unsplash</a></div>
+                                </main>
+                                <footer></footer>
+                                <script src="javascript/main.js"></script>
+                                <script src="javascript/swiper.min.js"></script>
+                                <script>
+                                    var swiper = new Swiper('.swiper-container', {
+                                        pagination: {
+                                            el: '.swiper-pagination',
+                                            type: 'progressbar',
+                                        },
+                                        navigation: {
+                                            nextEl: '.swiper-button-next',
+                                            prevEl: '.swiper-button-prev',
+                                        },
+                                    });
+                                </script>
+                            </body>
 
-                        </html>
+                            </html>

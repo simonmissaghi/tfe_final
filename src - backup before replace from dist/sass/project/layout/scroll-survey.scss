@@ -1,0 +1,25 @@
+.page-surveys-single {
+
+    @include media-breakpoint-up(md) {
+        .swiper-container {
+
+             ::-webkit-scrollbar {
+                width: 8px;
+                position: absolute;
+                left: 0;
+            }
+
+             ::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+
+             ::-webkit-scrollbar-thumb {
+                background: #888;
+            }
+
+             ::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+        }
+    }
+}
