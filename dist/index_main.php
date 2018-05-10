@@ -1,3 +1,7 @@
+<?php
+include('/php/result/list-result.php');
+?>
+
 <!DOCTYPE html>
 <html class="page-front" lang="fr">
 
@@ -74,17 +78,19 @@
                     <!-- Slides -->
                     <div class="swiper-slide">
                         <div class="container-random-question">
-                            <h1 class="question-survey">Quelle est l’importance pour toi de socialiser via les réseaux sociaux ?</h1>
-                            <select name="choice-who" id="">
-                                <option value="all">Toute la génération</option>
-                                <option value="girls">Filles</option>
-                                <option value="boys">Garçons</option>
-                            </select>
-                            <canvas id="myChart" width="" height=""></canvas>
+                            <h1 class="question-survey">Sur quel support as-tu répondu aux sondages ?<span>en %</span></h1>
+                            <canvas id="chartSq8all" width="" height=""></canvas>
                         </div>
                     </div>
-                    <div class="swiper-slide">Slide 2</div>
-                    <div class="swiper-slide">Slide 3</div>
+                    <div class="swiper-slide">
+                        <h1 class="question-survey">Quelle est l’importance pour toi de socialiser via les réseaux sociaux ?<span>en %</span></h1>
+                        <canvas id="chartNq7all" width="" height=""></canvas>
+                    </div>
+                    <div class="swiper-slide">
+                        <h1 class="question-survey">Quelle est la probabilité pour que tu te passes de ton smartphone une journée entière ?<span>en %</span></h1>
+                        <canvas id="chartSq4all" width="" height=""></canvas>
+                    </div>
+
                     ...
                 </div>
                 <!-- If we need pagination -->
@@ -99,12 +105,12 @@
                     <button class="mic"></button>
                     <p>je garde systématiquement mon portable, il ne me quitte jamais, même la nuit, je le charge sur la table de chevet à côté de moi. Je me sens en insécurité sans mon téléphone... Car aujourd'hui, c'est plus qu'un téléphone : c'est une boite mail, un moyen de se connecter sur Facebook, d'écouter de la musique, de prendre des photos, c'est un GPS et encore 20.000 autres trucs ! C'est triste à dire mais c'est presque une extension de ma main.</p>
                     <p class="sign-temoignage">Mariella, 23 ans, étudiante en communication</p>
-                    <div class="wrapper-btn">
-                        <a class="write" href="">Ecrire mon témoignage</a>
-                        <a class="read" href="">Lire les témoignages</a>
-                    </div>
                 </div>
-                <div class="img-temoignage"></div>
+                <div class="img-temoignage temoin1"></div>
+            </div>
+            <div class="wrapper-btn">
+                <a class="write" href="">Ecrire mon témoignage</a>
+                <a class="read" href="">Lire les témoignages</a>
             </div>
         </section>
         <div class="bg-header"></div>
@@ -138,6 +144,7 @@
     </main>
     <script src="javascript/main.js"></script>
     <script src="javascript/swiper.js"></script>
+    <script src="javascript/Chart.js"></script>
     <script>
         var swiper = new Swiper('.swiper-container', {
           pagination: {
@@ -150,6 +157,206 @@
         allowTouchMove: true
 
     });
+</script>
+
+<script>
+    var sq8all = document.getElementById('chartSq8all');
+    var nq7all = document.getElementById('chartNq7all');
+    var sq4all = document.getElementById('chartSq4all');
+
+    var myLineChart = new Chart(sq8all, {
+        type: 'bar',
+        data: {
+            labels: ["Smartphones", "Tablettes", "PC"],
+            datasets: [{
+                label: 'Toute la génération',
+                data: [<?php echo implode(", ", $data_sq8All); ?>],
+                backgroundColor: [
+                'rgba(255, 182, 8, .51)',
+                'rgba(255, 182, 8, .51)',
+                'rgba(255, 182, 8, .51)',
+                ],
+                borderColor: [
+                'rgba(168, 87, 81, .51)',
+                'rgba(168, 87, 81, .51)',
+                'rgba(168, 87, 81, .51)',
+                ],
+                borderWidth: 0
+
+            },
+            {
+                label: 'Filles',
+                data: [<?php echo implode(", ", $data_sfq8); ?>],
+                backgroundColor: [
+                'rgba(221, 69, 148, .51)',
+                'rgba(221, 69, 148, .51)',
+                'rgba(221, 69, 148, .51)',
+                ],
+                borderWidth: 0
+
+            },
+            {
+                label: 'Garçons',
+                data: [<?php echo implode(", ", $data_smq8); ?>],
+                backgroundColor: [
+                'rgba(132, 185, 239, .6)',
+                'rgba(132, 185, 239, .6)',
+                'rgba(132, 185, 239, .6)',
+                ],
+                borderWidth: 0
+
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    gridLines: {
+                        display:false
+                    },
+                    ticks: {
+                        beginAtZero:true,
+                        max: 100
+                    }
+                }],
+                xAxes: [{
+                    gridLines: {
+                        display:false
+                    }
+                }]
+            }
+        }
+    });
+
+    var myLineChart = new Chart(nq7all, {
+        type: 'bar',
+        data: {
+            labels: ["Vraiment important", "Pas du tout important"],
+            datasets: [{
+                label: 'Toutes la génération',
+                data: [<?php echo implode(", ", $data_nq7All); ?>],
+                backgroundColor: [
+                'rgba(255, 182, 8, .51)',
+                'rgba(255, 182, 8, .51)',
+                'rgba(255, 182, 8, .51)',
+                ],
+                borderColor: [
+                'rgba(168, 87, 81, .51)',
+                'rgba(168, 87, 81, .51)',
+                'rgba(168, 87, 81, .51)',
+                ],
+                borderWidth: 0
+
+            },
+            {
+                label: 'Filles',
+                data: [<?php echo implode(", ", $data_nfq7); ?>],
+                backgroundColor: [
+                'rgba(221, 69, 148, .51)',
+                'rgba(221, 69, 148, .51)',
+                'rgba(221, 69, 148, .51)',
+                ],
+                borderWidth: 0
+
+            },
+            {
+                label: 'Garçons',
+                data: [<?php echo implode(", ", $data_nmq7); ?>],
+                backgroundColor: [
+                'rgba(132, 185, 239, .6)',
+                'rgba(132, 185, 239, .6)',
+                'rgba(132, 185, 239, .6)',
+                ],
+                borderWidth: 0
+
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    gridLines: {
+                        display:false
+                    },
+                    ticks: {
+                        beginAtZero:true,
+                        max: 100
+                    }
+                }],
+                xAxes: [{
+                    gridLines: {
+                        display:false
+                    }
+                }]
+            }
+        }
+    });
+
+    var myLineChart = new Chart(sq4all, {
+        type: 'line',
+        data: {
+            labels: ["Bien sûr", "Probable", "Impossible"],
+            datasets: [{
+                label: 'Toute la génération',
+                data: [<?php echo implode(", ", $data_sq4All); ?>],
+                backgroundColor: [
+                'rgba(255, 182, 8, .51)',
+                'rgba(255, 182, 8, .51)',
+                'rgba(255, 182, 8, .51)',
+                ],
+                borderColor: [
+                'rgba(168, 87, 81, .51)',
+                'rgba(168, 87, 81, .51)',
+                'rgba(168, 87, 81, .51)',
+                ],
+                borderWidth: 0,
+                fill: false
+
+            },
+            {
+                label: 'Filles',
+                data: [<?php echo implode(", ", $data_sfq4); ?>],
+                backgroundColor: [
+                'rgba(221, 69, 148, .51)',
+                'rgba(221, 69, 148, .51)',
+                'rgba(221, 69, 148, .51)',
+                ],
+                borderWidth: 0,
+                fill: false
+
+            },
+            {
+                label: 'Garçons',
+                data: [<?php echo implode(", ", $data_smq4); ?>],
+                backgroundColor: [
+                'rgba(132, 185, 239, .6)',
+                'rgba(132, 185, 239, .6)',
+                'rgba(132, 185, 239, .6)',
+                ],
+                borderWidth: 0,
+                fill: false
+
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    gridLines: {
+                        display:false
+                    },
+                    ticks: {
+                        beginAtZero:true,
+                        max: 100
+                    }
+                }],
+                xAxes: [{
+                    gridLines: {
+                        display:false
+                    }
+                }]
+            }
+        }
+    });
+
+
 
 
 

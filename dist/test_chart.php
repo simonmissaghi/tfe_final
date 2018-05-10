@@ -38,7 +38,7 @@ include('php/result/sq8all.php');
                     labels: ["Smartphone", "Tablette", "Desktop",],
                     datasets: [{
                         label: 'boys',
-                        data: [<?php echo implode(", ", $data_sq8); ?>],
+                        data: ["63.4409","1.0753","32.2581"],
                         backgroundColor: [
                         'rgba(239, 131, 84, 1)',
                         'rgba(239, 131, 84, .8)',

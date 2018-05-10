@@ -68,10 +68,11 @@
 =====================LAYOUT================== */
 
 @import "project/layout/header";
+@import "project/layout/nav";
 @import "project/layout/page";
 @import "project/layout/footer";
 @import "project/layout/sondages";
-// @import "project/layout/sondage_test";
 @import "project/layout/form";
 @import "project/layout/sprite";
 @import "project/layout/scroll-survey";
+@import "project/layout/chart";

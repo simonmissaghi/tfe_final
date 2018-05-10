@@ -12,10 +12,10 @@
 @mixin box-sizing($box-model) {
   -webkit-box-sizing: $box-model; // Safari <= 5
      -moz-box-sizing: $box-model; // Firefox <= 19
-          box-sizing: $box-model;
-}
+     box-sizing: $box-model;
+ }
 
-@mixin text-hide() {
+ @mixin text-hide() {
     font: 0/0 a;
     color: transparent;
     text-shadow: none;
@@ -106,8 +106,8 @@
 @mixin calc($prop, $val) {
   @each $pre in -webkit-, -moz-, -o- {
     #{$prop}: $pre + calc(#{$val});
-  }
-  #{$prop}: calc(#{$val});
+}
+#{$prop}: calc(#{$val});
 }
 
 @mixin transition($what: all, $time: 0.2s, $how: ease-in-out) {
@@ -158,3 +158,43 @@
   height: $size;
 }
 
+@mixin ctm-1($color, $img: url('/images/write_icon.svg')) {
+    display: block;
+    padding: 3.7rem 4rem;
+    background: rgba($color, .8);
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    position: relative;
+
+    @include media-breakpoint-up(sm) {
+        display: inline-block;
+        min-width: 50%;
+        padding: 3.7rem 4rem 3.7rem 2rem;
+    }
+
+    @include media-breakpoint-up(md) {
+        display: inline-block;
+        min-width: 50%;
+        padding: 3.7rem 4rem 3.7rem 4rem;
+    }
+
+    &:before {
+
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0px;
+        bottom: 0;
+        width: 87px;
+        background: $color $img;
+        background-repeat: no-repeat;
+        background-size: 30%;
+        background-position: 50% 50%;
+    }
+
+}

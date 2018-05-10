@@ -1,0 +1,127 @@
+   nav {
+     @include clearfix;
+     overflow: hidden;
+     z-index: 20;
+     height: 5rem;
+     @include media-breakpoint-up(lg) {
+         flex-grow: 1;
+     }
+     .nav {
+         @include reset-ul;
+         @include clearfix;
+         @include transition;
+         opacity: 0;
+         text-align: center;
+
+         @include media-breakpoint-down(md) {
+             display: flex;
+             flex-flow: column wrap;
+             justify-content: center;
+             top: 0;
+             left: 0;
+             bottom: 0;
+             right: 0;
+             position: absolute;
+             background: rgba(255, 255, 255, .9);
+             pointer-events: none;
+             z-index: 99999;
+         }
+         @include media-breakpoint-up(lg) {
+             justify-content: row wrap;
+             transform: translateX(100%);
+         }
+
+         @include media-breakpoint-up(xl) {
+             padding: 0 0 0 22.5rem;
+         }
+
+
+         li {
+
+             margin-bottom: 3rem;
+
+             @include media-breakpoint-up(md) {
+                 float: left;
+                 margin-right: 3rem;
+             }
+
+             &:first-child {
+                 padding-left: 0;
+             }
+
+             a {
+                 padding: 1.5rem 1rem;
+                 text-transform: uppercase;
+                 font-weight: 700;
+                 font-size: 3.2rem;
+                 color: $color-main;
+
+
+                 @include breakpoint(md) {
+                     font-size: 1.2rem;
+                 }
+
+                 @include transition;
+
+                 &:first-child {
+                     padding-left: 0;
+                 }
+             }
+         }
+
+         &.open-nav {
+             opacity: 1;
+             pointer-events: all;
+
+             @include media-breakpoint-up(lg) {
+                 transform: translateX(0);
+             }
+         }
+     }
+ }
+
+ .trigger-menu {
+     cursor: pointer;
+     height: 16px;
+     z-index: 9999999;
+
+     .trigger-wrapper {
+         width: 35px;
+
+         .lines {
+             margin-bottom: .4rem;
+             height: .2rem;
+             width: 3.5rem;
+             background: $color-main;
+             @include transition;
+
+
+             &:last-child {
+                 width: 2.5rem;
+                 float: right;
+             }
+         }
+     }
+     &:hover {
+         .lines:last-child {
+             width: 3.5rem;
+         }
+     }
+
+     &.open {
+
+         .lines:nth-child(1) {
+             width: 2.5rem;
+             transform: rotate(-45deg) translateY(22px) translateX(-1px);
+             transform-origin: top left;
+         }
+         .lines:nth-child(2) {
+             opacity: 0;
+         }
+         .lines:nth-child(3) {
+             width: 25px;
+             transform: rotate(45deg) translateY(4px) translateX(1px);
+             transform-origin: bottom right;
+         }
+     }
+ }
