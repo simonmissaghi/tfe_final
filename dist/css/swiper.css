@@ -21,6 +21,10 @@
     z-index: 1;
 }
 
+.swiper-container.swiper-temoignage {
+    overflow: visible;
+}
+
 .swiper-container-no-flexbox .swiper-slide {
     float: left;
 }

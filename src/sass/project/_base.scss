@@ -28,6 +28,11 @@
             font-size: 4.2rem;
         }
 
+        @include media-breakpoint-up(sm) {
+            font-size: 5.2rem;
+        }
+
+
         &.question-survey {
             color: $color-survey;
             font-size: 1.8rem;

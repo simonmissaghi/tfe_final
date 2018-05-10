@@ -91,72 +91,83 @@ include('/php/result/list-result.php');
                         <canvas id="chartSq4all" width="" height=""></canvas>
                     </div>
 
-                    ...
                 </div>
-                <!-- If we need pagination -->
                 <div class="swiper-pagination"></div>
             </div>
 
         </section>
         <section class="highlight-temoignage">
-            <div class="container-temoignage">
-                <div class="body-temoignage">
-                    <h1>« Je me sens en insécurité sans mon téléphone »</h1>
-                    <button class="mic"></button>
-                    <p>je garde systématiquement mon portable, il ne me quitte jamais, même la nuit, je le charge sur la table de chevet à côté de moi. Je me sens en insécurité sans mon téléphone... Car aujourd'hui, c'est plus qu'un téléphone : c'est une boite mail, un moyen de se connecter sur Facebook, d'écouter de la musique, de prendre des photos, c'est un GPS et encore 20.000 autres trucs ! C'est triste à dire mais c'est presque une extension de ma main.</p>
-                    <p class="sign-temoignage">Mariella, 23 ans, étudiante en communication</p>
+            <div class="swiper-container swiper-temoignage">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="container-temoignage">
+                            <div class="body-temoignage">
+                                <h1>« Je me sens en insécurité sans mon téléphone »</h1>
+                                <button class="mic"></button>
+                                <p>je garde systématiquement mon portable, il ne me quitte jamais, même la nuit, je le charge sur la table de chevet à côté de moi. Je me sens en insécurité sans mon téléphone... Car aujourd'hui, c'est plus qu'un téléphone : c'est une boite mail, un moyen de se connecter sur Facebook, d'écouter de la musique, de prendre des photos, c'est un GPS et encore 20.000 autres trucs ! C'est triste à dire mais c'est presque une extension de ma main.</p>
+                                <p class="sign-temoignage">Mariella, 23 ans, étudiante en communication</p>
+                            </div>
+                            <div class="img-temoignage temoin1"></div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                    </div>
+                    <div class="swiper-slide">
+                    </div>
+
                 </div>
-                <div class="img-temoignage temoin1"></div>
+                <!-- <div class="swiper-pagination"></div> -->
             </div>
+        </div>
+        <div class="wrapper-btn">
+            <a class="write" href="">Ecrire mon témoignage</a>
+            <a class="read" href="">Lire les témoignages</a>
+        </div>
+    </section>
+    <div class="bg-header"></div>
+    <section class="surveys">
+        <div class="intro-surveys">
+            <h1>Les sondages</h1>
+            <h2>Ce qui met d’accord sur une façon de voir les choses.</h2>
+            <p>Nous avons questionné la génération Z sur leur rapport aux smartphones, aux applications et aux réseaux sociaux. Voici quelques chiffres.</p>
             <div class="wrapper-btn">
-                <a class="write" href="">Ecrire mon témoignage</a>
-                <a class="read" href="">Lire les témoignages</a>
+                <a class="write" href="">Remplir les sondages</a>
+                <a class="read" href="">Voir les résultats</a>
             </div>
-        </section>
-        <div class="bg-header"></div>
-        <section class="surveys">
-            <div class="intro-surveys">
-                <h1>Les sondages</h1>
-                <h2>Ce qui met d’accord sur une façon de voir les choses.</h2>
-                <p>Nous avons questionné la génération Z sur leur rapport aux smartphones, aux applications et aux réseaux sociaux. Voici quelques chiffres.</p>
-                <div class="wrapper-btn">
-                    <a class="write" href="">Remplir les sondages</a>
-                    <a class="read" href="">Voir les résultats</a>
-                </div>
-                <div class="highlight-result-surveys">
-                    <div class="highlight-question-surveys">
-                        <div class="container-question">
-                            <h1>Support utilisé pour répondre aux sondages <span>en %</span></h1>
-                            <canvas></canvas>
-                        </div>
-                        <div class="container-question">
-                            <h1>Support utilisé pour répondre aux sondages <span>en %</span></h1>
-                            <canvas></canvas>
-                        </div>
-                        <div class="container-question">
-                            <h1>Support utilisé pour répondre aux sondages <span>en %</span></h1>
-                            <canvas></canvas>
-                        </div>
+            <div class="highlight-result-surveys">
+                <div class="highlight-question-surveys">
+                    <div class="container-question">
+                        <h1>Support utilisé pour répondre aux sondages <span>en %</span></h1>
+                        <canvas></canvas>
+                    </div>
+                    <div class="container-question">
+                        <h1>Support utilisé pour répondre aux sondages <span>en %</span></h1>
+                        <canvas></canvas>
+                    </div>
+                    <div class="container-question">
+                        <h1>Support utilisé pour répondre aux sondages <span>en %</span></h1>
+                        <canvas></canvas>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
-    <script src="javascript/main.js"></script>
-    <script src="javascript/swiper.js"></script>
-    <script src="javascript/Chart.js"></script>
-    <script>
-        var swiper = new Swiper('.swiper-container', {
-          pagination: {
-            el: '.swiper-pagination',
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        allowTouchMove: true
+        </div>
+    </section>
+</main>
+<script src="javascript/main.js"></script>
+<script src="javascript/swiper.js"></script>
+<script src="javascript/Chart.js"></script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+      pagination: {
+        el: '.swiper-pagination',
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    allowTouchMove: true
 
-    });
+});
 </script>
 
 <script>
