@@ -168,23 +168,7 @@
     text-transform: uppercase;
     position: relative;
 
-    @include media-breakpoint-up(sm) {
-        display: inline-block;
-        min-width: 50%;
-        padding: 3.7rem 4rem 3.7rem 2rem;
-    }
-
-    @include media-breakpoint-up(md) {
-        display: inline-block;
-        min-width: 50%;
-        padding: 3.7rem 4rem 3.7rem 4rem;
-    }
-
-    &:before {
-
-    }
-
-    &:after {
+    &::after {
         content: '';
         position: absolute;
         top: 0;
@@ -197,4 +181,20 @@
         background-position: 50% 50%;
     }
 
+    @include media-breakpoint-up(sm) {
+        display: inline-block;
+        min-width: 50%;
+        padding: 3.7rem 4rem 3.7rem 2rem;
+    }
+
+    @include media-breakpoint-up(xl) {
+        display: inline-block;
+        min-width: 50%;
+        padding: 5.7rem 4rem;
+
+        &::after {
+        width: 127px;
+
+        }
+    }
 }
