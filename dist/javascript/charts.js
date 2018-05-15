@@ -5,13 +5,14 @@ $.getJSON('./results.json', function(data) {
     var sq4all = document.getElementById('chartSq4all');
 
 
-    var myLineChart = new Chart(sq8all, {
-        type: 'bar',
-        data: {
+    function datassets(data1, data2, data3) {
+
+
+        var dataset = {
             labels: ["Smartphones", "Tablettes", "PC"],
             datasets: [{
                 label: 'Toute la génération',
-                data: data['sq8all'],
+                data: data1,
                 backgroundColor: [
                 'rgba(255, 182, 8, .51)',
                 'rgba(255, 182, 8, .51)',
@@ -27,7 +28,7 @@ $.getJSON('./results.json', function(data) {
             },
             {
                 label: 'Filles',
-                data: data['sfq8'],
+                data: data2,
                 backgroundColor: [
                 'rgba(221, 69, 148, .51)',
                 'rgba(221, 69, 148, .51)',
@@ -38,7 +39,7 @@ $.getJSON('./results.json', function(data) {
             },
             {
                 label: 'Garçons',
-                data: data['smq8'],
+                data: data3,
                 backgroundColor: [
                 'rgba(132, 185, 239, .6)',
                 'rgba(132, 185, 239, .6)',
@@ -47,8 +48,12 @@ $.getJSON('./results.json', function(data) {
                 borderWidth: 0
 
             }]
-        },
-        options: {
+        }
+        return dataset;
+    }
+
+    function optionsChart() {
+        var options = {
             scales: {
                 yAxes: [{
                     gridLines: {
@@ -66,6 +71,12 @@ $.getJSON('./results.json', function(data) {
                 }]
             }
         }
+    }
+
+    var myLineChart = new Chart(sq8all, {
+        type: 'bar',
+        data: datassets(data['sq8all'], data['sfq8'], data['smq8']),
+        options: optionsChart(),
     });
 
 
@@ -75,7 +86,7 @@ $.getJSON('./results.json', function(data) {
             labels: ["Vraiment important", "Pas du tout important"],
             datasets: [{
                 label: 'Toutes la génération',
-                data: [<?php echo implode(", ", $data_nq7All); ?>],
+                data: [],
                 backgroundColor: [
                 'rgba(255, 182, 8, .51)',
                 'rgba(255, 182, 8, .51)',
@@ -91,7 +102,7 @@ $.getJSON('./results.json', function(data) {
             },
             {
                 label: 'Filles',
-                data: [<?php echo implode(", ", $data_nfq7); ?>],
+                data: [],
                 backgroundColor: [
                 'rgba(221, 69, 148, .51)',
                 'rgba(221, 69, 148, .51)',
@@ -102,7 +113,7 @@ $.getJSON('./results.json', function(data) {
             },
             {
                 label: 'Garçons',
-                data: [<?php echo implode(", ", $data_nmq7); ?>],
+                data: [],
                 backgroundColor: [
                 'rgba(132, 185, 239, .6)',
                 'rgba(132, 185, 239, .6)',
@@ -138,7 +149,7 @@ $.getJSON('./results.json', function(data) {
             labels: ["Bien sûr", "Probable", "Impossible"],
             datasets: [{
                 label: 'Toute la génération',
-                data: [<?php echo implode(", ", $data_sq4All); ?>],
+                data: [],
                 backgroundColor: [
                 'rgba(255, 182, 8, .51)',
                 'rgba(255, 182, 8, .51)',
@@ -155,7 +166,7 @@ $.getJSON('./results.json', function(data) {
             },
             {
                 label: 'Filles',
-                data: [<?php echo implode(", ", $data_sfq4); ?>],
+                data: [],
                 backgroundColor: [
                 'rgba(221, 69, 148, .51)',
                 'rgba(221, 69, 148, .51)',
@@ -167,7 +178,7 @@ $.getJSON('./results.json', function(data) {
             },
             {
                 label: 'Garçons',
-                data: [<?php echo implode(", ", $data_smq4); ?>],
+                data: [],
                 backgroundColor: [
                 'rgba(132, 185, 239, .6)',
                 'rgba(132, 185, 239, .6)',

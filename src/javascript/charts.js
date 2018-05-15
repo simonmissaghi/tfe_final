@@ -5,9 +5,7 @@ $.getJSON('./results.json', function(data) {
     var sq4all = document.getElementById('chartSq4all');
 
 
-    var myLineChart = new Chart(sq8all, {
-        type: 'bar',
-        data: {
+   var dtasets = {
             labels: ["Smartphones", "Tablettes", "PC"],
             datasets: [{
                 label: 'Toute la génération',
@@ -47,7 +45,12 @@ $.getJSON('./results.json', function(data) {
                 borderWidth: 0
 
             }]
-        },
+        }
+
+
+    var myLineChart = new Chart(sq8all, {
+        type: 'bar',
+        data: datasets,
         options: {
             scales: {
                 yAxes: [{
@@ -75,7 +78,7 @@ $.getJSON('./results.json', function(data) {
             labels: ["Vraiment important", "Pas du tout important"],
             datasets: [{
                 label: 'Toutes la génération',
-                data: [<?php echo implode(", ", $data_nq7All); ?>],
+                data: [],
                 backgroundColor: [
                 'rgba(255, 182, 8, .51)',
                 'rgba(255, 182, 8, .51)',
@@ -91,7 +94,7 @@ $.getJSON('./results.json', function(data) {
             },
             {
                 label: 'Filles',
-                data: [<?php echo implode(", ", $data_nfq7); ?>],
+                data: [],
                 backgroundColor: [
                 'rgba(221, 69, 148, .51)',
                 'rgba(221, 69, 148, .51)',
@@ -102,7 +105,7 @@ $.getJSON('./results.json', function(data) {
             },
             {
                 label: 'Garçons',
-                data: [<?php echo implode(", ", $data_nmq7); ?>],
+                data: [],
                 backgroundColor: [
                 'rgba(132, 185, 239, .6)',
                 'rgba(132, 185, 239, .6)',
@@ -138,7 +141,7 @@ $.getJSON('./results.json', function(data) {
             labels: ["Bien sûr", "Probable", "Impossible"],
             datasets: [{
                 label: 'Toute la génération',
-                data: [<?php echo implode(", ", $data_sq4All); ?>],
+                data: [],
                 backgroundColor: [
                 'rgba(255, 182, 8, .51)',
                 'rgba(255, 182, 8, .51)',
@@ -155,7 +158,7 @@ $.getJSON('./results.json', function(data) {
             },
             {
                 label: 'Filles',
-                data: [<?php echo implode(", ", $data_sfq4); ?>],
+                data: [],
                 backgroundColor: [
                 'rgba(221, 69, 148, .51)',
                 'rgba(221, 69, 148, .51)',
@@ -167,7 +170,7 @@ $.getJSON('./results.json', function(data) {
             },
             {
                 label: 'Garçons',
-                data: [<?php echo implode(", ", $data_smq4); ?>],
+                data: [],
                 backgroundColor: [
                 'rgba(132, 185, 239, .6)',
                 'rgba(132, 185, 239, .6)',
