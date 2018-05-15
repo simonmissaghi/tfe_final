@@ -1,5 +1,5 @@
 <?php
-include ('/../connection.php');
+include ('./php/connection.php');
 
 // Smartphones female 1995 q4 r1
 

@@ -9,7 +9,7 @@ $.getJSON('./results.json', function(data) {
 
 
         var dataset = {
-            labels: ["Smartphones", "Tablettes", "PC"],
+            labels: ["Smartphones", "Tablettes", "PC", "PC", "PC"],
             datasets: [{
                 label: 'Toute la génération',
                 data: data1,
@@ -75,7 +75,7 @@ $.getJSON('./results.json', function(data) {
 
     var myLineChart = new Chart(sq8all, {
         type: 'bar',
-        data: datassets(data['sq8all'], data['sfq8'], data['smq8']),
+        data: datassets(data['sq1all'], data['sq1m'], data['sq1f']),
         options: optionsChart(),
     });
 

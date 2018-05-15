@@ -9,10 +9,10 @@ $ip_final = $roww['ip_adress'];
 $ipErr = "";
 $questionErr = "";
 $q1 = "";
-if($ip_final != 0) {
-  $ipErr = "Tu as déjà rempli ce formulaire ! Pourquoi ne pas répondre à un autre ?";
-  header( "refresh:2;url=index.php" );
-}
+// if($ip_final != 0) {
+//   $ipErr = "Tu as déjà rempli ce formulaire ! Pourquoi ne pas répondre à un autre ?";
+//   header( "refresh:2;url=index.php" );
+// }
 
 if (!empty($_POST['submit__survey--networks'])) {
   $_SESSION['post-data'] = $_POST;

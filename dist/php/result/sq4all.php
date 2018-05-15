@@ -1,27 +1,56 @@
 <?php
-include ('/../connection.php');
+include ('./php/connection.php');
 
-// Smartphones female 1995 q4 r1
+// Smartphones female q4 r1
 
-$sq4All_01 = $connection->prepare('SELECT
-  (SELECT COUNT(*) FROM smartphones_survey WHERE gender = "2" AND q4 = "1") * 100 /
-  (SELECT COUNT(*) FROM smartphones_survey WHERE gender = "2") AS pourcentage
+$sq4all_01 = $connection->prepare('SELECT
+  (SELECT COUNT(*) FROM smartphones_survey WHERE q4 = "1") * 100 /
+  (SELECT COUNT(*) FROM smartphones_survey) AS pourcentage
   FROM smartphones_survey');
-$sq4All_01->execute();
-$rowsq4All_01 = $sq4All_01->fetch();
-$pourcentagesq4All_01 = $rowsq4All_01['pourcentage'];
+$sq4all_01->execute();
+$rowsq4all_01 = $sq4all_01->fetch();
+$pourcentagesq4all_01 = $rowsq4all_01['pourcentage'];
 
-// Smartphones female 1995 q4 r2
+// Smartphones female q4 r2
 
-// Smartphones female 1995 q4 r5
-
-$sq4All_05 = $connection->prepare('SELECT
-  (SELECT COUNT(*) FROM smartphones_survey WHERE gender = "2" AND q4 = "5") * 100 /
-  (SELECT COUNT(*) FROM smartphones_survey WHERE gender = "2") AS pourcentage
+$sq4all_02 = $connection->prepare('SELECT
+  (SELECT COUNT(*) FROM smartphones_survey WHERE q4 = "2") * 100 /
+  (SELECT COUNT(*) FROM smartphones_survey) AS pourcentage
   FROM smartphones_survey');
-$sq4All_05->execute();
-$rowsq4All_05 = $sq4All_05->fetch();
-$pourcentagesq4All_05 = $rowsq4All_05['pourcentage'];
+$sq4all_02->execute();
+$rowsq4all_02 = $sq4all_02->fetch();
+$pourcentagesq4all_02 = $rowsq4all_02['pourcentage'];
 
-$data_sq4All = array($pourcentagesq4All_01, $pourcentagesq4All_05);
+// Smartphones female q4 r3
+$sq4all_03 = $connection->prepare('SELECT
+  (SELECT COUNT(*) FROM smartphones_survey WHERE q4 = "3") * 100 /
+  (SELECT COUNT(*) FROM smartphones_survey) AS pourcentage
+  FROM smartphones_survey');
+$sq4all_03->execute();
+$rowsq4all_03 = $sq4all_03->fetch();
+$pourcentagesq4all_03 = $rowsq4all_03['pourcentage'];
+
+
+// Smartphones female q4 r4
+
+$sq4all_04 = $connection->prepare('SELECT
+  (SELECT COUNT(*) FROM smartphones_survey WHERE q4 = "4") * 100 /
+  (SELECT COUNT(*) FROM smartphones_survey) AS pourcentage
+  FROM smartphones_survey');
+$sq4all_04->execute();
+$rowsq4all_04 = $sq4all_04->fetch();
+$pourcentagesq4all_04 = $rowsq4all_04['pourcentage'];
+
+
+// Smartphones female q4 r5
+
+$sq4all_05 = $connection->prepare('SELECT
+  (SELECT COUNT(*) FROM smartphones_survey WHERE q4 = "5") * 100 /
+  (SELECT COUNT(*) FROM smartphones_survey) AS pourcentage
+  FROM smartphones_survey');
+$sq4all_05->execute();
+$rowsq4all_05 = $sq4all_05->fetch();
+$pourcentagesq4all_05 = $rowsq4all_05['pourcentage'];
+
+$sq4all = [$pourcentagesq4all_01, $pourcentagesq4all_02, $pourcentagesq4all_03, $pourcentagesq4all_04, $pourcentagesq4all_05];
 ?>
