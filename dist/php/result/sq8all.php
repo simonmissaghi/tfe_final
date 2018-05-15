@@ -32,6 +32,6 @@ $rowsq8_03 = $sq8_03->fetch();
 $pourcentagesq8_03 = $rowsq8_03['pourcentage'];
 
 
-$data_sq8All = array($pourcentagesq8_01, $pourcentagesq8_02, $pourcentagesq8_03);
+$sq8all = [$pourcentagesq8_01, $pourcentagesq8_02, $pourcentagesq8_03];
 
 ?>

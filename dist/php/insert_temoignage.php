@@ -2,7 +2,7 @@
 include ('./php/connection.php');
 include ('./php/function.php');
 
-$prenomErr = $titleErr = $subjectErr = "";
+$prenomErr = $titleErr = $subjectErr = $sexeErr = $ageErr = "";
 
 
 if(!empty($_POST['btn_submit--temoignage'])){
@@ -15,17 +15,20 @@ if(!empty($_POST['btn_submit--temoignage'])){
   elseif(strlen($_POST['prenom']) < 3 ) {
     $prenomErr = "Il faut minimum 3 caractères";
   }
+  elseif(empty($_POST['studies'])) {
+    $prenomErr = "Il faut rentrer ton domaine";
+  }
   elseif(empty($_POST['title_subject'])) {
     $titleErr = "Il faut rentrer un titre";
   }
   elseif(empty($_POST['subject'])){
-    $subjectErr = "Ben faut écrire ton témoignage...";
+    $subjectErr = "Il faut écrire un témoignage";
   }
-  elseif( $_POST['sexe'] == '0') {
-    echo "Tu es hermaphrodite ?";
+  elseif( empty($_POST['sexe'])) {
+    $sexeErr = "Il faut rentrer ton genre";
   }
-  elseif( $_POST['age'] == '0') {
-    echo "Tu es trop petit pour écrire";
+  elseif( empty($_POST['age'])) {
+    $ageErr = "Tu dois rentrer ton age";
   }
   elseif(!empty($_POST['hidd'])) {
     echo "tu es un robot";
@@ -73,10 +76,6 @@ if(!empty($_POST['btn_submit--temoignage'])){
       'date_publi' => $date_publi,
       'statut' => $statut
     ));
-
-
-    // header("Location: list__temoignages.php");
-    // exit();
   }
 }
 

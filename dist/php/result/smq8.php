@@ -32,5 +32,5 @@ $pourcentagesmq8_03 = $rowsmq8_03['pourcentage'];
 
 
 
-$data_smq8 = array($pourcentagesmq8_01, $pourcentagesmq8_02, $pourcentagesmq8_03);
+$smq8 = [$pourcentagesmq8_01, $pourcentagesmq8_02, $pourcentagesmq8_03];
 ?>

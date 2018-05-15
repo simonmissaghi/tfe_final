@@ -77,3 +77,22 @@ function trigger() {
 
 }
 if(document.querySelector('.trigger-menu')) { trigger(); }
+
+function scrollTo(hash) {
+  location.hash = "#" + hash;
+}
+
+function insertTemoignage() {
+  var focusOnTemoignage = document.getElementById('write-your-temoignage');
+  var btnWrite = document.querySelector('.write-temoignage--btn');
+
+  btnWrite.addEventListener('click', function(e) {
+    e.preventDefault();
+    var mySwiper = document.querySelector('.swiper-temoignage').swiper
+    mySwiper.slideTo(1);
+    mySwiper.updateSlidesClasses(true);
+    scrollTo('write-your-temoignage');
+  });
+}
+
+insertTemoignage();

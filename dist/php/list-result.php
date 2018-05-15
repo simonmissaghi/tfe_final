@@ -108,4 +108,14 @@ include('./php/result/nfq7.php');
 
 // print json_encode($data_sq8All);
 
+
+$data = array();
+$data['sq8all'] = $sq8all;
+$data['smq8'] = $smq8;
+$data['sfq8'] = $sfq8;
+
+$fp = fopen('results.json', 'w');
+fwrite($fp, json_encode($data, JSON_NUMERIC_CHECK));
+fclose($fp);
+
 ?>
