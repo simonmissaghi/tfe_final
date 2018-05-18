@@ -1,5 +1,4 @@
 <?php
-include ('./php/connection.php');
 
 // apps female q4 r1
 

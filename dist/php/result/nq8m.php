@@ -1,5 +1,4 @@
 <?php
-include ('./php/connection.php');
 
 // apps female q8 r1
 
@@ -11,6 +10,7 @@ $nq8m_01->execute();
 $rownq8m_01 = $nq8m_01->fetch();
 $pourcentagenq8m_01 = $rownq8m_01['pourcentage'];
 
+
 // apps female q8 r2
 
 $nq8m_02 = $connection->prepare('SELECT
@@ -21,6 +21,7 @@ $nq8m_02->execute();
 $rownq8m_02 = $nq8m_02->fetch();
 $pourcentagenq8m_02 = $rownq8m_02['pourcentage'];
 
+
 // apps female q8 r3
 $nq8m_03 = $connection->prepare('SELECT
   (SELECT COUNT(*) FROM networks_survey WHERE gender = "2" AND q8 = "3") * 100 /
@@ -29,6 +30,7 @@ $nq8m_03 = $connection->prepare('SELECT
 $nq8m_03->execute();
 $rownq8m_03 = $nq8m_03->fetch();
 $pourcentagenq8m_03 = $rownq8m_03['pourcentage'];
+
 
 
 // apps female q8 r4
@@ -42,6 +44,7 @@ $rownq8m_04 = $nq8m_04->fetch();
 $pourcentagenq8m_04 = $rownq8m_04['pourcentage'];
 
 
+
 // apps female q8 r5
 
 $nq8m_05 = $connection->prepare('SELECT
@@ -51,6 +54,7 @@ $nq8m_05 = $connection->prepare('SELECT
 $nq8m_05->execute();
 $rownq8m_05 = $nq8m_05->fetch();
 $pourcentagenq8m_05 = $rownq8m_05['pourcentage'];
+
 
 
 

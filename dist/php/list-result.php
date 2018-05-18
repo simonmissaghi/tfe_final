@@ -1,8 +1,5 @@
 <?php
 
-include('connection.php');
-
-
 // header('./php/resultContent-type: application/json');
 
 // ==========

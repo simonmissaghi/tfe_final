@@ -1,7 +1,11 @@
 <?php
+session_start();
 include ('./php/connection.php');
 include ('./php/list-result.php');
 include ('./php/insert_temoignage.php');
+include ('./php/function.php');
+include ('./php/login.php');
+include ('./php/select_temoignage.php');
 ?>
 
 <!DOCTYPE html>
@@ -40,24 +44,17 @@ include ('./php/insert_temoignage.php');
 </head>
 <body>
     <div class="main-container">
-        <header>
-            <div class="logo"><img src="http://via.placeholder.com/131x19""></div>
-            <nav>
-                <ul class="nav">
-                    <li class="nav-link"><a href="/">Témoignages</a></li>
-                    <li class="nav-link"><a href="/">Sondages</a></li>
-                    <li class="nav-link"><a href="/">Ressources</a></li>
-                    <li class="nav-link"><a href="/">Contact</a></li>
-                </ul>
-            </nav>
-            <div class="trigger-menu">
-                <div class="trigger-wrapper">
-                    <div class="lines"></div>
-                    <div class="lines"></div>
-                    <div class="lines"></div>
-                </div>
-            </div>
-        </header>
+        <?php include('./header.php');?>
+        <div class="login-box">
+            <form action="" method="POST" class="form-login">
+                <h1>Connection</h1>
+                <input type="text" name="pseudo" placeholder="pseudo">
+                <input type="password" name="pass" placeholder="pass">
+                <div class="alert-danger"><?php echo $erreurco ?></div>
+                <input type="submit" name="btn_submit--login" value="Se connecter" />
+            </form>
+        </div>
+        <?php include('./nav.php'); ?>
         <main>
             <div class="banner">
                 <h1>#OUR<span>VOICE</span></h1>
@@ -74,22 +71,22 @@ include ('./php/insert_temoignage.php');
                     <p>Mettez-y votre grain de sel. Plus la communauté est large, plus les résultats seront probants.</p>
                 </section>
 
-                <section class="random-question-survey">
+                <section class="section-second random-question-survey">
                     <div class="swiper-container swiper-random-question">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <div class="container-random-question">
-                                    <h1 class="question-survey">Sur quel support as-tu répondu aux sondages ?<span>en %</span></h1>
-                                    <canvas id="chartSq8all" width="" height=""></canvas>
+                                    <h1 class="question-survey">Les supports utilisés pour répondre aux sondages<span>en %</span></h1>
+                                    <canvas id="chartsq8all" width="" height=""></canvas>
                                 </div>
                             </div>
                             <div class="swiper-slide">
-                                <h1 class="question-survey">Quelle est l’importance pour toi de socialiser via les réseaux sociaux ?<span>en %</span></h1>
-                                <canvas id="chartNq7all" width="" height=""></canvas>
+                                <h1 class="question-survey">L’importance pour toi de socialiser via les réseaux sociaux<span>en %</span></h1>
+                                <canvas id="chartnq7all" width="" height=""></canvas>
                             </div>
                             <div class="swiper-slide">
-                                <h1 class="question-survey">Quelle est la probabilité pour que tu te passes de ton smartphone une journée entière ?<span>en %</span></h1>
-                                <canvas id="chartSq4all" width="" height=""></canvas>
+                                <h1 class="question-survey">La probabilité de se passer de son smartphone une journée entière<span>en %</span></h1>
+                                <canvas id="chartsq4all" width="" height=""></canvas>
                             </div>
 
                         </div>
@@ -102,17 +99,21 @@ include ('./php/insert_temoignage.php');
                 <div class="wrapper-temoignage">
                     <div class="swiper-container swiper-temoignage">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="container-temoignage">
-                                    <div class="body-temoignage">
-                                        <h1>« Je me sens en insécurité sans mon téléphone »</h1>
-                                        <button class="mic"></button>
-                                        <p>je garde systématiquement mon portable, il ne me quitte jamais, même la nuit, je le charge sur la table de chevet à côté de moi. Je me sens en insécurité sans mon téléphone... Car aujourd'hui, c'est plus qu'un téléphone : c'est une boite mail, un moyen de se connecter sur Facebook, d'écouter de la musique, de prendre des photos, c'est un GPS et encore 20.000 autres trucs ! C'est triste à dire mais c'est presque une extension de ma main.</p>
-                                        <p class="sign-temoignage">Mariella, 23 ans, <span>étudiante en communication</span></p>
+                            <?php foreach($results as $result): ?>
+                                <?php if($result['statut'] == 'OK') { ?>
+                                <div class="swiper-slide">
+                                    <div class="container-temoignage">
+                                        <div class="body-temoignage">
+                                            <h1>« <?php echo  $result["title_subject"] ?> »</h1>
+                                            <button class="mic"></button>
+                                            <p><?php make_summary($result["subject"], 350); ?></p>
+                                            <p class="sign-temoignage"><?php echo $result["prenom"]; ?>, <?php echo $result["age"] ?> ans, <span>étudiant<?php if($result['sexe'] == "F"){echo "e"; }?> en <?php echo $result["studies"] ?></span></p>
+                                        </div>
+                                        <div class="img-temoignage" style="background-image: url('<?php if($result['img'] != "") {echo $result['img'];}else{echo get_rand_img('./uploads/random/');}?>')"></div>
                                     </div>
-                                    <div class="img-temoignage temoin1"></div>
                                 </div>
-                            </div>
+                                <?php } ?>
+                            <?php endforeach; ?>
                             <div class="swiper-slide" id="write-your-temoignage">
                                 <div class="container-temoignage">
                                     <div class="body-temoignage write-temoignage">
@@ -123,7 +124,7 @@ include ('./php/insert_temoignage.php');
                                             <?php echo $sexeErr; ?>
                                             <?php echo $ageErr; ?>
                                         </div>
-                                        <form action="" method="POST" class="form-temoignage">
+                                        <form action="" method="POST" class="form-temoignage" enctype="multipart/form-data">
                                             <label for="prenom"><input type="text" name="prenom" placeholder="Prénom" /></label>
                                             <div class="wrapper-sm-input">
                                                 <label for="age" class="age-temoignage">
@@ -153,6 +154,8 @@ include ('./php/insert_temoignage.php');
                                                 <input type="text" placeholder="Titre" name="title_subject" id="title_subject" />
                                             </label>
                                             <textarea placeholder="Témoignage" name="subject" id="subject"></textarea>
+                                            <input type="hidden" name="MAX_FILE_SIZE" value="1054854" />
+                                            <input type="file" name="img" id="img" />
                                             <input type="hidden" />
                                             <input type="submit" name="btn_submit--temoignage" value="Envoyer" />
                                         </form>
@@ -187,16 +190,16 @@ include ('./php/insert_temoignage.php');
                 <div class="highlight-result-surveys">
                     <div class="highlight-question-surveys">
                         <div class="container-question">
-                            <h1>Support utilisé pour répondre aux sondages <span>en %</span></h1>
-                            <canvas></canvas>
+                            <h1 class="question-survey">La probabilité que les apps aident dans l'enseignement<span>en %</span></h1>
+                            <canvas id="chartaq2all" width="" height=""></canvas>
                         </div>
                         <div class="container-question">
-                            <h1>Support utilisé pour répondre aux sondages <span>en %</span></h1>
-                            <canvas></canvas>
+                            <h1 class="question-survey">La probabilité que les smartphones soient sources de manque de contacts en temps réel entre humains<span>en %</span></h1>
+                            <canvas id="chartsq7all" width="" height=""></canvas>
                         </div>
                         <div class="container-question">
-                            <h1>Support utilisé pour répondre aux sondages <span>en %</span></h1>
-                            <canvas></canvas>
+                            <h1 class="question-survey">L'intérêt de l'aspect technologique d'un nouveau smartphone<span>en %</span></h1>
+                            <canvas id="chartsq2all" width="" height=""></canvas>
                         </div>
                     </div>
                 </div>

@@ -6,7 +6,28 @@
         flex-flow: row wrap;
         justify-content: space-between;
         align-items: center;
-        background: #fff;
+        background: rgba(255, 255, 255, .9);
+        position: fixed;
+        top: 0;
+        left: auto;
+        max-width: 1440px;
+        width: 100%;
+        z-index: 9999;
+        height: 5rem;
+
+        @include media-breakpoint-up(lg) {
+            height: 7rem;
+        }
+
+        .logo {
+            width: 200px;
+            height: 23px;
+            background: url('../images/logo_ourvoice.svg');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+
+        }
     }
 }
 
@@ -59,6 +80,10 @@
         .logo {
             width: 200px;
             height: 23px;
+            // background: url('./images/logo_ourvoice.svg');
+            // background-size: contain;
+            // background-position: center;
+
         }
 
         @media (max-height: 460px) {

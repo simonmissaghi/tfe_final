@@ -287,8 +287,12 @@
 .swiper-pagination-custom,
 .swiper-container-horizontal>.swiper-pagination-bullets {
     position: relative;
-    margin: 2rem 0;
+    margin: 0 0 2rem 0;
     width: 100%;
+
+    @include media-breakpoint-up(sm) {
+        margin: 2rem 0;
+    }
 
     &.pagination-temoignage {
         position: absolute;

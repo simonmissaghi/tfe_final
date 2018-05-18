@@ -1,6 +1,5 @@
 <?php
 include ('./php/connection.php');
-include ('./php/function.php');
 
 $prenomErr = $titleErr = $subjectErr = $sexeErr = $ageErr = "";
 
@@ -34,6 +33,43 @@ if(!empty($_POST['btn_submit--temoignage'])){
     echo "tu es un robot";
   }
   else {
+
+
+    $_FILES['img']['name'];
+    $_FILES['img']['type'];
+    $_FILES['img']['size'];
+    $_FILES['img']['tmp_name'];
+    $_FILES['img']['error'];
+
+
+    $extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
+    $extension_upload = strtolower(  substr(  strrchr($_FILES['img']['name'], '.')  ,1)  );
+    if ( in_array($extension_upload,$extensions_valides) ) echo "Extension correcte";
+    if(isset($_FILES['img'])){
+      $target_dir = "./uploads/";
+      $uniqName = uniqid();
+      $target_file = $target_dir . basename($uniqName. '.' .$extension_upload);
+    }
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+    if (file_exists($target_file)) {
+      echo "Sorry, file already exists.";
+      $uploadOk = 0;
+    }
+// Check file size
+    if ($_FILES["img"]["size"] > 5000000) {
+      echo "Sorry, your file is too large.";
+      $uploadOk = 0;
+    }
+
+
+    if ($_FILES['img']['error'] > 0) $erreur = "Erreur lors du transfert";
+
+    $resultat = move_uploaded_file($_FILES['img']['tmp_name'],$target_file);
+    if ($resultat) {echo "Transfert réussi";}else {
+      echo "erreur";
+    }
+    var_dump($_FILES);
     $preparedStatement = $connection->prepare('INSERT INTO temoignages
       (
       prenom,
@@ -43,7 +79,8 @@ if(!empty($_POST['btn_submit--temoignage'])){
       age,
       studies,
       date_publi,
-      statut
+      statut,
+      img
 
       )
       VALUES (
@@ -54,7 +91,8 @@ if(!empty($_POST['btn_submit--temoignage'])){
       :age,
       :studies,
       :date_publi,
-      :statut)');
+      :statut,
+      :img)');
 
     $date = date("Y.m.d");
     $prenom =  strip_tags($_POST['prenom']);
@@ -65,6 +103,11 @@ if(!empty($_POST['btn_submit--temoignage'])){
     $studies =  strip_tags($_POST['studies']);
     $date_publi = $date;
     $statut = "pending";
+    if(isset($_FILES['img'])){
+      $img = $target_file;
+    }else {
+      $img = "";
+    }
 
     $preparedStatement->execute(array(
       'prenom' => $prenom,
@@ -74,7 +117,8 @@ if(!empty($_POST['btn_submit--temoignage'])){
       'age' => $age,
       'studies' => $studies,
       'date_publi' => $date_publi,
-      'statut' => $statut
+      'statut' => $statut,
+      'img' => $img
     ));
   }
 }
