@@ -1,92 +1,114 @@
-$.getJSON('./results.json', function(data) {
+var result;
+$.ajax({
+    url: './results.json',
+    dataType: 'json',
+    async: true,
+    success: function(data) {
+        result = data;
+    }
+});
+
+
 
     var sq8all = document.getElementById('chartsq8all');
     var nq7all = document.getElementById('chartnq7all');
     var sq4all = document.getElementById('chartsq4all');
     var aq2all = document.getElementById('chartaq2all');
+    var aq2f = document.getElementById('chartaq2f');
+    var aq2m = document.getElementById('chartaq2m');
     var sq7all = document.getElementById('chartsq7all');
     var sq2all = document.getElementById('chartsq2all');
 
-    function labels3(label1, label2, label3) {
 
-        var labels = [label1, label2, label3];
+    Chart.defaults.global.defaultFontFamily = "Open Sans";
+   // Chart.defaults.global.defaultFontColor = "rgba(132, 116, 116, .51)";
 
-        return labels;
-    }
+   function labels3(label1, label2, label3) {
 
-    function labels5(label1, label2, label3, label4, label5) {
+    var labels = [label1, label2, label3];
 
-        var labels = [label1, label2, label3, label4, label5];
+    return labels;
+}
 
-        return labels;
-    }
+function labels5(label1, label2, label3, label4, label5) {
+
+    var labels = [label1, label2, label3, label4, label5];
+
+    return labels;
+}
 
 
 //Bar charts
 
-    function barDatasetsCharts(data1, data2, data3) {
+function barDatasetsCharts(data1, data2, data3) {
 
-        var dataset =
-        [{
-            label: 'Tous',
-            data: data1,
-            backgroundColor: [
-            'rgba(255, 109, 36, .9)',
-            'rgba(255, 109, 36, .9)',
-            'rgba(255, 109, 36, .9)',
-            'rgba(255, 109, 36, .9)',
-            'rgba(255, 109, 36, .9)',
-            ],
-            borderWidth: 0
+    var dataset =
+    [{
+        label: 'Tous',
+        data: data1,
+        backgroundColor: [
+        'rgba(255, 169, 106, 1)',
+        'rgba(255, 169, 106, 1)',
+        'rgba(255, 169, 106, 1)',
+        'rgba(255, 169, 106, 1)',
+        'rgba(255, 169, 106, 1)',
+        ],
+        borderWidth: 0
 
-        },
-        {
-            label: 'Garçons',
-            data: data2,
-            backgroundColor: [
-            'rgba(97, 192, 191, .9)',
-            'rgba(97, 192, 191, .9)',
-            'rgba(97, 192, 191, .9)',
-            'rgba(97, 192, 191, .9)',
-            'rgba(97, 192, 191, .9)',
-            ],
-            borderWidth: 0
+    },
+    {
+        label: 'Garçons',
+        data: data2,
+        backgroundColor: [
+        'rgba(41, 128, 185, 1)',
+        'rgba(41, 128, 185, 1)',
+        'rgba(41, 128, 185, 1)',
+        'rgba(41, 128, 185, 1)',
+        'rgba(41, 128, 185, 1)',
+        ],
+        borderWidth: 0
 
-        },
-        {
-            label: 'Filles',
-            data: data3,
-            backgroundColor: [
-            'rgba(255, 182, 185, .9)',
-            'rgba(255, 182, 185, .9)',
-            'rgba(255, 182, 185, .9)',
-            'rgba(255, 182, 185, .9)',
-            'rgba(255, 182, 185, .9)',
-            ],
-            borderWidth: 0
+    },
+    {
+        label: 'Filles',
+        data: data3,
+        backgroundColor: [
+        'rgba(255, 187, 187, 1)',
+        'rgba(255, 187, 187, 1)',
+        'rgba(255, 187, 187, 1)',
+        'rgba(255, 187, 187, 1)',
+        'rgba(255, 187, 187, 1)',
+        ],
+        borderWidth: 0
 
-        }]
+    }]
 
-        return dataset;
-    }
+    return dataset;
+}
 
-    function optionsChart() {
-        var options = {
+function barOptionsChart() {
+    var options = {
         scales: {
             yAxes: [{
                 gridLines: {
-                    display:false
+                    display:false,
+                    drawBorder: false,
                 },
                 ticks: {
                     beginAtZero:true,
-                    max: 100
-                }
+                    fontColor: 'rgba(132, 116, 116, .51)',
+                    fontSize: 12,
+                },
             }],
             xAxes: [{
                 gridLines: {
-                    display:false
+                    display:false,
+                    drawBorder: false,
                 }
             }]
+        },
+        legend: {
+            padding: 20
         }
     }
 
@@ -94,74 +116,67 @@ $.getJSON('./results.json', function(data) {
 }
 
 
-//Pie charts
 
-function pieDataCharts(){
-    var dataset = [{
+function chartsIntro(){
 
-    }]
-}
 
 var myLineChart = new Chart(sq8all, {
     type: 'bar',
     data: {
         labels: labels3('Smartphone', "Tablette", "Desktop"),
-        datasets: barDatasetsCharts(data['sq8all'], data['sq8m'], data['sq8f'])
+        datasets: barDatasetsCharts(result['sq8all'], result['sq8m'], result['sq8f'])
     },
-    options: optionsChart()
+    options: barOptionsChart()
 });
 
 var myLineChart = new Chart(nq7all, {
     type: 'bar',
     data: {
         labels: labels5('Extrême', "Forte", "Relative", "Sans plus", "Aucune"),
-        datasets: barDatasetsCharts(data['nq7all'], data['nq7m'], data['nq7f'])
+        datasets: barDatasetsCharts(result['nq7all'], result['nq7m'], result['nq7f'])
     },
-    options: optionsChart()
+    options: barOptionsChart()
 });
 
 var myLineChart = new Chart(sq4all, {
     type: 'bar',
     data: {
         labels: labels5('Extrême', "Forte", "Relative", "Sans plus", "Aucune"),
-        datasets: barDatasetsCharts(data['sq4all'], data['sq4m'], data['sq4f'])
+        datasets: barDatasetsCharts(result['sq4all'], result['sq4m'], result['sq4f'])
     },
-    options: optionsChart()
+    options: barOptionsChart()
 });
 
-var myPieChart = new Chart(aq2all, {
+var myLineChart = new Chart(aq2all, {
     type: 'bar',
     data: {
         labels: labels5('Extrême', "Forte", "Relative", "Sans plus", "Aucune"),
-        datasets: barDatasetsCharts(data['aq2all'], data['aq2m'], data['aq2f'])
+        datasets: barDatasetsCharts(result['aq2all'], result['aq2m'], result['aq2f'])
     },
-    options: optionsChart()
+    options: barOptionsChart()
 });
+
 
 var myPieChart = new Chart(sq7all, {
     type: 'bar',
     data: {
         labels: labels5('Extrême', "Forte", "Relative", "Sans plus", "Aucune"),
-        datasets: barDatasetsCharts(data['sq7all'], data['sq7m'], data['sq7f'])
+        datasets: barDatasetsCharts(result['sq7all'], result['sq7m'], result['sq7f'])
     },
-    options: optionsChart()
+    options: barOptionsChart()
 });
 
 var myPieChart = new Chart(sq2all, {
     type: 'bar',
     data: {
         labels: labels5('Extrême', "Forte", "Relative", "Sans plus", "Aucune"),
-        datasets: barDatasetsCharts(data['sq2all'], data['sq2m'], data['sq2f'])
+        datasets: barDatasetsCharts(result['sq2all'], result['sq2m'], result['sq2f'])
     },
-    options: optionsChart()
+    options: barOptionsChart()
 });
 
-$("#chartjs-legend").html(myPieChart.generateLegend());
-$("#chartjs-legend").on('click', "li", function() {
-  myPieChart.data.datasets[0].data[$(this).index()] += 50;
-  myPieChart.update();
-  console.log('legend: ' + data.datasets[0].data[$(this).index()]);
-});
+}
 
 
-});
+
+if(document.getElementById('chartsq8all')) { chartsIntro(); }

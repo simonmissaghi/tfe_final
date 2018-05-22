@@ -1,4 +1,11 @@
 <?php
+$previousPage = "";
+
+if(isset($_SERVER['HTTP_REFERER'])) {
+ $previousPage = $_SERVER['HTTP_REFERER'];
+}else {
+  $previousPage = "./index_main.php";
+}
 
 function make_summary($x, $length)
 
@@ -61,6 +68,6 @@ function get_rand_img($dir)
     $img = str_replace(" ", "%20", $img);
     return $img;
 }
-
+$page = $_SERVER['PHP_SELF'];
 
 ?>

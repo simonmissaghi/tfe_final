@@ -2,13 +2,13 @@
 
 $color-bg: #fff;
 $color-txt: #847474;
-$color-main : #f87444;
+$color-main : #FDA403;
 $color-survey : #ffb608;
 $color-temoignage : #75b1a5;
 
 
-$color-link: #a9a9a9;
-$color-hover: #fff;
+$color-link: $color-main;
+$color-hover: rgba($color-main, .75);
 
 $color-bd: #fff;
 $color-bd-light: #fff;

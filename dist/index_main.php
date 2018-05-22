@@ -43,23 +43,26 @@ include ('./php/select_temoignage.php');
   <meta name="twitter:image" content="images/img_metatag.jpg" />
 </head>
 <body>
-    <div class="main-container">
-        <?php include('./header.php');?>
-        <div class="login-box">
-            <form action="" method="POST" class="form-login">
-                <h1>Connection</h1>
-                <input type="text" name="pseudo" placeholder="pseudo">
-                <input type="password" name="pass" placeholder="pass">
-                <div class="alert-danger"><?php echo $erreurco ?></div>
-                <input type="submit" name="btn_submit--login" value="Se connecter" />
-            </form>
-        </div>
-        <?php include('./nav.php'); ?>
-        <main>
-            <div class="banner">
-                <h1>#OUR<span>VOICE</span></h1>
+
+    <?php include('./header.php');?>
+    <div class="login-box">
+        <form action="" method="POST" class="form-login">
+            <h1>Connection</h1>
+            <input type="text" name="pseudo" placeholder="user">
+            <input type="password" name="pass" placeholder="pass">
+            <div class="alert-danger"><?php echo $erreurco ?></div>
+            <input type="submit" name="btn_submit--login" value="Se connecter" />
+        </form>
+    </div>
+    <?php include('./nav.php'); ?>
+    <main>
+        <div class="banner banner-main">
+            <div class="main-container">
+                <h1 class="title-banner"><img src="./images/logo_ourvoice.svg" alt="#OURVOICE" /></h1>
                 <h2>comprendre les intérêts d’une génération ultra connectée</h2>
             </div>
+        </div>
+        <div class="main-container">
             <div class="wrapper-section">
                 <section class="intro">
                     <h1>La génération <span>Z</span></h1>
@@ -77,16 +80,16 @@ include ('./php/select_temoignage.php');
                             <div class="swiper-slide">
                                 <div class="container-random-question">
                                     <h1 class="question-survey">Les supports utilisés pour répondre aux sondages<span>en %</span></h1>
-                                    <canvas id="chartsq8all" width="" height=""></canvas>
+                                    <canvas class="chartsjs" id="chartsq8all" width="" height=""></canvas>
                                 </div>
                             </div>
                             <div class="swiper-slide">
-                                <h1 class="question-survey">L’importance pour toi de socialiser via les réseaux sociaux<span>en %</span></h1>
-                                <canvas id="chartnq7all" width="" height=""></canvas>
+                                <h1 class="question-survey">L’importance de socialiser via les réseaux sociaux<span>en %</span></h1>
+                                <canvas class="chartsjs" id="chartnq7all" width="" height=""></canvas>
                             </div>
                             <div class="swiper-slide">
                                 <h1 class="question-survey">La probabilité de se passer de son smartphone une journée entière<span>en %</span></h1>
-                                <canvas id="chartsq4all" width="" height=""></canvas>
+                                <canvas class="chartsjs" id="chartsq4all" width="" height=""></canvas>
                             </div>
 
                         </div>
@@ -108,6 +111,7 @@ include ('./php/select_temoignage.php');
                                             <button class="mic"></button>
                                             <p><?php make_summary($result["subject"], 350); ?></p>
                                             <p class="sign-temoignage"><?php echo $result["prenom"]; ?>, <?php echo $result["age"] ?> ans, <span>étudiant<?php if($result['sexe'] == "F"){echo "e"; }?> en <?php echo $result["studies"] ?></span></p>
+                                            <a class="link-back" href="./fullstorie.php?id=<?php echo $result["id"] ?>">Lire en entier</a>
                                         </div>
                                         <div class="img-temoignage" style="background-image: url('<?php if($result['img'] != "") {echo $result['img'];}else{echo get_rand_img('./uploads/random/');}?>')"></div>
                                     </div>
@@ -125,7 +129,7 @@ include ('./php/select_temoignage.php');
                                             <?php echo $ageErr; ?>
                                         </div>
                                         <form action="" method="POST" class="form-temoignage" enctype="multipart/form-data">
-                                            <label for="prenom"><input type="text" name="prenom" placeholder="Prénom" /></label>
+                                            <label for="prenom"><input type="text" name="prenom" placeholder="Prénom" class="focus-input" /></label>
                                             <div class="wrapper-sm-input">
                                                 <label for="age" class="age-temoignage">
                                                     <select name="age" id="age" class="temoignage">
@@ -169,7 +173,7 @@ include ('./php/select_temoignage.php');
                 </div>
                 <div class="wrapper-btn btn-temoignage">
                     <a class="write write-temoignage--btn" href="">Ecrire mon témoignage</a>
-                    <a class="read" href="">Lire les témoignages</a>
+                    <a class="read" href="./temoignages.php">Lire les témoignages</a>
                 </div>
 
             </section>
@@ -180,8 +184,8 @@ include ('./php/select_temoignage.php');
                     <h2>Ce qui met d’accord sur une façon de voir les choses.</h2>
                     <p>Nous avons questionné la génération Z sur leur rapport aux smartphones, aux applications et aux réseaux sociaux. Voici quelques chiffres.</p>
                     <div class="wrapper-btn btn-surveys">
-                        <a class="write" href="">Remplir les sondages</a>
-                        <a class="read" href="">Voir les résultats</a>
+                        <a class="write" href="./index.php">Remplir les sondages</a>
+                        <a class="read" href="./results-surveys.php">Voir les résultats</a>
                     </div>
                 </section>
             </div>
@@ -191,57 +195,60 @@ include ('./php/select_temoignage.php');
                     <div class="highlight-question-surveys">
                         <div class="container-question">
                             <h1 class="question-survey">La probabilité que les apps aident dans l'enseignement<span>en %</span></h1>
-                            <canvas id="chartaq2all" width="" height=""></canvas>
+                            <div class="pie-container">
+                                <canvas class="chartsjs" id="chartaq2all" width="" height=""></canvas>
+                            </div>
                         </div>
                         <div class="container-question">
                             <h1 class="question-survey">La probabilité que les smartphones soient sources de manque de contacts en temps réel entre humains<span>en %</span></h1>
-                            <canvas id="chartsq7all" width="" height=""></canvas>
+                            <canvas class="chartsjs" id="chartsq7all" width="" height=""></canvas>
                         </div>
                         <div class="container-question">
                             <h1 class="question-survey">L'intérêt de l'aspect technologique d'un nouveau smartphone<span>en %</span></h1>
-                            <canvas id="chartsq2all" width="" height=""></canvas>
+                            <canvas class="chartsjs" id="chartsq2all" width="" height=""></canvas>
                         </div>
                     </div>
                 </div>
             </section>
-        </main>
-        <script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-        <script src="javascript/main.js"></script>
-        <script src="javascript/swiper.js"></script>
-        <script src="javascript/Chart.js"></script>
-        <script src="javascript/charts.js"></script>
-        <script src="results.json"></script>
-        <script>
-            var swiperSurvey = new Swiper('.swiper-random-question', {
-              pagination: {
-                el: '.swiper-pagination.random-question',
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            allowTouchMove: true,
-            fadeEffect: {
-                crossFade: true
-            }
+    <?php include ('./footer.php'); ?>
+        </div>
+    </main>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="javascript/main.js"></script>
+    <script src="javascript/swiper.js"></script>
+    <script src="javascript/Chart.js"></script>
+    <script src="javascript/charts.js"></script>
+    <script src="results.json"></script>
+    <script>
+        var swiperSurvey = new Swiper('.swiper-random-question', {
+          pagination: {
+            el: '.swiper-pagination.random-question',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        allowTouchMove: true,
+        fadeEffect: {
+            crossFade: true
+        }
 
-        });
+    });
 
-            var swiperTemoignage = new Swiper('.swiper-temoignage', {
-              pagination: {
-                el: '.swiper-pagination.pagination-temoignage',
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            allowTouchMove: true
+        var swiperTemoignage = new Swiper('.swiper-temoignage', {
+          pagination: {
+            el: '.swiper-pagination.pagination-temoignage',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        allowTouchMove: true
 
-        });
-    </script>
-</div>
+    });
+</script>
 </body>
 </html>

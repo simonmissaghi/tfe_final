@@ -1,56 +1,60 @@
 <?php
-include ('./php/connection.php');
 
-// Smartphones male 1995 q1 r1
+// Smartphones female q1 r1
 
-$sf95q1_01 = $connection->prepare('SELECT
+$sfq1_01 = $connection->prepare('SELECT
+  (SELECT COUNT(*) FROM smartphones_survey WHERE gender = "2" AND q1 = "1") * 100 /
+  (SELECT COUNT(*) FROM smartphones_survey WHERE gender = "2") AS pourcentage
+  FROM smartphones_survey');
+$sfq1_01->execute();
+$rowsfq1_01 = $sfq1_01->fetch();
+$pourcentagesfq1_01 = $rowsfq1_01['pourcentage'];
+
+
+// Smartphones female q1 r2
+
+$sfq1_02 = $connection->prepare('SELECT
   (SELECT COUNT(*) FROM smartphones_survey WHERE gender = "2" AND q1 = "2") * 100 /
   (SELECT COUNT(*) FROM smartphones_survey WHERE gender = "2") AS pourcentage
   FROM smartphones_survey');
-$sf95q1_01->execute();
-$rowsf95q1_01 = $sf95q1_01->fetch();
-$pourcentagesf95q1_01 = $rowsf95q1_01['pourcentage'];
+$sfq1_02->execute();
+$rowsfq1_02 = $sfq1_02->fetch();
+$pourcentagesfq1_02 = $rowsfq1_02['pourcentage'];
 
-// Smartphones male 1995 q1 r2
 
-$sf95q1_02 = $connection->prepare('SELECT
-  (SELECT COUNT(*) FROM smartphones_survey WHERE gender = "2" AND q1 = "2") * 100 /
-  (SELECT COUNT(*) FROM smartphones_survey WHERE gender = "2") AS pourcentage
-  FROM smartphones_survey');
-$sf95q1_02->execute();
-$rowsf95q1_02 = $sf95q1_02->fetch();
-$pourcentagesf95q1_02 = $rowsf95q1_02['pourcentage'];
-
-// Smartphones male 1995 q1 r3
-$sf95q1_03 = $connection->prepare('SELECT
+// Smartphones female q1 r3
+$sfq1_03 = $connection->prepare('SELECT
   (SELECT COUNT(*) FROM smartphones_survey WHERE gender = "2" AND q1 = "3") * 100 /
   (SELECT COUNT(*) FROM smartphones_survey WHERE gender = "2") AS pourcentage
   FROM smartphones_survey');
-$sf95q1_03->execute();
-$rowsf95q1_03 = $sf95q1_03->fetch();
-$pourcentagesf95q1_03 = $rowsf95q1_03['pourcentage'];
+$sfq1_03->execute();
+$rowsfq1_03 = $sfq1_03->fetch();
+$pourcentagesfq1_03 = $rowsfq1_03['pourcentage'];
 
 
-// Smartphones male 1995 q1 r4
 
-$sf95q1_04 = $connection->prepare('SELECT
+// Smartphones female q1 r4
+
+$sfq1_04 = $connection->prepare('SELECT
   (SELECT COUNT(*) FROM smartphones_survey WHERE gender = "2" AND q1 = "4") * 100 /
   (SELECT COUNT(*) FROM smartphones_survey WHERE gender = "2") AS pourcentage
   FROM smartphones_survey');
-$sf95q1_04->execute();
-$rowsf95q1_04 = $sf95q1_04->fetch();
-$pourcentagesf95q1_04 = $rowsf95q1_04['pourcentage'];
+$sfq1_04->execute();
+$rowsfq1_04 = $sfq1_04->fetch();
+$pourcentagesfq1_04 = $rowsfq1_04['pourcentage'];
 
 
-// Smartphones male 1995 q1 r5
 
-$sf95q1_05 = $connection->prepare('SELECT
+// Smartphones female q1 r5
+
+$sfq1_05 = $connection->prepare('SELECT
   (SELECT COUNT(*) FROM smartphones_survey WHERE gender = "2" AND q1 = "5") * 100 /
   (SELECT COUNT(*) FROM smartphones_survey WHERE gender = "2") AS pourcentage
   FROM smartphones_survey');
-$sf95q1_05->execute();
-$rowsf95q1_05 = $sf95q1_05->fetch();
-$pourcentagesf95q1_05 = $rowsf95q1_05['pourcentage'];
+$sfq1_05->execute();
+$rowsfq1_05 = $sfq1_05->fetch();
+$pourcentagesfq1_05 = $rowsfq1_05['pourcentage'];
 
-$data_sfq1 = array($pourcentagesf95q1_01, $pourcentagesf95q1_02, $pourcentagesf95q1_03, $pourcentagesf95q1_04, $pourcentagesf95q1_05);
+
+$sfq1 = [$pourcentagesfq1_01, $pourcentagesfq1_02, $pourcentagesfq1_03, $pourcentagesfq1_04, $pourcentagesfq1_05];
 ?>

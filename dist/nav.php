@@ -1,7 +1,7 @@
         <nav>
             <ul class="nav">
                 <li class="nav-link"><a href="./temoignages.php">Témoignages</a></li>
-                <li class="nav-link"><a href="/">Sondages</a></li>
+                <li class="nav-link"><a href="./results-surveys.php">Sondages</a></li>
                 <li class="nav-link"><a href="/">Ressources</a></li>
                 <li class="nav-link"><a href="/">Contact</a></li>
                 <?php  if(!isset($_SESSION['pseudo'])) {

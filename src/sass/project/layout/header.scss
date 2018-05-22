@@ -1,19 +1,27 @@
 .page-front {
     header {
-        padding: 0 2rem;
-        background: rgba(255, 255, 255, .5);
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
-        align-items: center;
         background: rgba(255, 255, 255, .9);
         position: fixed;
         top: 0;
         left: auto;
-        max-width: 1440px;
+        // max-width: 1440px;
         width: 100%;
         z-index: 9999;
         height: 5rem;
+        // display: none;
+
+        .container-header {
+            padding: 0 2rem;
+            height: 100%;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            align-items: center;
+
+            @include media-breakpoint-up(xl) {
+                padding: 0;
+            }
+        }
 
         @include media-breakpoint-up(lg) {
             height: 7rem;

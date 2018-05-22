@@ -1,6 +1,81 @@
+.page-front {
+    footer {
+        background: $color-main;
+        padding: 8rem 16.5rem 4rem;
+        overflow: hidden;
+        clear: both;
+
+        h2 {
+            width: 100%;
+            display: block;
+            font-size: 2rem;
+            font-style: italic;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .navigation {
+            width: 66.6666666666667%;
+            float: left;
+
+            h3 {
+                color: #fff;
+                font-size: 1.6rem;
+                text-transform: uppercase;
+            }
+
+
+            .nav-footer {
+                display: flex;
+                flex-flow: row wrap;
+
+                > li {
+
+                    & + li {
+                        margin-left: 2rem;
+                    }
+
+                    a {
+                        font-size: 1.4rem;
+                        color: #fff;
+                        padding:.5rem 0;
+                        display: inline-block;
+
+                    }
+                }
+
+            }
+        }
+
+        .stay-connected {
+            width: 31.33333333333%;
+            float: left;
+        }
+    }
+    .credits {
+        width: 100%;
+        padding: 2rem 0 1rem;
+        display: block;
+        clear: both;
+        // background: #f1f1f1;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+
+        a {
+            text-transform: uppercase;
+            font-size: 1.2rem;
+        }
+    }
+
+}
+
+
 .page-single-survey {
   footer {
     height: 6rem;
 
-  }
+}
+
 }

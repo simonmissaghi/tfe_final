@@ -57,7 +57,7 @@ if(!empty($_POST['btn_submit--temoignage'])){
       $uploadOk = 0;
     }
 // Check file size
-    if ($_FILES["img"]["size"] > 5000000) {
+    if ($_FILES["img"]["size"] > 50000000) {
       echo "Sorry, your file is too large.";
       $uploadOk = 0;
     }
@@ -69,7 +69,6 @@ if(!empty($_POST['btn_submit--temoignage'])){
     if ($resultat) {echo "Transfert réussi";}else {
       echo "erreur";
     }
-    var_dump($_FILES);
     $preparedStatement = $connection->prepare('INSERT INTO temoignages
       (
       prenom,

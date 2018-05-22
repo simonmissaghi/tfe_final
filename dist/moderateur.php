@@ -46,14 +46,16 @@ include ('./php/dashboard-chiffres.php');
   <meta name="twitter:image" content="images/img_metatag.jpg" />
 </head>
 <body>
-    <div class="main-container">
-        <?php include('./header.php');?>
-        <?php include('./nav.php');?>
-        <main>
-            <div class="banner">
-                <h1>#OUR<span>VOICE</span></h1>
+    <?php include('./header.php');?>
+    <?php include('./nav.php');?>
+    <main>
+        <div class="banner banner-dashboard">
+            <div class="main-container">
+                <h1 class="title-banner"><img src="./images/logo_ourvoice.svg" alt="#OURVOICE" /></h1>
                 <h2>comprendre les intérêts d’une génération ultra connectée</h2>
             </div>
+        </div>
+        <div class="main-container">
             <div class="wrapper-section">
                 <section class="intro">
                     <h1>Dashboard</h1>
@@ -127,7 +129,7 @@ include ('./php/dashboard-chiffres.php');
                             <div class="header">
                                 <span class="statut">
                                     <?php if($result['statut'] == 'OK') {
-                                        echo "<img src='./images/valid_icon.svg' />";
+                                        echo "<img src='./images/valid_icon.svg'/>";
                                     }elseif($result['statut'] == 'pending'){
                                         echo "<img src='./images/pending_icon.svg' />";
                                     }else{
@@ -142,10 +144,11 @@ include ('./php/dashboard-chiffres.php');
                             </div>
                             <div class="footer">
                                 <span><?php echo $result["age"] ?> ans, <?php echo $result["studies"] ?></span>
-                                <div class="links">
-                                    <a href="/">Lire en entier</a>
-                                    <a href="./php/approve.php?id=<?php echo $result["id"] ?>">Approuver</a>
-                                    <a href="./php/desapprove.php?id=<?php echo $result["id"] ?>">Rejeter</a>
+                                <div class="links links-temoignage white">
+                                    <a class="white" href="./moderateur_fullstorie.php?id=<?php echo $result["id"] ?>">Lire en entier</a>
+                                    <a class="white" href="./php/approve.php?id=<?php echo $result["id"] ?>"><?php if($result['statut'] == "OK") { echo "Approuvé"; } else { echo "Approuver"; } ?></a>
+                                    <a class="white" href="./php/pending.php?id=<?php echo $result["id"] ?>">En attente</a>
+                                    <a class="confirmation white" href="./php/delete.php?id=<?php echo $result["id"] ?>" onclick="return confirm('Are you sure?')">Supprimer</a>
                                 </div>
                             </div>
                         </div>
@@ -163,17 +166,26 @@ include ('./php/dashboard-chiffres.php');
                     ?>
                 </section>
             </div>
-        </main>
-        <script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-        <script src="javascript/main.js"></script>
-        <!-- <script src="javascript/swiper.js"></script> -->
-        <!-- <script src="javascript/Chart.js"></script> -->
-        <!-- <script src="javascript/charts.js"></script> -->
-        <!-- <script src="results.json"></script> -->
+        </div>
+    </main>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="javascript/main.js"></script>
+    <!-- <script src="javascript/swiper.js"></script> -->
+    <!-- <script src="javascript/Chart.js"></script> -->
+    <!-- <script src="javascript/charts.js"></script> -->
+    <!-- <script src="results.json"></script> -->
+    <script type="text/javascript">
+        var elems = document.getElementsByClassName('confirmation');
+        var confirmIt = function (e) {
+            if (!confirm('Veux-tu vraiment supprimer ce témoignage ?')) e.preventDefault();
+        };
+        for (var i = 0, l = elems.length; i < l; i++) {
+            elems[i].addEventListener('click', confirmIt, false);
+        }
+    </script>
 
-    </div>
 </body>
 </html>

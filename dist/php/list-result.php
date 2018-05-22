@@ -104,7 +104,10 @@ include('./php/result/nq7f.php');
 include('./php/result/nq8f.php');
 include('./php/result/nq9f.php');
 
-// print json_encode($data_sq8All);
+
+//  Labels
+
+include('./php/result/labels.php');
 
 
 $data = array();
@@ -189,6 +192,16 @@ $data['nq9all'] = $nq9all;
 $data['nq9m'] = $nq9m;
 $data['nq9f'] = $nq9f;
 
+$data['labels3'] = $labels3;
+$data['labels5'] = $labels5;
+$data['labelssq3'] = $labelssq3;
+$data['labelsnq2'] = $labelsnq2;
+$data['labelsnq3'] = $labelsnq3;
+$data['labelsnq4'] = $labelsnq4;
+$data['labelsnq5'] = $labelsnq5;
+$data['labelsnq6'] = $labelsnq6;
+$data['labelsnq8'] = $labelsnq8;
+$data['labelsnq9'] = $labelsnq9;
 
 $fp = fopen('results.json', 'w');
 fwrite($fp, json_encode($data, JSON_PRETTY_PRINT, JSON_NUMERIC_CHECK));

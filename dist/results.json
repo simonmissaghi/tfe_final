@@ -84,10 +84,10 @@
         "11.9403"
     ],
     "sq5all": [
-        "20.8955",
-        "35.8209",
-        "35.8209",
-        "7.4627",
+        "21.5054",
+        "34.4086",
+        "34.4086",
+        "9.6774",
         "0.0000"
     ],
     "sq5m": [
@@ -418,11 +418,11 @@
         "5.5556"
     ],
     "nq9m": [
-        "5.9524",
-        "28.5714",
-        "25.0000",
-        "33.3333",
-        "7.1429"
+        "16.6667",
+        "16.6667",
+        "20.8333",
+        "41.6667",
+        "0.0000"
     ],
     "nq9f": [
         "5.9524",
@@ -430,5 +430,71 @@
         "25.0000",
         "33.3333",
         "7.1429"
+    ],
+    "labels3": [
+        "Smartphone",
+        "Tablette",
+        "PC"
+    ],
+    "labels5": [
+        "Extreme",
+        "Forte",
+        "Relative",
+        "Sans plus",
+        "Aucune"
+    ],
+    "labelssq3": [
+        "technologique",
+        "performances",
+        "esth\u00e9tique",
+        "pratique",
+        "tu en as besoin"
+    ],
+    "labelsnq2": [
+        "1h",
+        "2h",
+        "3h",
+        "4h",
+        "5h",
+        "+ de 5h"
+    ],
+    "labelsnq3": [
+        "passer le temps",
+        "chercher une info",
+        "faire de la pub",
+        "me mainternir au courant"
+    ],
+    "labelsnq4": [
+        "Tout le temps",
+        "Tr\u00e8s souvent",
+        "Assez souvent",
+        "Peu souvent",
+        "Jamais"
+    ],
+    "labelsnq5": [
+        "des articles pertinents",
+        "des images\/photos",
+        "des annonces \u00e0 vendre",
+        "Rien"
+    ],
+    "labelsnq6": [
+        "montrer ce que je fais",
+        "attirer plus de monde sur mes pages",
+        "gagner de l\u2019argent",
+        "faire de la propagande"
+    ],
+    "labelsnq8": [
+        "La totalit\u00e9",
+        "La majorit\u00e9",
+        "la moiti\u00e9",
+        "Quelques-uns",
+        "Aucun"
+    ],
+    "labelsnq9": [
+        "Tout le temps",
+        "Tr\u00e8s souvent",
+        "Moiti\u00e9 du temps",
+        "Peu souvent",
+        "Jamais"
     ]
 }

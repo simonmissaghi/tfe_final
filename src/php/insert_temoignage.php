@@ -1,71 +1,101 @@
-<?php $pseudoErr = $titleErr = $subjectErr = "";
-function mot_captcha() {
-  $list = array('genz', 'genx', 'geny', 'typo');
-  return $list[array_rand($list)];
-}
+<?php
+include ('./php/connection.php');
 
-function captcha() {
-  $mot = mot_captcha();
-  $_SESSION['captcha'] = $mot;
-  return $mot;
-}
+$prenomErr = $titleErr = $subjectErr = $sexeErr = $ageErr = "";
 
 
-
-
-if(!empty($_POST['btn_submit'])){
-  if(empty($_POST['pseudo'])) {
-    $pseudoErr = "Il te faut un pseudo";
+if(!empty($_POST['btn_submit--temoignage'])){
+  if(empty($_POST['prenom'])) {
+    $prenomErr = "Il faut rentrer un prénom";
   }
-  elseif(strlen($_POST['pseudo']) > 25 ) {
-    $pseudoErr = "Il faut maximum 25 caractères";
+  elseif(strlen($_POST['prenom']) > 25 ) {
+    $prenomErr = "Il faut maximum 25 caractères";
   }
-  elseif(strlen($_POST['pseudo']) < 3 ) {
-    $pseudoErr = "Il faut minimum 3 caractères";
+  elseif(strlen($_POST['prenom']) < 3 ) {
+    $prenomErr = "Il faut minimum 3 caractères";
+  }
+  elseif(empty($_POST['studies'])) {
+    $prenomErr = "Il faut rentrer ton domaine";
   }
   elseif(empty($_POST['title_subject'])) {
-    $titleErr = "Ecris un titre";
+    $titleErr = "Il faut rentrer un titre";
   }
   elseif(empty($_POST['subject'])){
-    $subjectErr = "Ben faut écrire ton témoignage...";
+    $subjectErr = "Il faut écrire un témoignage";
   }
-  elseif( $_POST['sexe'] == '0') {
-    echo "Tu es hermaphrodite ?";
+  elseif( empty($_POST['sexe'])) {
+    $sexeErr = "Il faut rentrer ton genre";
   }
-  elseif( $_POST['age'] == '0') {
-    echo "Tu es trop petit pour écrire";
+  elseif( empty($_POST['age'])) {
+    $ageErr = "Tu dois rentrer ton age";
   }
   elseif(!empty($_POST['hidd'])) {
-
-  }
-  elseif( $_POST['captcha'] != $_SESSION['captcha']) {
-    echo "Tu es un robot ?";
+    echo "tu es un robot";
   }
   else {
+
+
+    $_FILES['img']['name'];
+    $_FILES['img']['type'];
+    $_FILES['img']['size'];
+    $_FILES['img']['tmp_name'];
+    $_FILES['img']['error'];
+
+
+    $extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
+    $extension_upload = strtolower(  substr(  strrchr($_FILES['img']['name'], '.')  ,1)  );
+    if ( in_array($extension_upload,$extensions_valides) ) echo "Extension correcte";
+    if(isset($_FILES['img'])){
+      $target_dir = "./uploads/";
+      $uniqName = uniqid();
+      $target_file = $target_dir . basename($uniqName. '.' .$extension_upload);
+    }
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+    if (file_exists($target_file)) {
+      echo "Sorry, file already exists.";
+      $uploadOk = 0;
+    }
+// Check file size
+    if ($_FILES["img"]["size"] > 5000000) {
+      echo "Sorry, your file is too large.";
+      $uploadOk = 0;
+    }
+
+
+    if ($_FILES['img']['error'] > 0) $erreur = "Erreur lors du transfert";
+
+    $resultat = move_uploaded_file($_FILES['img']['tmp_name'],$target_file);
+    if ($resultat) {echo "Transfert réussi";}else {
+      echo "erreur";
+    }
+    var_dump($_FILES);
     $preparedStatement = $connection->prepare('INSERT INTO temoignages
       (
-      pseudo,
+      prenom,
       title_subject,
       subject,
       sexe,
       age,
       studies,
       date_publi,
-      statut
+      statut,
+      img
 
       )
       VALUES (
-      :pseudo,
+      :prenom,
       :title_subject,
       :subject,
       :sexe,
       :age,
       :studies,
       :date_publi,
-      :statut)');
+      :statut,
+      :img)');
 
     $date = date("Y.m.d");
-    $pseudo =  strip_tags($_POST['pseudo']);
+    $prenom =  strip_tags($_POST['prenom']);
     $title_subject =  strip_tags($_POST['title_subject']);
     $subject =  strip_tags($_POST['subject']);
     $sexe =  strip_tags($_POST['sexe']);
@@ -73,22 +103,23 @@ if(!empty($_POST['btn_submit'])){
     $studies =  strip_tags($_POST['studies']);
     $date_publi = $date;
     $statut = "pending";
-    $mot_captcha =  strip_tags($_POST['captcha']);
+    if(isset($_FILES['img'])){
+      $img = $target_file;
+    }else {
+      $img = "";
+    }
 
     $preparedStatement->execute(array(
-      'pseudo' => $pseudo,
+      'prenom' => $prenom,
       'title_subject' => $title_subject,
       'subject' => $subject,
       'sexe' => $sexe,
       'age' => $age,
       'studies' => $studies,
       'date_publi' => $date_publi,
-      'statut' => $statut
+      'statut' => $statut,
+      'img' => $img
     ));
-
-
-    header("Location: index_main.php");
-    exit();
   }
 }
 
