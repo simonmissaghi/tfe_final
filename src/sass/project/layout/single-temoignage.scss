@@ -1,0 +1,152 @@
+
+.container-single-temoignage {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0 0 2rem;
+    padding: 4rem 2rem;
+    font-size: 1.6rem;
+    color: #fff;
+
+    &.single-temoignage-public {
+        background: rgba($color-temoignage, .6);
+
+    }
+
+    &.single-temoignage-mod {
+        background: rgba($color-main, .6);
+
+    }
+
+    @include media-breakpoint-up(md) {
+        padding: 4rem 6rem;
+        margin: 2rem 3rem;
+    }
+
+    @include media-breakpoint-up(lg) {
+        padding: 4rem 6rem;
+        margin: 4rem 6rem;
+    }
+
+    .header {
+        width: 100%;
+        text-align: left;
+
+        h1 {
+            display: inline-block;
+            font-size: 3rem;
+            font-style: italic;
+            font-weight: 900;
+            margin: 2.5rem 2rem 2rem 0;
+        }
+
+        .statut {
+
+            img {
+                width: 20px;
+                margin-right: 1rem;
+
+            }
+
+        }
+
+        .thumb-img-temoignage {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: inline-block;
+            float: right;
+        }
+
+    }
+    .body {
+
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 500;
+            font-style: italic;
+            text-align: left;
+            color: #fff;
+            text-transform: none;
+            line-height: 1.6;
+            max-width: 450px;
+            margin-top: 2rem;
+        }
+
+        p {
+            font-size: 1.4rem;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+    }
+
+    .footer {
+        width: 100%;
+        text-align: left;
+
+        span {
+            margin-bottom: 2rem;
+            display: inline-block;
+            float: right;
+        }
+
+    }
+
+        .links-temoignage {
+        display: inline-block;
+        float: right;
+        width: 100%;
+        text-align: right;
+        border-top: 1px solid white;
+        padding: 1rem 0 2rem;
+
+        a {
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            position: relative;
+
+            & + a {
+                margin-left: 2rem;
+
+
+                &:after {
+                    content: '';
+                    width: 1px;
+                    background: #fff;
+                    position: absolute;
+                    top: 0;
+                    left: -1rem;
+                    bottom: 0;
+                }
+
+            }
+
+            &.link-back {
+                float: left;
+                font-size: 1.2rem;
+                margin-left: 2rem;
+
+                @include media-breakpoint-up(md) {
+                    margin-left: 5rem;
+                }
+
+            }
+
+        }
+
+        .white {
+            color: #fff;
+
+            &:hover {
+                color: rgba($color-main, .75);
+            }
+
+        }
+
+    }
+
+}

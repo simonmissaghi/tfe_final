@@ -88,7 +88,7 @@
       }
 
 
-      .form-temoignage, .form-login {
+      .form-temoignage, .form-login, .form-stay-connected {
 
         .alert-danger {
           position: absolute;
@@ -250,4 +250,23 @@
 
 .form-login {
   width: 300px;
+}
+
+.form-stay-connected {
+  input {
+    border: 1px solid #fff;
+    color: #fff;
+    font-weight: 700;
+
+    &[type="submit"] {
+      border: 2px solid #fff;
+      color: #fff;
+    }
+  }
+
+
+    @include media-breakpoint-up(md) {
+      padding: 0;
+    }
+
 }

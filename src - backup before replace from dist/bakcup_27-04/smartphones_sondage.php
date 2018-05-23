@@ -71,7 +71,7 @@ if (!empty($_POST)) {
   <title>Smartphones - Sondage</title>
 </head>
 <body class="page-single-survey">
-  <header><img class="logo" src="images/logo_trustinme.svg" alt="logo">
+  <header><img class="logo" src="images/logo_OURVOICE.svg" alt="logo">
     <h1 class="title_survey">Les smartphones</h1>
   </header>
   <main>

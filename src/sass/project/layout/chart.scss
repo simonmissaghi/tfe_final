@@ -6,36 +6,5 @@ canvas {
     margin: 0 auto 6rem;
   }
 
-  @include media-breakpoint-up(lg) {
 
-  }
-
-  &.piechart {
-    width: 100%;
-    max-width: 400px;
-        // @include calc(width, "33.333333% - 2rem");
-        height: auto;
-        margin: 0 auto;
-        display: inline-block !important;
-
-      }
-
-      .legend {
-        list-style: none;
-      }
-
-      .legend li span {
-        width: 10px;
-        height: 10px;
-        display: inline-block;
-        margin-right: 10px;
-        border-radius: 10px;
-      }
-
-    }
-
-    .custom-legend {
-      width: 400px;
-      height: 200px;
-      background: red;
-    }
+}

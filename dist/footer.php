@@ -33,8 +33,8 @@
                 <div class="stay-connected">
                     <h2>Rester au courant</h2>
                     <p>Recevez les toutes dernières infos en vous inscrivant à la newsletter</p>
-                    <form action="" method="POST">
-                        <input type="text" name="email" />
+                    <form class="form-stay-connected" action="" method="POST">
+                        <input type="text" name="email" placeholder="@" />
                         <input type="submit">
                     </form>
                 </div>

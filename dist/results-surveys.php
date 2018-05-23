@@ -7,35 +7,35 @@ include ('./php/login.php');
 
 
 <!DOCTYPE html>
-<html class="page-front" lang="fr">
+<html class="page-front page-results" lang="fr">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
-  <title>#trustinme | La génération Z peut s'exprimer</title>
+  <title>#OURVOICE | La génération Z peut s'exprimer</title>
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <!-- <link rel="stylesheet" href="css/swiper.css"> -->
-  <meta name="Author" lang="fr" content="#trustinme - La génération Z peut s'exprimer !">
+  <meta name="Author" lang="fr" content="#OURVOICE - La génération Z peut s'exprimer !">
   <meta name="Publisher" content="Simon MISSAGHI">
   <meta name="Reply-to" content="simon@simonmissaghi.be">
   <meta name="Description" content="Tu es né(e) entre 1995 et 2012 ? Tu es l'acteur principal de ce projet ! Donne ta voix à trois sondages sur les smartphones !">
   <meta name="Indentifier-URL" content="http://www.simonmissaghi.be">
-  <meta name="Keywords" content="trustinme, young, people, genz, generation, generationZ, Z, adolescents, jeunes">
+  <meta name="Keywords" content="OURVOICE, young, people, genz, generation, generationZ, Z, adolescents, jeunes">
   <!-- Méta Google -->
-  <meta name="title" content="#trustinme - La génération Z peut s'exprimer !" />
+  <meta name="title" content="#OURVOICE - La génération Z peut s'exprimer !" />
   <meta name="description" content="Tu es né(e) entre 1995 et 2012 ? Tu es l'acteur principal de ce projet ! Donne ta voix à trois sondages sur les smartphones !" />
 
   <!-- Métas Facebook Opengraph -->
-  <meta property="og:title" content="#trustinme - La génération Z peut s'exprimer !" />
+  <meta property="og:title" content="#OURVOICE - La génération Z peut s'exprimer !" />
   <meta property="og:description" content="Tu es né(e) entre 1995 et 2012 ? Tu es l'acteur principal de ce projet ! Donne ta voix à trois sondages sur les smartphones !" />
   <meta property="og:url" content="http://www.simonmissaghi.be/projets/index.php" />
-  <meta property="og:image" content="http://www.simonmissaghi.be/projets/trustinme/images/img_metatag.jpg" />
+  <meta property="og:image" content="http://www.simonmissaghi.be/projets/OURVOICE/images/img_metatag.jpg" />
   <meta property="og:image:secure_url" content="images/img_metatag.jpg" />
   <meta property="og:type" content="website" />
   <meta property="og:type" content="website" />
 
   <!-- Métas Twitter Card -->
-  <meta name="twitter:title" content="#trustinme - La génération Z peut s'exprimer !" />
+  <meta name="twitter:title" content="#OURVOICE - La génération Z peut s'exprimer !" />
   <meta name="twitter:description" content="Tu es né(e) entre 1995 et 2012 ? Tu es l'acteur principal de ce projet ! Donne ta voix à trois sondages sur les smartphones !" />
   <meta name="twitter:url" content="http://www.simonmissaghi.be/projets/index.php" />
   <meta name="twitter:image" content="images/img_metatag.jpg" />
@@ -60,7 +60,7 @@ include ('./php/login.php');
       </div>
     </div>
     <div class="main-container">
-      <div class="wrapper-section">
+      <div class="wrapper-section wrapper-section--results">
         <section class="intro intro-sondages">
           <div class="container-listing">
             <div class="wrapper-tabs">
@@ -69,7 +69,7 @@ include ('./php/login.php');
                 <li class="tabs-surveys apps" id="tabApps" onclick="changeTabs(event, 'apps', 'listingApps')"><h2>Les apps</h2></li>
                 <li class="tabs-surveys networks" id="tabNetworks" onclick="changeTabs(event, 'networks', 'listingNetworks')"><h2>Les réseaux sociaux</h2></li>
               </ul>
-              <div class="container-questions active" id="smartphones"><ul class="list-questions" id="listingSmartphone">
+              <div class="container-questions" id="smartphones"><ul class="list-questions" id="listingSmartphone">
                   <li class="el-chart" id="defaultOpen" data-data1="sq1all" data-data2="sq1m" data-data3="sq1f" data-label="labels5">Quelle est la probabilité pour que vous achetiez le
                   tout nouveau smartphone, malgré que votre actuel fonctionne bien ?</li>
                   <li class="el-chart" data-data1="sq2all" data-data2="sq2m" data-data3="sq2f" data-label="labels5">Sur un nouveau smartphone, à quel point êtes-vous
@@ -125,10 +125,10 @@ include ('./php/login.php');
         </section>
         <section class="section-second results-surveys">
           <div class="container-results-explication-intro" id="resultsIntro">
-            <h1>Cliquez sur la question de votre choix pour voir les résultats</h1>
+            <h1 class="title-inner">Cliquez sur la question de votre choix pour voir les résultats</h1>
             <p>Ces résultats sont tous issus de sondages destinés à la Génération Z, une génération née entre 1995 et 2012.</p>
           </div>
-          <h2 id="titleQuestionChart"></h2>
+          <h1 class="title-inner title-inner--surveys title-inner--surveys-no-border" id="titleQuestionChart"></h1>
           <canvas class="chartsjs" id="allCharts" width="" height=""></canvas>
           <div class="wrapper-btn btn-surveys btn-surveys-results">
             <a class="write write-result-surveys" href="./index.php">Plateforme des sondages</a>
@@ -145,7 +145,7 @@ include ('./php/login.php');
   <script src="javascript/main.js"></script>
   <!-- <script src="javascript/swiper.js"></script> -->
   <script src="javascript/Chart.js"></script>
-  <script src="javascript/charts.js"></script>
+  <!-- <script src="javascript/charts.js"></script> -->
   <script src="results.json"></script>
 
 </body>

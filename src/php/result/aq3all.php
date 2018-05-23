@@ -55,6 +55,5 @@ $aq3all_05->execute();
 $rowaq3all_05 = $aq3all_05->fetch();
 $pourcentageaq3all_05 = $rowaq3all_05['pourcentage'];
 
-
 $aq3all = [$pourcentageaq3all_01, $pourcentageaq3all_02, $pourcentageaq3all_03, $pourcentageaq3all_04, $pourcentageaq3all_05];
 ?>

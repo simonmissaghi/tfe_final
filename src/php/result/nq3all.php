@@ -1,6 +1,5 @@
 <?php
 
-
 // networks male q3 r1
 
 $nq3all_01 = $connection->prepare('SELECT
@@ -55,7 +54,6 @@ $nq3all_05 = $connection->prepare('SELECT
 $nq3all_05->execute();
 $rownq3all_05 = $nq3all_05->fetch();
 $pourcentagenq3all_05 = $rownq3all_05['pourcentage'];
-
 
 
 

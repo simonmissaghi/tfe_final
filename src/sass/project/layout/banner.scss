@@ -1,0 +1,167 @@
+        .banner {
+            background: url('../images/bg-main.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 50% 25%;
+            position: relative;
+            z-index: 1;
+            min-height: 260px;
+
+            &:before {
+                content: '';
+                @include calc(height, "100% - 5rem");
+                width: 100%;
+                position: absolute;
+                top: 5rem;
+                z-index: -1;
+                @include linear-gradient(rgba(0,0,0, .4), transparent);
+
+                @include media-breakpoint-up(lg) {
+                    @include calc(height, "100% - 7rem");
+                    top: 7rem;
+                }
+
+            }
+
+            h1 {
+               color: #fff;
+               font-weight: 900;
+               font-style: italic;
+               padding: 9rem 0 0 2rem;
+               max-width: 250px;
+
+               @include media-breakpoint-up(sm) {
+                max-width: 350px;
+
+            }
+
+            @include media-breakpoint-up(md) {
+                max-width: 550px;
+
+            }
+
+            @include media-breakpoint-up(xl) {
+                max-width: 700px;
+
+            }
+
+            span {
+                color: $color-main;
+            }
+
+        }
+
+        h2 {
+            color: #fff;
+            font-weight: 700;
+            padding: 0 2rem 3rem 2rem;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+
+
+        @include media-breakpoint-up(sm) {
+            min-height: 300px;
+
+            h1 {
+                font-size: 5.2rem;
+            }
+
+            h2 {
+                max-width: 500px;
+            }
+
+        }
+
+        @include media-breakpoint-up(md) {
+            min-height: 400px;
+
+            h1 {
+                padding: 10rem 0 0 4rem;
+            }
+
+            h2 {
+                padding: 0 0 0 4rem;
+            }
+        }
+
+        @include media-breakpoint-up(lg) {
+            min-height: 500px;
+
+
+            h1 {
+                font-size: 10rem;
+                padding: 15rem 0 0 6rem;
+
+                span {
+                    font-size: 10rem;
+                }
+            }
+
+            h2 {
+                padding: 0 0 0 6rem;
+                max-width: 900px;
+            }
+        }
+
+        @include media-breakpoint-up(xl) {
+            min-height: 650px;
+        }
+
+        @media (min-width: 1441px) {
+            h1 {
+                padding: 15rem 0 0 0;
+            }
+
+            h2 {
+                padding: 0;
+            }
+
+        }
+
+
+        &.banner-inner-page {
+            min-height: 300px;
+            max-height: 300px;
+
+
+
+            @include media-breakpoint-up(md) {
+                min-height: 400px;
+                max-height: 400px;
+
+                h1 {
+                    font-size: 6.2rem;
+                }
+
+            }
+
+            @include media-breakpoint-up(lg) {
+                min-height: 550px;
+                max-height: 550px;
+                h1 {
+                    font-size: 7.2rem;
+                }
+
+            }
+
+            @include media-breakpoint-up(xl) {
+                h1 {
+                    font-size: 9.2rem;
+                }
+
+            }
+
+
+            &.banner-temoignages {
+                background-image: url('../images/bg-inner.jpg');
+            }
+
+            &.banner-surveys {
+                background-image: url('../images/bg-inner-surveys.jpg');
+            }
+
+        }
+
+    }

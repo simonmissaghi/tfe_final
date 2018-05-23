@@ -37,7 +37,12 @@ $preparedStatement->execute(array(
 
 $results = $preparedStatement->fetchAll();
 ?>
+<?php
 
+$k = array_rand($results);
+$v = $results[$k];
+
+?>
 <?php foreach($results as $result): ?>
 <?php endforeach; ?>
 

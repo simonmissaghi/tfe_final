@@ -81,14 +81,14 @@ else {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sondage - Les smartphones | #trustinme</title>
+    <title>Sondage - Les smartphones | #OURVOICE</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link rel="stylesheet" href="css/swiper.css">
 </head>
 
 <body>
     <header>
-        <img class="logo" src="images/logo_trustinme.svg" alt="logo" />
+        <img class="logo" src="images/logo_OURVOICE.svg" alt="logo" />
         <nav></nav>
     </header>
     <main class="smartphone-survey">

@@ -9,35 +9,35 @@ include ('./php/login.php');
 
 
 <!DOCTYPE html>
-<html class="page-front" lang="fr">
+<html class="page-front page-temoignage" lang="fr">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
-  <title>#trustinme | La génération Z peut s'exprimer</title>
+  <title>#OURVOICE | La génération Z peut s'exprimer</title>
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <!-- <link rel="stylesheet" href="css/swiper.css"> -->
-  <meta name="Author" lang="fr" content="#trustinme - La génération Z peut s'exprimer !">
+  <meta name="Author" lang="fr" content="#OURVOICE - La génération Z peut s'exprimer !">
   <meta name="Publisher" content="Simon MISSAGHI">
   <meta name="Reply-to" content="simon@simonmissaghi.be">
   <meta name="Description" content="Tu es né(e) entre 1995 et 2012 ? Tu es l'acteur principal de ce projet ! Donne ta voix à trois sondages sur les smartphones !">
   <meta name="Indentifier-URL" content="http://www.simonmissaghi.be">
-  <meta name="Keywords" content="trustinme, young, people, genz, generation, generationZ, Z, adolescents, jeunes">
+  <meta name="Keywords" content="OURVOICE, young, people, genz, generation, generationZ, Z, adolescents, jeunes">
   <!-- Méta Google -->
-  <meta name="title" content="#trustinme - La génération Z peut s'exprimer !" />
+  <meta name="title" content="#OURVOICE - La génération Z peut s'exprimer !" />
   <meta name="description" content="Tu es né(e) entre 1995 et 2012 ? Tu es l'acteur principal de ce projet ! Donne ta voix à trois sondages sur les smartphones !" />
 
   <!-- Métas Facebook Opengraph -->
-  <meta property="og:title" content="#trustinme - La génération Z peut s'exprimer !" />
+  <meta property="og:title" content="#OURVOICE - La génération Z peut s'exprimer !" />
   <meta property="og:description" content="Tu es né(e) entre 1995 et 2012 ? Tu es l'acteur principal de ce projet ! Donne ta voix à trois sondages sur les smartphones !" />
   <meta property="og:url" content="http://www.simonmissaghi.be/projets/index.php" />
-  <meta property="og:image" content="http://www.simonmissaghi.be/projets/trustinme/images/img_metatag.jpg" />
+  <meta property="og:image" content="http://www.simonmissaghi.be/projets/OURVOICE/images/img_metatag.jpg" />
   <meta property="og:image:secure_url" content="images/img_metatag.jpg" />
   <meta property="og:type" content="website" />
   <meta property="og:type" content="website" />
 
   <!-- Métas Twitter Card -->
-  <meta name="twitter:title" content="#trustinme - La génération Z peut s'exprimer !" />
+  <meta name="twitter:title" content="#OURVOICE - La génération Z peut s'exprimer !" />
   <meta name="twitter:description" content="Tu es né(e) entre 1995 et 2012 ? Tu es l'acteur principal de ce projet ! Donne ta voix à trois sondages sur les smartphones !" />
   <meta name="twitter:url" content="http://www.simonmissaghi.be/projets/index.php" />
   <meta name="twitter:image" content="images/img_metatag.jpg" />
@@ -55,7 +55,7 @@ include ('./php/login.php');
   </div>
   <?php include('./nav.php');?>
   <main>
-    <div class="banner banner-temoignage banner-inner-page">
+    <div class="banner banner-inner-page banner-temoignages ">
       <div class="main-container">
         <h1 class="title-banner">Témoignages</h1>
         <h2>Laisser la Génération Z s'exprimer</h2>
@@ -112,10 +112,10 @@ include ('./php/login.php');
             </form>
           </div>
         </section>
-        <section class="section-second dashboard-temoignage public-temoignage">
+        <section class="section-second">
           <?php foreach($results as $result): ?>
             <?php if($result['statut'] == 'OK') { ?>
-            <div class="container-single-temoignage">
+            <div class="container-single-temoignage single-temoignage-public">
               <div class="header">
                 <h1><?php echo $result["prenom"] ?></h1><span><?php echo $result["age"] ?> ans<span class="thumb-img-temoignage" style="background-image: url('<?php echo $result['img']?>')"></span>
               </div>
@@ -126,7 +126,9 @@ include ('./php/login.php');
               <div class="footer">
                 <span>étudiant<?php if($result['sexe'] == "F"){echo "e"; }?> en <?php echo $result["studies"] ?></span>
               </div>
-              <a href="./fullstorie.php?id=<?php echo $result["id"] ?>">Lire en entier</a>
+              <div class="links-temoignage">
+                <a href="./fullstorie.php?id=<?php echo $result["id"] ?>">Lire en entier</a>
+              </div>
             </div>
             <?php } ?>
           <?php endforeach; ?>
@@ -142,6 +144,7 @@ include ('./php/login.php');
           ?>
         </section>
       </div>
+      <?php include ('./footer.php'); ?>
     </div>
   </main>
   <script

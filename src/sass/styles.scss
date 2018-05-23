@@ -62,6 +62,7 @@
 @import "project/variables";
 @import "project/mixins";
 @import "project/base";
+@import "project/useful";
 @import "project/swiper";
 
 
@@ -70,6 +71,8 @@
 
 @import "project/layout/header";
 @import "project/layout/nav";
+@import "project/layout/login";
+@import "project/layout/banner";
 @import "project/layout/home";
 @import "project/layout/page";
 @import "project/layout/footer";
@@ -79,3 +82,4 @@
 @import "project/layout/scroll-survey";
 @import "project/layout/chart";
 @import "project/layout/fullwidth-stories";
+@import "project/layout/single-temoignage";
