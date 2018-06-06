@@ -1,70 +1,7 @@
-<?php session_start(); ?>
-<?php include ("php/connection.php");
-include ("php/function.php");
-$adressip = $_SERVER["REMOTE_ADDR"];
-$prepareip = $connection->prepare("SELECT COUNT(*) AS ip_adress FROM apps_survey WHERE ip_adress = '$adressip'");
-$prepareip->execute();
-$roww = $prepareip->fetch();
-$ip_final = $roww['ip_adress'];
-$ipErr = "";
-$questionErr = "";
-if($ip_final != 0) {
-    $ipErr = "Tu as déjà rempli ce formulaire ! Pourquoi ne pas répondre à un autre ?";
-    header( "refresh:2;url=index.php" );
-}
-if (!empty($_POST['submit__survey--apps'])) {
-
-    $_SESSION['post-data'] = $_POST;
-    $os = $_SESSION['post-data']['q1'];
-
-    if(empty($_POST['gender']) || empty($_POST['age']) || empty($_POST['q1']) || empty($_POST['q2']) || empty($_POST['q4'])) {
-        $questionErr = "Tu as oublié une ou plusieurs questions...";
-    }
-
-    else {
-        $preparedstatement = $connection->prepare('INSERT INTO apps_survey
-          (
-          gender,
-          age,
-          q1,
-          q2,
-          q3,
-          q4,
-          ip_adress
-          )
-          VALUES (
-          :gender,
-          :age,
-          :q1,
-          :q2,
-          :q3,
-          :q4,
-          :ip_adress
-      )');
-        $gender = strip_tags($_POST['gender']);
-        $age = strip_tags($_POST['age']);
-        $q1 = strip_tags(implode(',', $_POST['q1']));
-        $q2 = strip_tags($_POST['q2']);
-        $q3 = strip_tags($_POST['q3']);
-        $q4 = strip_tags($_POST['q4']);
-        $ip_adress = strip_tags($_POST['ip_adress']);
-        $preparedstatement ->execute(array(
-          'gender' => $gender,
-          'age' => $age,
-          'q1' => $q1,
-          'q2' => $q2,
-          'q3' => $q3,
-          'q4' => $q4,
-          'ip_adress' => $ip_adress
-      ));
-        session_destroy();
-        unset($_SESSION['post-data']);
-        header("Location: redirection_apps-survey.php");
-        exit();
-    }
-}
-
+<?php session_start();
+include('./php/insert_apps-survey.php');
 ?>
+
 <!DOCTYPE html>
 <html class="page-surveys page-surveys-single" lang="fr">
 
@@ -78,7 +15,7 @@ if (!empty($_POST['submit__survey--apps'])) {
     <meta name="Publisher" content="Simon MISSAGHI">
     <meta name="Reply-to" content="simon@simonmissaghi.be">
     <meta name="Description" content="Tu es né(e) entre 1995 et 2012 ? Tu es l'acteur principal de ce projet ! Donne ta voix à trois sondages sur les smartphones !">
-    <meta name="Indentifier-URL" content="http://www.simonmissaghi.be">
+    <meta name="Indentifier-URL" content="http://www.simonmissaghi.be/projets/ourvoice/index.php">
     <meta name="Keywords" content="OURVOICE, young, people, genz, generation, generationZ, Z, adolescents, jeunes">
     <!-- Méta Google -->
     <meta name="title" content="#OURVOICE - La génération Z peut s'exprimer !" />
@@ -87,29 +24,45 @@ if (!empty($_POST['submit__survey--apps'])) {
     <!-- Métas Facebook Opengraph -->
     <meta property="og:title" content="#OURVOICE - La génération Z peut s'exprimer !" />
     <meta property="og:description" content="Tu es né(e) entre 1995 et 2012 ? Tu es l'acteur principal de ce projet ! Donne ta voix à trois sondages sur les smartphones !" />
-    <meta property="og:url" content="http://www.simonmissaghi.be/projets/index.php" />
-    <meta property="og:image" content="http://www.simonmissaghi.be/projets/OURVOICE/images/img_metatag.jpg" />
-    <meta property="og:image:secure_url" content="images/img_metatag.jpg" />
+    <meta property="og:url" content="http://www.simonmissaghi.be/projets/ourvoice/index.php" />
+    <meta property="og:image" content="http://www.simonmissaghi.be/projets/OURVOICE/images/img_metatag-surveys.jpg" />
+    <meta property="og:image:secure_url" content="images/img_metatag-surveys.jpg" />
     <meta property="og:type" content="website" />
     <meta property="og:type" content="website" />
 
     <!-- Métas Twitter Card -->
     <meta name="twitter:title" content="#OURVOICE - La génération Z peut s'exprimer !" />
     <meta name="twitter:description" content="Tu es né(e) entre 1995 et 2012 ? Tu es l'acteur principal de ce projet ! Donne ta voix à trois sondages sur les smartphones !" />
-    <meta name="twitter:url" content="http://www.simonmissaghi.be/projets/index.php" />
-    <meta name="twitter:image" content="images/img_metatag.jpg" />
+    <meta name="twitter:url" content="http://www.simonmissaghi.be/projets/ourvoice/index.php" />
+    <meta name="twitter:image" content="images/img_metatag-surveys.jpg" />
+    <!--  Favicon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="./images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
 </head>
 
 <body>
-    <header>
-        <a class="back-to-list" href="./index.php">Liste</a><img class="logo" src="images/logo_OURVOICE.svg" alt="logo" />
-        <nav></nav>
-    </header>
+    <?php include('./header-pages.php'); ?>
+    <?php include('./nav.php');?>
     <main>
 
         <section class="container-surveys apps-bg-color">
             <div class="wrapper-link">
-                <a class="back-to-list" href="./index.php">Retour à la liste</a>
+                <a class="back-to-list" href="./plateforme-sondages.php">Retour à la liste</a>
             </div>
             <div class="swiper-pagination apps-survey"></div>
             <div class="alert alert-danger"><?php echo $ipErr; ?></div>
@@ -123,7 +76,6 @@ if (!empty($_POST['submit__survey--apps'])) {
                     <form action="" method="POST">
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
-                                <!-- Question préambule -->
                                 <div class="swiper-slide">
                                     <div class="wrapper-question wrapper-question-intro">
                                         <div class="question">

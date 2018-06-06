@@ -23,7 +23,7 @@ if(!empty($_POST['btn_submit--login'])) {
       $_SESSION['id'] = $resultat['id'];
       $_SESSION['pseudo'] = $pseudo;
 
-      header('Location: '.$_SERVER['PHP_SELF']);
+      header('Location:./moderateur.php');
       exit;
     }
     else {

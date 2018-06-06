@@ -92,11 +92,11 @@ if(!empty($_POST['btn_submit--temoignage'])){
       :date_publi,
       :statut,
       :img)');
-
+    $allowable_tags = "<p><br><a><h1><h2><h3><i><b><strong><blockquote>";
     $date = date("Y.m.d");
     $prenom =  strip_tags($_POST['prenom']);
     $title_subject =  strip_tags($_POST['title_subject']);
-    $subject =  strip_tags($_POST['subject']);
+    $subject =  strip_tags($_POST['subject'], $allowable_tags);
     $sexe =  strip_tags($_POST['sexe']);
     $age =  strip_tags($_POST['age']);
     $studies =  strip_tags($_POST['studies']);

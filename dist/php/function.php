@@ -4,7 +4,7 @@ $previousPage = "";
 if(isset($_SERVER['HTTP_REFERER'])) {
  $previousPage = $_SERVER['HTTP_REFERER'];
 }else {
-  $previousPage = "./index_main.php";
+  $previousPage = "./index.php";
 }
 
 function make_summary($x, $length)

@@ -8,6 +8,6 @@ session_destroy();
 setcookie('login', '');
 setcookie('pass_hache', '');
 
-header('Location: ../index_main.php');
+header('Location: ../index.php');
 exit;
 ?>

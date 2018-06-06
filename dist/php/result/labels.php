@@ -10,5 +10,6 @@ $labelsnq5 = ["des articles pertinents", "des images/photos", "des annonces à v
 $labelsnq6 = ["montrer ce que je fais", "attirer plus de monde sur mes pages", "gagner de l’argent", "faire de la propagande"];
 $labelsnq8 = ["La totalité", "La majorité", "la moitié", "Quelques-uns", "Aucun"];
 $labelsnq9 = ["Tout le temps", "Très souvent", "Moitié du temps", "Peu souvent", "Jamais"];
+$labelsaq1 = ["Sport", "Musique", "Journal", "Streaming", "Educ", "Social", "Jeux", "Fitness", "Voyage", "Shopping"];
 
 ?>

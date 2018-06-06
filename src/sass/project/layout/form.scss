@@ -57,6 +57,11 @@
 
         }
 
+        input[type="file"] {
+          width: auto;
+          margin-top: 2rem;
+        }
+
       }
 
       .btn-full-bottom {
@@ -100,7 +105,7 @@
 
         .wrapper-sm-input {
           width: 100%;
-          margin: 0 0 2rem 0;
+          // margin: 0 0 2rem 0;
           display: inline-block;
 
           div.radio-btn {
@@ -126,7 +131,7 @@
 
             @include media-breakpoint-up(sm) {
               @include calc (width, "50% - 1rem");
-              margin: 0 1rem 2rem 0;
+              margin: 0 1rem 1rem 0;
             }
 
           }
@@ -248,25 +253,38 @@
 
       }
 
-.form-login {
-  width: 300px;
-}
+      .form-temoignage {
 
-.form-stay-connected {
-  input {
-    border: 1px solid #fff;
-    color: #fff;
-    font-weight: 700;
+        @include media-breakpoint-up(md) {
+          padding: 0 2rem;
 
-    &[type="submit"] {
-      border: 2px solid #fff;
-      color: #fff;
-    }
-  }
+        }
+
+        input {
+          margin: 0 1rem 1rem 0;
+        }
+
+        label {
+          margin-bottom: 1rem;
+        }
+
+      }
+
+      .form-stay-connected {
+        input {
+          border: 1px solid $color-main;
+          color: $color-main;
+          font-weight: 700;
+
+          &[type="submit"] {
+            border: 2px solid $color-main;
+            color: $color-main;
+          }
+        }
 
 
-    @include media-breakpoint-up(md) {
-      padding: 0;
-    }
+        @include media-breakpoint-up(md) {
+          padding: 0;
+        }
 
-}
+      }

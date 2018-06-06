@@ -61,7 +61,7 @@ $pourcentageaq1f_05 = $rowaq1f_05['pourcentage'];
 // Apps male q1 r6
 
 $aq1f_06 = $connection->prepare('SELECT
-  (SELECT COUNT(*) FROM apps_survey WHERE gender="2" AND q1 LIKE "[6],") * 100 /
+  (SELECT COUNT(*) FROM apps_survey WHERE gender="2" AND q1 LIKE "%[6],%") * 100 /
   (SELECT COUNT(*) FROM apps_survey WHERE gender="2") AS pourcentage
   FROM apps_survey');
 $aq1f_06->execute();

@@ -2,7 +2,7 @@
 session_start();
 include ("./connection.php");
 if (!isset($_SESSION['pseudo'])) {
-  header ('Location: index_main.php');
+  header ('Location: index.php');
   exit();
 }
 

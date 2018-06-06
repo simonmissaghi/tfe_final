@@ -202,6 +202,7 @@ $data['labelsnq5'] = $labelsnq5;
 $data['labelsnq6'] = $labelsnq6;
 $data['labelsnq8'] = $labelsnq8;
 $data['labelsnq9'] = $labelsnq9;
+$data['labelsaq1'] = $labelsaq1;
 
 $fp = fopen('results.json', 'w');
 fwrite($fp, json_encode($data, JSON_PRETTY_PRINT, JSON_NUMERIC_CHECK));

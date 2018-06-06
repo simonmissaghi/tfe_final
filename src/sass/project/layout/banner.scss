@@ -12,7 +12,7 @@
                 @include calc(height, "100% - 5rem");
                 width: 100%;
                 position: absolute;
-                top: 5rem;
+                top: 0;
                 z-index: -1;
                 @include linear-gradient(rgba(0,0,0, .4), transparent);
 
@@ -24,13 +24,13 @@
             }
 
             h1 {
-               color: #fff;
-               font-weight: 900;
-               font-style: italic;
-               padding: 9rem 0 0 2rem;
-               max-width: 250px;
+             color: #fff;
+             font-weight: 900;
+             font-style: italic;
+             padding: 9rem 0 0 2rem;
+             max-width: 250px;
 
-               @include media-breakpoint-up(sm) {
+             @include media-breakpoint-up(sm) {
                 max-width: 350px;
 
             }
@@ -45,8 +45,16 @@
 
             }
 
-            span {
-                color: $color-main;
+            // span {
+            //     color: $color-main;
+            // }
+
+            .logo-img {
+                display: none;
+
+                @include media-breakpoint-up(lg) {
+                    display: block;
+                }
             }
 
         }
@@ -68,10 +76,6 @@
                 font-size: 5.2rem;
             }
 
-            h2 {
-                max-width: 500px;
-            }
-
         }
 
         @include media-breakpoint-up(md) {
@@ -82,7 +86,7 @@
             }
 
             h2 {
-                padding: 0 0 0 4rem;
+                padding: 0 2rem 0 4rem;
             }
         }
 
@@ -123,7 +127,6 @@
 
         &.banner-inner-page {
             min-height: 300px;
-            max-height: 300px;
 
 
 
@@ -160,6 +163,10 @@
 
             &.banner-surveys {
                 background-image: url('../images/bg-inner-surveys.jpg');
+            }
+
+            &.banner-ressources {
+                background-image: url('../images/bg-ressources.jpg');
             }
 
         }

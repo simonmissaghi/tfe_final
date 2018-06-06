@@ -1,6 +1,5 @@
-.page-front {
+.page-front, .page-surveys {
     header {
-        background: rgba(255, 255, 255, .9);
         position: fixed;
         top: 0;
         left: auto;
@@ -25,19 +24,54 @@
 
         @include media-breakpoint-up(lg) {
             height: 7rem;
+            background: rgba(255, 255, 255, .9);
         }
-
-        .logo {
-            width: 200px;
-            height: 23px;
+        .logo-nav {
             background: url('../images/logo_ourvoice.svg');
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
+            @include transition;
+        }
+        .logo-nav--home {
+            width: 70vw;
+            height: 50px;
+
+
+
+
+            @include media-breakpoint-down(md) {
+                transform: translateY(120%);
+
+            }
+
+            @include media-breakpoint-up(md) {
+                width: 57vw;
+
+            }
+
+            @include media-breakpoint-up(lg) {
+                width: 200px;
+                height: 23px;
+
+            }
+
+            &.sticky-logo {
+                transform: translateY(0);
+                width: 123px;
+            }
 
         }
+
+        .logo-nav--pages {
+            width: 123px;
+            height: 50px;
+        }
+
     }
+
 }
+
 
 //Header surveys
 
@@ -86,11 +120,8 @@
 
 
         .logo {
-            width: 200px;
-            height: 23px;
-            // background: url('./images/logo_ourvoice.svg');
-            // background-size: contain;
-            // background-position: center;
+            width: 123px;
+            height: 50px;
 
         }
 

@@ -1,42 +1,44 @@
-    .login-box {
-        position: absolute;
-        width: 100%;
-        height: 100vh;
-        transform: translateX(0);
-        z-index: 2;
-        top: 5rem;
-        padding: 2rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background:rgba(255, 255, 255, 1);
-        transform: translateY(-200%);
+.login-box {
+  max-width: 650px;
+  width: 100%;
+  margin: 8rem auto 0;
+  padding: 4rem 6rem;
 
-        &.open {
-            transform: translateY(0);
-            position: fixed;
-        }
+  @include media-breakpoint-up(md) {
+    margin: 12rem auto 0;
+    border: 2px solid $color-main;
 
-        &.fixed {
-            position: fixed;
-        }
+  }
 
-        h1 {
-            font-size: 2.2rem;
-            font-weight: 400;
-            text-transform: none;
-            font-style: normal;
-        }
+  h1 {
+    font-size: 2.8rem;
+    color: #FDA403;
+    margin: 1rem 0;
+  }
 
-        @include media-breakpoint-up(lg) {
-            width: 350px;
-            height: auto;
-            top: 9rem;
-            right: 2rem;
-            border-radius: 5px;
-            @include transition;
-            display: block;
+  h2 {
+    font-size: 2rem;
+  }
 
-        }
+}
 
+.form-login {
+  input {
+    border: 1px solid #fff;
+    max-width: 250px;
+    display: block;
+
+    &[type="submit"] {
+      border: 2px solid #fff;
+      color: #fff;
+      display: block;
+      float: none !important;
     }
+  }
+
+
+  @include media-breakpoint-up(md) {
+    padding: 0;
+  }
+
+}

@@ -16,7 +16,7 @@ if (!empty($_POST['submit_email--apps'])) {
   if($existingEmail != 0) {
 
     session_destroy();
-    header("Location: index.php");
+    header("Location: plateforme-sondages.php");
 
     exit();
   }
@@ -44,7 +44,7 @@ if (!empty($_POST['submit_email--apps'])) {
 
       $_SESSION = [];
       $emailValid = "C'est parfait ! Tu seras tenu au courant très prochainement !";
-      header( "refresh:2;url=index.php" );
+      header('refresh:2;url=plateforme-sondages.php');
     }
 
 
@@ -70,10 +70,8 @@ if (!empty($_POST['submit_email--apps'])) {
 </head>
 
 <body>
-  <header>
-    <img class="logo" src="images/logo_OURVOICE.svg" alt="logo" />
-    <nav></nav>
-  </header>
+    <?php include('./header-pages.php'); ?>
+    <?php include('./nav.php');?>
   <main class="smartphone-survey">
     <div class="alert alert-danger"><?php echo $ipErr; ?></div>
     <div class="alert alert-danger"><?php echo $questionErr; ?></div>
@@ -98,7 +96,7 @@ if (!empty($_POST['submit_email--apps'])) {
                 <input type="checkbox"  id="check-rules" name="privacy" value="1">
                 <label class="checkbox apps-survey" for="check-rules">Accepter les <a href="/" class="privacy-btn">règles de confidentialité</a></label>
               </div>
-              <div class="redirect-skip"><a href="index.php">Passer cette étape</a></div>
+              <div class="redirect-skip"><a href="plateforme-sondages.php">Passer cette étape</a></div>
             </div>
             <input type="submit" name="submit_email--apps" class="btn-full-bottom apps-survey" />
           </div>

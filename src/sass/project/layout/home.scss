@@ -32,68 +32,171 @@
 
             }
 
-            h1.title-inner {
-                font-size: 2.2rem;
-                font-weight: 400;
-                text-transform: none;
-                color: $color-main;
-                text-align: center;
-                line-height: 1.4;
+            h2 {
 
-                span {
-                    display: block;
-                    font-size: 1.4rem;
-                }
+                &.title-inner {
 
-                &.title-inner--surveys {
-                    color: $color-survey;
+                    &.title-inner--big {
+                        font-weight: 900;
+                        font-style: italic;
+                        text-transform: uppercase;
+                        font-size: 3rem;
+
+                        @include media-breakpoint-up(md) {
+                            font-size: 3.6rem;
+                        }
+
+                        @include media-breakpoint-up(lg) {
+                            font-size: 4.8rem;
+                        }
+
+                        span {
+                            font-size: 5.6rem;
+                            display: inline-block;
+                        }
+
+                        &.white {
+                            color: #fff;
+                        }
+
+                        &.yellow {
+                            color: $color-survey;
+                        }
+
+                    }
+
+                    font-size: 2.2rem;
+                    font-weight: 100;
+                    text-transform: none;
+                    color: $color-main;
                     text-align: center;
-                    max-width: 600px;
-                    margin: 0 auto;
-                    padding: 0 2rem;
-                    position: relative;
-
-                    &:not(:first-child) {
-
-                        &::before {
-                            content: '';
-                            position: absolute;
-                            top: -5rem;
-                            left: 50%;
-                            width: 30rem;
-                            height: 2px;
-                            background: $color-survey;
-                            transform: translateX(-50%);
-                        }
-
-                    }
-
-                    &.title-inner--surveys-no-border {
-                        &::before {
-                            height: 0;
-                        }
-                    }
-
-                }
-
-                &.title-inner--temoignage {
-                    color: $color-temoignage;
-                }
-
-                @include media-breakpoint-up(md) {
-                    font-size: 2.8rem;
-                    text-align: left;
+                    line-height: 1.2;
 
                     span {
-                        font-size: 1.8rem;
+                        display: block;
+                        font-size: 1.4rem;
+                        margin: 1rem 0;
                     }
+
+                    &.title-inner--surveys {
+                        color: $color-survey;
+                        text-align: center;
+                        margin: 0;
+                        padding: 0 2rem 2rem;
+                        position: relative;
+                        line-height: 1.1;
+                        font-weight: 400;
+
+                        @include media-breakpoint-up(md) {
+                            padding: 0 4rem 2rem;
+                        }
+
+                        &:not(:first-child) {
+
+                            &::before {
+                                content: '';
+                                position: absolute;
+                                top: -5rem;
+                                left: 50%;
+                                width: 30rem;
+                                height: 2px;
+                                background: $color-survey;
+                                transform: translateX(-50%);
+                            }
+
+                        }
+
+                        &.title-inner--surveys-no-border {
+                            &::before {
+                                height: 0;
+                            }
+
+                        }
+
+                    }
+
+                    &.title-inner--results {
+                        text-align: left;
+                        padding: 3rem 2rem 0;
+
+                        @include media-breakpoint-up(md) {
+                            padding: 3rem 4rem 0;
+                        }
+
+                    }
+
+                    &.title-inner--temoignage {
+                        color: $color-temoignage;
+                        position: relative;
+                        font-size: 2.8rem;
+                        font-weight: 400;
+                        font-style: italic;
+                        margin-bottom: 5rem;
+
+                        &::before,
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            width: 20px;
+                            height: 20px;
+
+                            @include media-breakpoint-up(md) {
+                                width: 30px;
+                                height: 30px;
+
+                            }
+
+                            @include media-breakpoint-up(lg) {
+                                width: 40px;
+                                height: 40px;
+
+                            }
+
+                        }
+
+                        &::before {
+                            top: -30px;
+                            left: 0;
+                            background: url('../images/open-quote.svg');
+                            background-repeat: no-repeat;
+                        }
+
+                        &::after {
+                            bottom: -30px;
+                            right: 0;
+                            background: url('../images/close-quote.svg');
+                            background-repeat: no-repeat;
+                        }
+
+                        @include media-breakpoint-up(md) {
+                            &::before {
+                                left: -2rem;
+                            }
+
+                            &::after {
+                                right: -2rem;
+                            }
+
+                        }
+
+                    }
+
+                    @include media-breakpoint-up(md) {
+                        text-align: left;
+
+                        span {
+                            font-size: 1.8rem;
+                        }
+
+                    }
+
+                    @include media-breakpoint-up(lg) {
+                        font-size: 3.2rem;
+                    }
+
                 }
 
-                @include media-breakpoint-up(lg) {
-                    font-size: 3.2rem;
-                }
             }
-
 
             .wrapper-btn {
                 z-index: 2;
@@ -104,7 +207,7 @@
 
                     a {
                         &.write {
-                            @include ctm-1($color-temoignage, url('../images/write_icon.svg'));
+                            @include ctm-1($color-temoignage, #a8e2d6, rotate(-90deg), url('../images/write_icon.svg'));
                             border-bottom: 1px solid $color-temoignage;
 
                             &::after {
@@ -119,17 +222,20 @@
                                     border-bottom: none;
                                     height: 87px;
                                 }
+
                             }
 
                             @include media-breakpoint-up(xl) {
                                 &::after {
                                     height: 127px;
                                 }
+
                             }
+
                         }
 
                         &.read {
-                            @include ctm-1($color-temoignage, url('../images/read_icon.svg'));
+                            @include ctm-1($color-temoignage, #a8e2d6, rotate(0), url('../images/read_icon.svg'));
 
                         }
 
@@ -150,7 +256,7 @@
                 &.btn-surveys {
 
                     a.write {
-                        @include ctm-1($color-survey, url('../images/write_icon.svg'));
+                        @include ctm-1($color-survey, #da9e10, rotate(-90deg), url('../images/write_icon.svg'));
                         border-bottom: 1px solid $color-survey;
 
                         &::after {
@@ -164,23 +270,30 @@
                             &::after {
                                 height: 87px;
                             }
+
                         }
 
                         &.write-result-surveys {
-                            padding: 3.7rem 4rem 3.7rem 2rem;
+                            // padding: 3.7rem 4rem 3.7rem 2rem;
                             text-align: left;
                             border-bottom: 0;
 
                             &::after {
                                 height: 87px;
                                 border-bottom: none;
+
+                                @include media-breakpoint-up(lg) {
+                                    height: 124px;
+                                }
+
                             }
+
                         }
 
                     }
 
                     a.read {
-                        @include ctm-1($color-survey, url('../images/read_icon.svg'));
+                        @include ctm-1($color-survey, #da9e10, rotate(0), url('../images/graph_icon.svg'));
 
                     }
 
@@ -202,7 +315,6 @@
 
                         }
 
-
                     }
 
                     @include media-breakpoint-up(lg) {
@@ -218,7 +330,9 @@
                                 }
 
                             }
+
                         }
+
                     }
 
                     @include media-breakpoint-up(xl) {
@@ -228,6 +342,7 @@
                             }
 
                         }
+
                     }
 
                     &.btn-surveys-results {
@@ -242,7 +357,9 @@
                             }
 
                         }
+
                     }
+
                 }
 
                 @include media-breakpoint-up(sm) {
@@ -263,7 +380,7 @@
         .intro {
             background: $color-main;
             position: relative;
-            padding: 4rem 2rem 6rem;
+            padding: 2rem 2rem 6rem;
 
             @include media-breakpoint-up(md) {
                 padding: 4rem 6rem 6rem;
@@ -294,10 +411,6 @@
 
                 p {
                     margin-bottom: 2rem;
-
-                    &:last-child {
-                        margin-bottom: 4rem;
-                    }
 
                 }
 
@@ -358,7 +471,7 @@
 
 
                 &.chartsjs {
-                    margin: 0;
+                    margin: 4rem 0;
                 }
 
             }
@@ -368,6 +481,34 @@
                 flex-flow: column wrap;
                 justify-content: space-between;
                 padding: 2rem 0 0 0;
+            }
+
+            &.section-second--ressources {
+
+                @include media-breakpoint-up(md) {
+                    padding: 4rem 4rem;
+                }
+
+                p {
+
+                    padding: 0 2rem;
+                    color: $color-txt;
+
+                    @include media-breakpoint-up(md) {
+                        max-width: 550px;
+                    }
+
+                }
+
+            }
+
+            &.section-second--vignettes {
+                padding: 0;
+
+                @include media-breakpoint-up(md) {
+                    padding: 4rem 0;
+                }
+
             }
 
         }
@@ -445,15 +586,22 @@
                         color: $color-temoignage;
                     }
 
+                    h2:not(.title-inner--temoignage) {
+                        font-size: 2.4rem;
+                        // padding: 0 12rem;
+                        margin: 0;
+
+                    }
+
                     padding: 2rem 0;
 
                     @include media-breakpoint-down(sm) {
-                       order: 2;
-                   }
+                     order: 2;
+                 }
 
-                   @include media-breakpoint-up(md) {
+                 @include media-breakpoint-up(md) {
                     width: 70%;
-                    padding: 6rem 4rem 4rem;
+                    padding: 8rem 4rem 4rem;
                 }
 
                 @include media-breakpoint-up(lg) {
@@ -466,6 +614,8 @@
 
                     @include media-breakpoint-up(lg) {
                         padding: 0 4rem;
+                        max-width: 550px;
+                        margin: 0 auto 6rem;
                     }
 
                     &.sign-temoignage {
@@ -485,11 +635,6 @@
 
                     }
 
-                    @include media-breakpoint-up(lg) {
-                        max-width: 550px;
-                        margin: 6rem auto;
-                    }
-
                 }
 
                 a.link-back {
@@ -500,21 +645,21 @@
 
                 }
 
-                button.mic {
-                    border: 1px solid #000;
-                    border-radius: 50%;
-                    background: none;
-                    width: 38px;
-                    height: 38px;
-                    background: url(../images/mic.svg);
-                    background-repeat: no-repeat;
-                    background-size: 60%;
-                    background-position: 50% 50%;
-                    outline: none;
-                    cursor: pointer;
-                    margin: 0 auto;
-                    display: block;
-                }
+                // button.mic {
+                //     border: 1px solid #000;
+                //     border-radius: 50%;
+                //     background: none;
+                //     width: 38px;
+                //     height: 38px;
+                //     background: url(../images/mic.svg);
+                //     background-repeat: no-repeat;
+                //     background-size: 60%;
+                //     background-position: 50% 50%;
+                //     outline: none;
+                //     cursor: pointer;
+                //     margin: 0 auto;
+                //     display: block;
+                // }
 
             }
             .img-temoignage {
@@ -683,6 +828,14 @@
                     margin-bottom: 0;
                 }
 
+            }
+
+            .wrapper-btn {
+                margin: 0;
+
+                @include media-breakpoint-up(md) {
+                    margin: 0 -2rem;
+                }
             }
 
         }

@@ -1,35 +1,29 @@
 <?php
 session_start();
 include ('./php/connection.php');
-include ('./php/insert_temoignage.php');
 include ('./php/select_temoignage.php');
 include ('./php/function.php');
-include ('./php/login.php');
 ?>
-
-
 <!DOCTYPE html>
 <html class="page-front page-temoignage" lang="fr">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
-  <title>#OURVOICE | La génération Z peut s'exprimer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Les témoignages | #OURVOICE</title>
   <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <!-- <link rel="stylesheet" href="css/swiper.css"> -->
   <meta name="Author" lang="fr" content="#OURVOICE - La génération Z peut s'exprimer !">
   <meta name="Publisher" content="Simon MISSAGHI">
   <meta name="Reply-to" content="simon@simonmissaghi.be">
-  <meta name="Description" content="Tu es né(e) entre 1995 et 2012 ? Tu es l'acteur principal de ce projet ! Donne ta voix à trois sondages sur les smartphones !">
+  <meta name="Description" content="#OURVOICE est une passerelle intergénérationnelle, une plateforme qui permet de comprendre le comportement de la Génération Z par rapport à son utilisation du smartphone via des témoignages et des sondages.">
   <meta name="Indentifier-URL" content="http://www.simonmissaghi.be">
-  <meta name="Keywords" content="OURVOICE, young, people, genz, generation, generationZ, Z, adolescents, jeunes">
+  <meta name="Keywords" content="OURVOICE, young, people, genz, generation, generationZ, Z, adolescents, jeunes, sondages, témoignages, survey, surveys, teen, statistiques, statistics">
   <!-- Méta Google -->
   <meta name="title" content="#OURVOICE - La génération Z peut s'exprimer !" />
-  <meta name="description" content="Tu es né(e) entre 1995 et 2012 ? Tu es l'acteur principal de ce projet ! Donne ta voix à trois sondages sur les smartphones !" />
+  <meta name="description" content="#OURVOICE est une passerelle intergénérationnelle, une plateforme qui permet de comprendre le comportement de la Génération Z par rapport à son utilisation du smartphone via des témoignages et des sondages." />
 
   <!-- Métas Facebook Opengraph -->
   <meta property="og:title" content="#OURVOICE - La génération Z peut s'exprimer !" />
-  <meta property="og:description" content="Tu es né(e) entre 1995 et 2012 ? Tu es l'acteur principal de ce projet ! Donne ta voix à trois sondages sur les smartphones !" />
+  <meta property="og:description" content="#OURVOICE est une passerelle intergénérationnelle, une plateforme qui permet de comprendre le comportement de la Génération Z par rapport à son utilisation du smartphone via des témoignages et des sondages." />
   <meta property="og:url" content="http://www.simonmissaghi.be/projets/index.php" />
   <meta property="og:image" content="http://www.simonmissaghi.be/projets/OURVOICE/images/img_metatag.jpg" />
   <meta property="og:image:secure_url" content="images/img_metatag.jpg" />
@@ -38,24 +32,32 @@ include ('./php/login.php');
 
   <!-- Métas Twitter Card -->
   <meta name="twitter:title" content="#OURVOICE - La génération Z peut s'exprimer !" />
-  <meta name="twitter:description" content="Tu es né(e) entre 1995 et 2012 ? Tu es l'acteur principal de ce projet ! Donne ta voix à trois sondages sur les smartphones !" />
+  <meta name="twitter:description" content="#OURVOICE est une passerelle intergénérationnelle, une plateforme qui permet de comprendre le comportement de la Génération Z par rapport à son utilisation du smartphone via des témoignages et des sondages." />
   <meta name="twitter:url" content="http://www.simonmissaghi.be/projets/index.php" />
   <meta name="twitter:image" content="images/img_metatag.jpg" />
+
+  <!--  Favicon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="./images/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="./images/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="./images/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="./images/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="./images/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="./images/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="./images/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="./images/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="./images/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
 </head>
 <body>
-  <?php include('./header.php');?>
-  <div class="login-box">
-    <form action="" method="POST" class="form-login">
-      <h1>Connection</h1>
-      <input type="text" name="pseudo" placeholder="pseudo">
-      <input type="password" name="pass" placeholder="pass">
-      <div class="alert-danger"><?php echo $erreurco ?></div>
-      <input type="submit" name="btn_submit--login" value="Se connecter" />
-    </form>
-  </div>
+  <?php include('./header-pages.php');?>
   <?php include('./nav.php');?>
   <main>
-    <div class="banner banner-inner-page banner-temoignages ">
+    <div class="banner banner-inner-page banner-temoignages">
       <div class="main-container">
         <h1 class="title-banner">Témoignages</h1>
         <h2>Laisser la Génération Z s'exprimer</h2>
@@ -67,81 +69,46 @@ include ('./php/login.php');
           <p>Nous avons interviewé plusieurs jeunes de manière spontanée au sujet de leur utilisation du smartphone en général. En parlant de leurs habitudes, de ce qu’ils pensent du futur, de l’évolution. Nous avons retranscrit ces interviews.
           Si tu fais partie de la génération Z (1995-2012), tu peux aussi t’exprimer librement et anonymement. </p>
           <p>Nous avons voulu être proches de nos partenaires dans ce projet. En les écoutant, en percevant leur spontanéité, nous avons pu capter des arguments sincères ! Ecoutez-les, lisez-les ! Ils ont beaucoup à apprendre !</p>
-          <div class="body-temoignage write-temoignage">
-            <h1>Exprime-toi !</h1>
-            <div class="alert-danger"><?php echo $prenomErr; ?>
-              <?php echo $titleErr; ?>
-              <?php echo $subjectErr; ?>
-              <?php echo $sexeErr; ?>
-              <?php echo $ageErr; ?>
-            </div>
-            <form action="" method="POST" class="form-temoignage" enctype="multipart/form-data">
-              <label for="prenom"><input type="text" name="prenom" placeholder="Prénom" /></label>
-              <div class="wrapper-sm-input">
-                <label for="age" class="age-temoignage">
-                  <select name="age" id="age" class="temoignage">
-                    <option value="">Age</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                  </select>
-                </label>
-                <div class="radio-btn">
-                  <input type="radio" id="m" name="sexe" value="M" /><label for="m" class="wrapper-radio-btn">M</label>
-                  <input type="radio" id="f" name="sexe" value="F" /><label for="f" class="wrapper-radio-btn">F</label>
-                </div>
-              </div>
-              <label for="studies"><input type="text" placeholder="Etudes/Profession" name="studies" id="studies"/></label>
-              <label for="title_subject" class="accroche">
-                <input type="text" placeholder="Titre" name="title_subject" id="title_subject" />
-              </label>
-              <textarea placeholder="Témoignage" name="subject" id="subject"></textarea>
-              <input type="hidden" name="MAX_FILE_SIZE" value="1054854" />
-              <input type="file" name="img" id="img" />
-              <input type="hidden" />
-              <input type="submit" name="btn_submit--temoignage" value="Envoyer" />
-            </form>
+          <div class="body-temoignage write-temoignage" id="write-temoignage">
+            <h2 class="title-inner--temoignage">Exprime-toi !</h2>
+            <?php include('./php/form_temoignage-html.php'); ?>
           </div>
         </section>
-        <section class="section-second">
-          <?php foreach($results as $result): ?>
-            <?php if($result['statut'] == 'OK') { ?>
-            <div class="container-single-temoignage single-temoignage-public">
-              <div class="header">
-                <h1><?php echo $result["prenom"] ?></h1><span><?php echo $result["age"] ?> ans<span class="thumb-img-temoignage" style="background-image: url('<?php echo $result['img']?>')"></span>
-              </div>
-              <div class="body">
-                <h2>"<?php echo $result["title_subject"] ?>"</h2>
-                <p><?php echo make_summary($result["subject"], 200) ?></p>
-              </div>
-              <div class="footer">
-                <span>étudiant<?php if($result['sexe'] == "F"){echo "e"; }?> en <?php echo $result["studies"] ?></span>
-              </div>
-              <div class="links-temoignage">
-                <a href="./fullstorie.php?id=<?php echo $result["id"] ?>">Lire en entier</a>
-              </div>
-            </div>
-            <?php } ?>
-          <?php endforeach; ?>
+        <section class="section-second section-second--vignettes">
+          <ul class="vignettes-temoignages">
+            <?php foreach($results as $result): ?>
+              <?php if($result['statut'] == 'OK') { ?>
+              <li class="container-single-temoignage single-temoignage-public">
+                <div class="header" style="background-image: url('<?php echo $result['img']?>')"></div>
+                <div class="body">
+                  <h2><?php echo $result["prenom"] ?>
+                  </h2>
+                  <span class="date"><?php echo $result["date_publi"] ?></span>
+                  <div class="title-single--temoignage"><?php echo $result["title_subject"] ?></div>
+                  <div class="txt-body"><?php echo make_summary($result["subject"], 200) ?>
+                    <a class="links-temoignage--el" href="./fullstorie.php?id=<?php echo $result["id"] ?>">Lire en entier</a>
+                  </div>
+                </div>
+                <div class="footer">
+                  <span class="author">Posté par <?php echo $result["prenom"] ?></span>
+                  <a href="./php/like.php?id=<?php echo $result["id"];?>" class="likes"><?php echo $result["likes"] ?></a>
+                </div>
+              </li>
 
-          <?php
-          for($i=1;$i<=$totalPages;$i++) {
-            if($i == $currentPage) {
-              echo '<a class="pagination active">'.$i.'</a>';
-            }else {
-              echo '<a href="./temoignage.php?page='.$i.'">'.$i.'</a>';
+              <?php } ?>
+            <?php endforeach; ?>
+          </ul>
+          <div class="pagination-container">
+            <?php
+            for($i=1;$i<=$totalPages;$i++) {
+              if($i == $currentPage) {
+                echo '<a class="pagination active">'.$i.'</a>';
+              }else {
+                echo '<a class="pagination" href="temoignages.php?page='.$i.'">'.$i.'</a>';
+              }
             }
-          }
-          ?>
+            ?>
+          </div>
         </section>
       </div>
       <?php include ('./footer.php'); ?>
@@ -156,6 +123,5 @@ include ('./php/login.php');
   <!-- <script src="javascript/Chart.js"></script> -->
   <!-- <script src="javascript/charts.js"></script> -->
   <!-- <script src="results.json"></script> -->
-
 </body>
 </html>
